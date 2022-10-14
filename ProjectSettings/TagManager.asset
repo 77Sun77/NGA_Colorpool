@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - BALL
+  - WALL
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Wall
+  - Water
+  - UI
+  - postprocessing
+  - 
+  - 
+  - 
+  - Ball_Red
+  - Ball_Orange
+  - Ball_Yellow
+  - Ball_Green
+  - Ball_Blue
+  - Ball_Purple
+  - Ball_Black
+  - 
+  - 
+  - 
+  - Wall_Red
+  - Wall_Orange
+  - Wall_Yellow
+  - Wall_Green
+  - Wall_Blue
+  - Wall_Purple
+  - Wall_Black
+  - ColorChangeWall
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
