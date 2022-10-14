@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7658322273789748848}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2516823090621060374}
   - component: {fileID: 5696570776675290735}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Line_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3645264925537420637}
   - component: {fileID: 3645264925537420614}
   - component: {fileID: 93669411386879562}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BigBall
   m_TagString: BALL
   m_Icon: {fileID: 0}
@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 0
   ballKind: 1
+  anim: {fileID: 0}
   color_Name: 0
   colors:
   - {r: 1, g: 0.3019608, b: 0.2509804, a: 9.5401875e+26}
@@ -335,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7370533931568936531}
   - component: {fileID: 1479226948174950186}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}

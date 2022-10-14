@@ -26,8 +26,9 @@ public class Swipe : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layerMask = 1 << LayerMask.NameToLayer("Ball");
             Physics.Raycast(ray, out hit);
-            if (hit.collider != null && hit.transform.CompareTag("BALL"))
+            if (hit.collider != null)
             {
                 Ball ball = hit.transform.GetComponent<Ball>();
                 if (ball.color_Name == Ball.Ball_Color.Black || ball.kind == Ball.ObjectKind.Wall)
@@ -39,12 +40,13 @@ public class Swipe : MonoBehaviour
 
         if (Input.GetMouseButton(0) && target != null)
         {
-            Plane plane = new Plane(Vector3.up, Vector3.zero);
+            RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (plane.Raycast(ray, out float rayDistance))
+            int layerMask = 1 << LayerMask.NameToLayer("Ground");
+            Physics.Raycast(ray,out hit, layerMask);
+            if (hit.collider != null)
             {
-                rayPos = ray.GetPoint(rayDistance);
+                rayPos = hit.point;
                 vec = rayPos - target.position;
                 Ball targetBall = target.GetComponent<Ball>();
                 float distance = 0;

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2800731678996693528}
   - component: {fileID: 2800731678996693507}
   - component: {fileID: -8521634214833228689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball
   m_TagString: BALL
   m_Icon: {fileID: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 0
   ballKind: 0
+  anim: {fileID: 0}
   color_Name: 0
   colors:
   - {r: 1, g: 0.303414, b: 0.25157225, a: 1}
@@ -173,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8215060716364787990}
   - component: {fileID: 58514561815701615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9083606745277948213}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3937600699313508947}
   - component: {fileID: 6577207423814813994}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Line_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,8 +14,8 @@ TagManager:
   - Water
   - UI
   - postprocessing
-  - 
-  - 
+  - Ball
+  - Ground
   - 
   - Ball_Red
   - Ball_Orange
@@ -35,7 +35,7 @@ TagManager:
   - Wall_Purple
   - Wall_Black
   - ColorChangeWall
-  - 
+  - ColorWallReflect
   - 
   - 
   - 
