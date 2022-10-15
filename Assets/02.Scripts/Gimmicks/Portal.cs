@@ -9,10 +9,17 @@ public class Portal : MonoBehaviour
 
     public bool isTrigger;
 
+    [SerializeField] Color[] colors;
+    ParticleSystem particle;
     void Start()
     {
         portals[0] = this;
         portals[1] = teleportPoint.GetComponent<Portal>();
+
+        particle = transform.Find("VortexGlow").GetComponent<ParticleSystem>();
+        if (transform.GetChild(0).gameObject.activeInHierarchy) particle.startColor = colors[0];
+        else if (transform.GetChild(1).gameObject.activeInHierarchy) particle.startColor = colors[1];
+        else if (transform.GetChild(2).gameObject.activeInHierarchy) particle.startColor = colors[2];
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -38,11 +38,12 @@ public class Ball : MonoBehaviour
     int num_ballIndex = 0;
 
     public GameObject hitParticle;
-    
+
+    int changeCount;
 
     void Start()
     {
-
+        changeCount = 0;
         myRIgid = GetComponent<Rigidbody>();
 
         if (kind == ObjectKind.Ball)
@@ -67,7 +68,7 @@ public class Ball : MonoBehaviour
             isShot = false;
         }
 
-     
+        if (Input.GetKeyDown(KeyCode.Space) && kind == ObjectKind.Ball) anim.SetTrigger("SizeAnim");
 
 
         if(kind != ObjectKind.Wall)gameObject.layer = 10 + num_ballIndex;
@@ -89,12 +90,15 @@ public class Ball : MonoBehaviour
         if (color == Ball_Color.Purple) num_ballIndex = 5;
         if (color == Ball_Color.Black) num_ballIndex = 6;
 
+        
+        
+
         //myMaterial = GetComponent<Renderer>().sharedMaterial;
         //var tempMat = new Material(myMaterial);
         //tempMat.color=colors[num_ballIndex];
         //myMaterial = tempMat;
 
-       // Debug.Log("SetBall");
+        // Debug.Log("SetBall");
 
         if (call == "Line")
         {
@@ -105,12 +109,15 @@ public class Ball : MonoBehaviour
             return;
         }
 
-
         myMaterial.color = colors[num_ballIndex];// 이미지 만들어지면 색깔이 아니라 이미지 변경
-
-
-
-
+        if (call == "Ball" && changeCount>0)
+        {
+            GameObject particle = Instantiate(hitParticle, transform.position+new Vector3(-0.5f, 0.5f, 0.25f), Quaternion.Euler(new Vector3(50,-50,0)));
+            particle.transform.localScale = transform.localScale;
+            particle.GetComponent<SpriteRenderer>().color = myMaterial.color;
+            Destroy(particle, 1.5f);
+        }
+        changeCount++;
     }
 
     public bool Set_Line(Vector3 vec, int count = 2)
@@ -219,21 +226,7 @@ public class Ball : MonoBehaviour
             if(kind == ObjectKind.Ball)
             {
                 Ball hit_Ball = coll.gameObject.GetComponent<Ball>();
-                GameObject particle = null;
-                if (hit_Ball.kind == ObjectKind.Ball && color_Name != hit_Ball.color_Name)
-                {
-                    particle = Instantiate(hitParticle, coll.transform.position, Quaternion.identity);
-                    particle.transform.localScale = coll.transform.localScale;
-                    particle.transform.rotation = Quaternion.Euler(new Vector3(60, -30, 0));
-                    Destroy(particle, 1.5f);
-                }
-
                 ChangeColor(color_Name, hit_Ball.color_Name);
-                if(particle != null)
-                {
-                    particle.GetComponent<SpriteRenderer>().color = myMaterial.color;
-                }
-
                 hit_Ball.isShot = true;
             }
             else
@@ -248,8 +241,8 @@ public class Ball : MonoBehaviour
     public void ChangeColor(Ball_Color c1, Ball_Color c2, string call = "Ball")
     {
         if (c1 == c2) return;
-
-        if(call == "Ball")
+        Ball_Color originColor = color_Name;
+        if (call == "Ball")
         {
             if (Orange(c1, c2))
             {
@@ -269,6 +262,7 @@ public class Ball : MonoBehaviour
             {
                 color_Name = Ball_Color.Black;
             }
+            if (originColor == color_Name) return;
             Set_Ball();
         }
         else if (call == "Line")
@@ -297,6 +291,7 @@ public class Ball : MonoBehaviour
         else
         {
             color_Name = c1;
+            if (originColor == color_Name) return;
             Set_Ball();
         }
         

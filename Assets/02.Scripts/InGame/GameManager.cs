@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public int shotRule;
     public int shotCount;
+    public bool firstAnim;
 
     void Awake()
     {
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
         shotCount = 0;
 
         //1스테이지 실행
-        PlayStage();
+        //PlayStage();
     }
 
    public void PlayStage()
@@ -64,6 +65,15 @@ public class GameManager : MonoBehaviour
     {
         
         SetBalls();
+        if (firstAnim)
+        {
+            foreach (Ball ball in balls)
+            {
+                if (ball.GetComponent<Animator>().enabled) return;
+                else firstAnim = false;
+            }
+        }
+        
         isAllBallShot = Set_IsAllBallShot();
 
         if (isAllBallShot == false)
