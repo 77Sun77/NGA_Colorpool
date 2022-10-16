@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
         isShot = true;
         foreach(LineRenderer line in lines) line.positionCount = 1;
 
+        GameManager.instance.isValid = false;
         GameManager.instance.shotCount++;
     }
 
