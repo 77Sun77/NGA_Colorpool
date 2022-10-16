@@ -51,13 +51,14 @@ public class GameManager : MonoBehaviour
         shotCount = 0;
 
         //1스테이지 실행
-        PlayStage();
+        //PlayStage();
     }
 
    public void PlayStage()
     {
         Instantiate(stageOptions[stageLV]);
         stageOptions[stageLV].SetStageRule();
+        SetBalls();
     }
 
 
