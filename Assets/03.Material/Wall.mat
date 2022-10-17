@@ -12,7 +12,7 @@ Material:
   m_ValidKeywords:
   - BACK_GRADIENT_ON
   - FRONT_GRADIENT_ON
-  - LEFT_SOLID_ON
+  - LEFT_GRADIENT_ON
   - RIGHT_GRADIENT_ON
   m_InvalidKeywords:
   - COLR_1_2
