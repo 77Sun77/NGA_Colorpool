@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
     public int shotCount;
     public bool firstAnim;
 
+    public GameObject paintBrush_Prefab;
+
+
     void Awake()
     {
         instance = this;
@@ -65,14 +68,14 @@ public class GameManager : MonoBehaviour
     {
         
         SetBalls();
-        if (firstAnim)
-        {
-            foreach (Ball ball in balls)
-            {
-                if (ball.GetComponent<Animator>().enabled) return;
-                else firstAnim = false;
-            }
-        }
+        //if (firstAnim)
+        //{
+        //    foreach (Ball ball in balls)
+        //    {
+        //        if (ball.GetComponent<Animator>().enabled) return;
+        //        else firstAnim = false;
+        //    }
+        //}
         
         isAllBallShot = Set_IsAllBallShot();
 

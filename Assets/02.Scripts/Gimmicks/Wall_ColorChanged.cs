@@ -5,6 +5,10 @@ using UnityEngine;
 public class Wall_ColorChanged : MonoBehaviour
 {
     public Ball.Ball_Color color;
+    private void Awake()
+    {
+        transform.Find(color.ToString()).gameObject.SetActive(true);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
