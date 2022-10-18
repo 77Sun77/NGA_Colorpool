@@ -19,28 +19,30 @@ public class AnimType_Mono : MonoBehaviour
     GameObject brushPrefab_Ins;
     public bool isBrushSpawned;
     public bool isBrushMoving;
-    public float curTime;
+    float curTime;
+
+    Transform CCW_TF;
 
     [ContextMenu("초기화")]
     public void Initialize()
     {
         switch (animType)
         {
-            case AnimType.Wall:
-                transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
-                break;
+            //case AnimType.Wall:
+            //    transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
+            //    break;
             case AnimType.Ball:
-                transform.position.Scale(Vector3.one / 10);
+                //transform.position.Scale(Vector3.one / 10);
                 break;
             case AnimType.Key:
                 break;
             case AnimType.Cage:
                 break;
             case AnimType.Paint:
-
-                transform.localScale = new Vector3(0, transform.localScale.y, transform.localScale.z);
+                CCW_TF = transform.Find("Square_Offset");
+                //Vector3 colorScale = CCW_TF.localScale;
+                //CCW_TF.localScale = new Vector3(0, colorScale.y, colorScale.z);
                 Debug.Log("페인트 초기화");
-
                 break;
         }
 
@@ -56,19 +58,33 @@ public class AnimType_Mono : MonoBehaviour
 
     public void DoAnim()
     {
-        if (isAnimWall)
-        {
-            transform.Translate(Vector3.right * 2 * Time.deltaTime);
-            if (transform.position.y > 0.5f)
-            {
-                isAnimWall = false;
-            }
-        }
+        //if (isAnimWall)
+        //{
+        //    transform.Translate(Vector3.right * 2 * Time.deltaTime);
+        //    if (transform.position.y > 0.5f)
+        //    {
+        //        isAnimWall = false;
+        //    }
+        //}
 
         if (isAnimBall)
         {
-            transform.localScale = Vector3.Lerp(Vector3.one * 0.1f, Vector3.one, curTime/3);
-            curTime += Time.deltaTime;
+            //transform.localScale = Vector3.Lerp(Vector3.one * 0.1f, Vector3.one, curTime/3);
+            //curTime += Time.deltaTime;
+            transform.GetComponent<Animator>().SetTrigger("SizeAnim");
+            isAnimBall = false;
+        }
+
+        if (isAnimKey)
+        {
+            if (transform.position.y < 1.5f)
+            {
+                transform.position += Vector3.down/2 * Time.deltaTime;
+            }
+            else if(transform.position.y<0.5f)
+            {
+                transform.position += Vector3.up/2 * Time.deltaTime;
+            }
         }
 
         if (isAnimPaint)
@@ -78,8 +94,8 @@ public class AnimType_Mono : MonoBehaviour
             if (isBrushMoving)
             {
                 brushPrefab_Ins.transform.position = Vector3.Lerp(transform.Find("StartPoint").position, transform.Find("EndPoint").position, curTime*1.5f);
-
-                transform.localScale = Vector3.Lerp(new Vector3(0, transform.localScale.y, transform.localScale.z), new  Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z), curTime * 1.5f); 
+                Vector3 colorScale = CCW_TF.localScale;
+                CCW_TF.localScale = Vector3.Lerp(Vector3.one, new Vector3(0, colorScale.y, colorScale.z), curTime * 1.5f); 
 
                 curTime += Time.deltaTime;
             }
@@ -105,10 +121,11 @@ public class AnimType_Mono : MonoBehaviour
         {
             if (brushPrefab_Ins.GetComponent<Animator>().GetBool("isFadeOut")==false)
             {
-                //yield return new WaitForSeconds(0.1f);
                 Debug.Log("페이드아웃");
-
                 brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeOut", true);
+                yield return new WaitForSeconds(0.1f);
+                isAnimPaint =false;
+                Destroy(brushPrefab_Ins);
             }
         }
     }

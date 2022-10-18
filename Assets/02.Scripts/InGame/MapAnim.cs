@@ -6,8 +6,10 @@ public class MapAnim : MonoBehaviour
 {
     bool isStart, anim;
     List<Transform> objects = new List<Transform>();
+    List<Transform> walls = new List<Transform>();
 
     Transform[] moveWalls = new Transform[2];
+
     void Start()
     {
         StartMapAnim();
@@ -19,7 +21,6 @@ public class MapAnim : MonoBehaviour
 
         foreach (Transform tr in transform)
         {
-            Vector3 vec = tr.position;
 
             if (tr.TryGetComponent(out AnimType_Mono AM))
             {
@@ -29,41 +30,82 @@ public class MapAnim : MonoBehaviour
                 AM.Initialize();
             }
         }
-        
 
-        //맵 열기
-        for (int i = 0; i < 2; i++)
+        foreach (Transform _tr in transform.Find("Walls"))
         {
-            moveWalls[i] = GameObject.Find("MoveWall" + (i + 1)).transform;
+            Vector3 vec = _tr.position;
+            _tr.position = new Vector3(vec.x, -2f, vec.z);
+
+            walls.Add(_tr);
         }
-        StartCoroutine(MoveWalls());
-       
+
+        //디버그하기 쉽게 만든 코드
+        if (GameManager.instance.movingWall1==true)
+        {
+            //맵 열기
+            StartCoroutine(MoveMovingWalls());
+        }
+       else StartCoroutine(LoadingWalls());
 
     }
 
-    IEnumerator MoveWalls()
+    IEnumerator MoveMovingWalls()
     {
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            moveWalls[0].Translate(Vector3.back * 7 * Time.deltaTime);
-            moveWalls[1].Translate(Vector3.forward * 7 * Time.deltaTime);
-            if (moveWalls[0].position.z <= -24.5 && moveWalls[1].position.z >= 24.5)
+            GameManager.instance.movingWall1.Translate(Vector3.back * 7 * Time.deltaTime);
+            GameManager.instance.movingWall2.Translate(Vector3.forward * 7 * Time.deltaTime);
+            if (GameManager.instance.movingWall1.position.z <= -24.5 && GameManager.instance.movingWall2.position.z >= 24.5)
             {
-                moveWalls[0].gameObject.SetActive(false);
-                moveWalls[1].gameObject.SetActive(false);
+                GameManager.instance.movingWall1.gameObject.SetActive(false);
+                GameManager.instance.movingWall2.gameObject.SetActive(false);
                 break;
             }
         }
-        StartCoroutine(LoadingMap());
+        StartCoroutine(LoadingWalls());
     }
+
+    IEnumerator LoadingWalls()
+    {
+
+        for (int i = 0; i < walls.Count; i++)
+        {
+            //Debug.Log($"{walls[i].name} 실행");
+            StartCoroutine(MoveUpWall(walls[i]));
+            yield return new WaitForSeconds(0.12f);
+        }
+        StartCoroutine(LoadingMap());
+
+    }
+
+    IEnumerator MoveUpWall(Transform tf)
+    {
+        while (tf.position.y < 0.5f)
+        {
+            yield return new WaitForFixedUpdate();
+            tf.position += (Vector3.up * 2 * Time.deltaTime);
+        }
+
+        if (tf.TryGetComponent(out AnimType_Mono AM))
+        {
+            if (AM.animType == AnimType_Mono.AnimType.Key)
+            {
+                AM.TriggerAnimBool();
+            }
+        }
+    }
+
+
 
     IEnumerator LoadingMap()
     {
         for (int i = 0; i < objects.Count; i++)
         {
-            objects[i].GetComponent<AnimType_Mono>().DoAnim();
-            yield return new WaitForSeconds(0.12f);
+            //Debug.Log($"{objects[i].name} 실행");
+
+            objects[i].GetComponent<AnimType_Mono>().TriggerAnimBool();
+            yield return new WaitForSeconds(0.17f);
         }
     }
 

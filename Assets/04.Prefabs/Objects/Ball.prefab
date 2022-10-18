@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2800731678996693528}
   - component: {fileID: 2800731678996693507}
   - component: {fileID: -8521634214833228689}
+  - component: {fileID: 4673279186232171106}
   m_Layer: 7
   m_Name: Ball
   m_TagString: BALL
@@ -164,6 +165,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4673279186232171106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800731678996693529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048578cd646437347bd2f8ab4bcfb654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 0
+  animType: 1
+  isAnimWall: 0
+  isAnimBall: 0
+  isAnimKey: 0
+  isAnimCage: 0
+  isAnimPaint: 0
+  isBrushSpawned: 0
+  isBrushMoving: 0
+  curTime: 0
 --- !u!1 &3281749771337713508
 GameObject:
   m_ObjectHideFlags: 0

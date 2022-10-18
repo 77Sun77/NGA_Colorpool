@@ -37,14 +37,20 @@ public class UIManager : MonoBehaviour
 
     public bool isOnScoreBoard;
 
+    Dictionary<GameObject, string> colorImages = new Dictionary<GameObject, string>();
+    List<GameObject> check_Object = new List<GameObject>();
 
     private void Awake()
     {
         instance = this;
     }
+    private void Start()
+    {
+        Set_Target_Img();
+    }
     private void Update()
     {
-        ShowTargetsOnUI();
+        //ShowTargetsOnUI();
     }
 
     [ContextMenu("Test")]
@@ -73,6 +79,42 @@ public class UIManager : MonoBehaviour
         SetCheckUI();
 
     }
+
+    void Set_Target_Img()
+    {
+        int count = GameManager.instance.targetList.Count;
+        for(int i=0; i<count; i++)
+        {
+            string colorName = GameManager.instance.targetList[i];
+            GameObject go = Instantiate(UI_ballImagePrefabs[SetBallColorToIndex(colorName)], UI_TargetPlace.transform);
+            colorImages.Add(go, colorName);
+        }
+    }
+    public void Set_Check(string[] colors)
+    {
+        foreach (GameObject checkObj in check_Object)
+        {
+            checkObj.transform.parent = GameObject.Find("Canvas").transform;
+            Destroy(checkObj);
+        }
+        check_Object.Clear();
+        foreach (string color in colors)
+        {
+            foreach (KeyValuePair<GameObject, string> image in colorImages)
+            {
+                if (image.Value == color && image.Key.transform.childCount == 0)
+                {
+                    GameObject go = Instantiate(UI_CheckImagePrefab, image.Key.transform);
+                    go.transform.localPosition = new Vector3(0, 0, 0);
+                    check_Object.Add(go);
+                    break;
+                }
+            }
+        }
+        
+
+    }
+
     void SetImgCount()
     {
         imgCount = GameManager.instance.targetList.Count;
@@ -161,21 +203,25 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("스코어보드 실행");
         isOnScoreBoard = true;
-        UI_ScoreBoard.SetActive(true);
-
-        foreach (GameObject UI_Star in UI_Stars)
-        {
-            UI_Star.SetActive(false);
-        }
-        for (int i = 0; i < score; i++)
-        {
-            UI_Stars[i].SetActive(true);
-        }
-
+        
+        StartCoroutine(EnableStar(score));
         targetText.text = $"Goal Shot Count:{GameManager.instance.shotRule}";
         shotText.text = $"Shot Count:{GameManager.instance.shotCount}";
     }
-
+    IEnumerator EnableStar(int score)
+    {
+        yield return new WaitForSeconds(1.5f);
+        UI_ScoreBoard.SetActive(true);
+        yield return new WaitForSeconds(1.7f);
+        UI_ScoreBoard.GetComponent<Animator>().enabled = false;
+        for (int i = 0; i < score; i++)
+        {
+            UI_Stars[i].SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            print("?");
+            
+        }
+    }
     public void InitializeStage()
     {
         GameManager.instance.shotCount = 0;

@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public List<StageOption> stageOptions = new List<StageOption>();
 
     [Header("BallOption")]
-    public bool isAllBallShot;
+    public bool isAllBallShot, isValid;
     public List<Ball> balls;
 
     //Dictionary<string, int> colorRule = new Dictionary<string, int>();//스테이지에서 요구하는 공 
@@ -43,13 +43,15 @@ public class GameManager : MonoBehaviour
     public bool firstAnim;
 
     public GameObject paintBrush_Prefab;
-
+    public Transform movingWall1;
+    public Transform movingWall2;
 
     void Awake()
     {
         instance = this;
 
         isAllBallShot = false;
+        isValid = false;
 
         shotCount = 0;
 
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         Instantiate(stageOptions[stageLV]);
         stageOptions[stageLV].SetStageRule();
+        SetBalls();
     }
 
 
@@ -79,16 +82,10 @@ public class GameManager : MonoBehaviour
         
         isAllBallShot = Set_IsAllBallShot();
 
-        if (isAllBallShot == false)
+        if (isAllBallShot == false && shotCount != 0)
         {
-            ValidColor();
-        }
+            if(!isValid) ValidColor();
 
-        if(shotCount!=0)
-        if (curTargetList.Count==0)
-        {
-            if (UIManager.instance.isOnScoreBoard == false)
-                OnStageEnd();
         }
 
     }
@@ -122,6 +119,7 @@ public class GameManager : MonoBehaviour
 
     void ValidColor()
     {
+        isValid = true;
         Debug.Log("실행중");
         Reset_ColorCount();
         curTargetList.Clear();
@@ -133,8 +131,44 @@ public class GameManager : MonoBehaviour
             //공색깔을 colorCount에 넣음
             Add_ColorCount(ball.color_Name.ToString());
         }
+        bool isClear = false;
+        List<string> curColorCount = new List<string>();
+        foreach(KeyValuePair<string, int> rule in colorRule)
+        {
+            foreach (KeyValuePair<string, int> color in colorCount)
+            {
+                if (rule.Value == 0) continue;
+                if (rule.Key == color.Key )
+                {
+                    for(int i=0; i<color.Value; i++) curColorCount.Add(color.Key);
 
+                    if (rule.Value == color.Value) isClear = true;
+                    else
+                    {
+                        isClear = false;
+                        break;
+                    }
 
+                }
+                
+            }
+        }
+        UIManager.instance.Set_Check(curColorCount.ToArray());
+        if (UIManager.instance.isOnScoreBoard == false)
+        {
+            if (isClear)
+            {
+                OnStageEnd();
+            }
+            else
+            {
+
+            }
+        }
+            
+        
+
+        /*
         foreach (KeyValuePair<string, int> rule in colorRule)
         {
             foreach (KeyValuePair<string, int> color in colorCount)
@@ -160,7 +194,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
-
+        */
       
     }
     /// <summary>
