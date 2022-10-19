@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("StageOption")]
-    public int stageLV;
+    public static int stageLV;
     public List<StageOption> stageOptions = new List<StageOption>();
 
     [Header("BallOption")]
