@@ -187,6 +187,8 @@ MonoBehaviour:
   isBrushSpawned: 0
   isBrushMoving: 0
   curTime: 0
+  isDownCount: 0
+  isUpCount: 0
 --- !u!1 &3281749771337713508
 GameObject:
   m_ObjectHideFlags: 0

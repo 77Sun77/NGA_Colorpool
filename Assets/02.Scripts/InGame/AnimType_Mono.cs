@@ -15,14 +15,18 @@ public class AnimType_Mono : MonoBehaviour
     public bool isAnimCage;
     public bool isAnimPaint;
 
+  
 
     GameObject brushPrefab_Ins;
     public bool isBrushSpawned;
     public bool isBrushMoving;
-    float curTime;
+   public float curTime;
 
     Transform CCW_TF;
 
+    Vector3 keyPos;
+    public bool isDownCount;
+    public bool isUpCount;
     [ContextMenu("초기화")]
     public void Initialize()
     {
@@ -35,6 +39,8 @@ public class AnimType_Mono : MonoBehaviour
                 //transform.position.Scale(Vector3.one / 10);
                 break;
             case AnimType.Key:
+                keyPos = transform.position;
+                isUpCount = true;
                 break;
             case AnimType.Cage:
                 break;
@@ -56,35 +62,52 @@ public class AnimType_Mono : MonoBehaviour
 
     }
 
+    public void UnTriggerAnimBool()
+    {
+        //AnimType에 따라 bool 값을 활성화시키는 함수
+        this.GetType().GetField($"isAnim{animType}").SetValue(this, false);
+        Debug.Log("언트리거");
+
+    }
+
     public void DoAnim()
     {
-        //if (isAnimWall)
-        //{
-        //    transform.Translate(Vector3.right * 2 * Time.deltaTime);
-        //    if (transform.position.y > 0.5f)
-        //    {
-        //        isAnimWall = false;
-        //    }
-        //}
-
+ 
         if (isAnimBall)
         {
             //transform.localScale = Vector3.Lerp(Vector3.one * 0.1f, Vector3.one, curTime/3);
             //curTime += Time.deltaTime;
-            transform.GetComponent<Animator>().SetTrigger("SizeAnim");
+            //transform.GetComponent<Animator>().SetBool("SizeAnim2",true);
+            //transform.GetComponent<Animator>().SetTrigger("SizeAnim2");
+            transform.GetComponent<Animator>().SetTrigger("SizeAnim2");
+
+
             isAnimBall = false;
         }
 
         if (isAnimKey)
         {
-            if (transform.position.y < 1.5f)
+
+            if (curTime <= 0)
             {
-                transform.position += Vector3.down/2 * Time.deltaTime;
+                MoveUp();
             }
-            else if(transform.position.y<0.5f)
+            else if (curTime >= 1f)
             {
-                transform.position += Vector3.up/2 * Time.deltaTime;
+                MoveDown();
             }
+          
+                if (isDownCount)
+                {
+                    curTime -= Time.deltaTime;
+                }
+                else if (isUpCount)
+                {
+                    curTime += Time.deltaTime;
+                }
+            
+            transform.position = Vector3.Lerp(keyPos, keyPos + Vector3.up/3, curTime);
+            transform.Rotate(Vector3.up*20 * Time.deltaTime);
         }
 
         if (isAnimPaint)
@@ -103,6 +126,19 @@ public class AnimType_Mono : MonoBehaviour
         }
 
     }
+
+ void MoveDown()
+    {
+        isUpCount = false;
+        isDownCount = true;
+    }
+
+    void MoveUp()
+    {
+        isUpCount = true;
+        isDownCount = false;
+    }
+
 
     IEnumerator DoAnim_Paint()
     {
@@ -123,7 +159,7 @@ public class AnimType_Mono : MonoBehaviour
             {
                 Debug.Log("페이드아웃");
                 brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeOut", true);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
                 isAnimPaint =false;
                 Destroy(brushPrefab_Ins);
             }
