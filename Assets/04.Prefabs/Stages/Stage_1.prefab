@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5416648372681174512}
-  - component: {fileID: 3164421679030088182}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -34,18 +33,6 @@ Transform:
   m_Father: {fileID: 5416648374202978135}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3164421679030088182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5416648372681174527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e214726c11d5e46bb3535fc2cd3335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5416648372745947262
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72267d76725fbb044a1c3ef6d6aa7688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objects: []
+  walls: []
+  paints: []
 --- !u!1 &5416648374388128313
 GameObject:
   m_ObjectHideFlags: 0

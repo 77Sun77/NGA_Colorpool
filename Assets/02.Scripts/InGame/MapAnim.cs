@@ -80,6 +80,7 @@ public class MapAnim : MonoBehaviour
     //순차적으로 벽을 올림
     IEnumerator LoadingWalls()
     {
+
         for (int i = 0; i < walls.Count; i++)
         {
             //Debug.Log($"{walls[i].name} 실행");

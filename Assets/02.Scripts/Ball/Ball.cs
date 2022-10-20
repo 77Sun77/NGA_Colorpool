@@ -42,7 +42,7 @@ public class Ball : MonoBehaviour
 
     int changeCount;
 
-    void Start()
+    void Awake()
     {
         changeCount = 0;
         myRIgid = GetComponent<Rigidbody>();
@@ -58,6 +58,13 @@ public class Ball : MonoBehaviour
 
         Set_Ball();
         foreach (LineRenderer line in lines) line.SetColors(myMaterial.color, myMaterial.color);
+
+        if(GetComponent<AnimType_Mono>() == null)
+        {
+            AnimType_Mono am = gameObject.AddComponent<AnimType_Mono>();
+            am.animType = AnimType_Mono.AnimType.Ball;
+        }
+        
     }
 
     void Update()

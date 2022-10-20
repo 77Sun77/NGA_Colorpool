@@ -671,6 +671,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72267d76725fbb044a1c3ef6d6aa7688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objects: []
+  walls: []
+  paints: []
 --- !u!1001 &4317280941747468635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -744,6 +747,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4317280943800624441}
     m_Modifications:
+    - target: {fileID: 1587139724233936849, guid: d4e8c8471c8875845a6fedc16ce2a709, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1614815475212956008, guid: d4e8c8471c8875845a6fedc16ce2a709, type: 3}
       propertyPath: teleportPoint
       value: 
@@ -1032,6 +1039,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4317280943800624441}
     m_Modifications:
+    - target: {fileID: 1587139724233936849, guid: d4e8c8471c8875845a6fedc16ce2a709, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1614815475212956008, guid: d4e8c8471c8875845a6fedc16ce2a709, type: 3}
       propertyPath: teleportPoint
       value: 
