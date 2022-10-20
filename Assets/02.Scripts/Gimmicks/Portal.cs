@@ -20,6 +20,8 @@ public class Portal : MonoBehaviour
         if (transform.GetChild(0).gameObject.activeInHierarchy) particle.startColor = colors[0];
         else if (transform.GetChild(1).gameObject.activeInHierarchy) particle.startColor = colors[1];
         else if (transform.GetChild(2).gameObject.activeInHierarchy) particle.startColor = colors[2];
+        else if (transform.GetChild(3).gameObject.activeInHierarchy) particle.startColor = colors[3];
+        else if (transform.GetChild(4).gameObject.activeInHierarchy) particle.startColor = colors[4];
     }
     private void OnTriggerEnter(Collider other)
     {

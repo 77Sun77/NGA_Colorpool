@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -226,8 +227,8 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.shotCount = 0;
         GameManager.instance.targetList.Clear();
-        GameObject go = GameObject.Find($"Stage_{GameManager.instance.stageLV}(Clone)");
-        Destroy(go);
+        //GameObject go = GameObject.Find($"Stage_{GameManager.stageLV}(Clone)");
+        //Destroy(go);
         isOnScoreBoard = false;
         UI_ScoreBoard.SetActive(false);
 
@@ -236,16 +237,20 @@ public class UIManager : MonoBehaviour
     public void RestartStage()
     {
         InitializeStage();
-        GameManager.instance.PlayStage();
+        SceneManager.LoadScene("PlayScene");
 
     }
 
     public void NextStage()
     {
         InitializeStage();
-        GameManager.instance.stageLV++;
-        GameManager.instance.PlayStage();
+        GameManager.stageLV++;
+        SceneManager.LoadScene("PlayScene");
 
+    }
+    public void OpenLobby()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
     Vector3 GetPositon(int i)
