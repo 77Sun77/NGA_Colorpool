@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AnimType_Mono : MonoBehaviour
 {
+    public Material[] materials;
+
+
     public float seconds;
 
     public enum AnimType { Wall, Ball, Key, Cage, Paint }
@@ -27,6 +30,18 @@ public class AnimType_Mono : MonoBehaviour
     Vector3 keyPos;
     public bool isDownCount;
     public bool isUpCount;
+
+    private void Awake()
+    {
+        if (animType == AnimType.Cage)
+        {
+            Initialize();
+        }
+
+    }
+
+
+
     [ContextMenu("√ ±‚»≠")]
     public void Initialize()
     {
@@ -43,6 +58,63 @@ public class AnimType_Mono : MonoBehaviour
                 isUpCount = true;
                 break;
             case AnimType.Cage:
+                switch (transform.GetChild(0).gameObject.name)
+                {
+                    case "NewCage_Circle_C":
+                        foreach (Transform tf in transform.GetChild(1))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[0];
+                        }
+                        foreach (Transform tf in transform.GetChild(2))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[0];
+                        }
+                        break;
+                    case "NewCage_Heart_C":
+                        foreach (Transform tf in transform.GetChild(1))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[1];
+                        }
+                        foreach (Transform tf in transform.GetChild(2))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[1];
+                        }
+                        break;
+                    case "NewCage_Square_C":
+                        foreach (Transform tf in transform.GetChild(1))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[2];
+                        }
+                        foreach (Transform tf in transform.GetChild(2))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[2];
+                        }
+                        break;
+                    case "NewCage_Star_C":
+                        foreach (Transform tf in transform.GetChild(1))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[3];
+                        }
+                        foreach (Transform tf in transform.GetChild(2))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[3];
+                        }
+                        break;
+                    case "NewCage_Triangle_C":
+                        foreach (Transform tf in transform.GetChild(1))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[4];
+                        }
+                        foreach (Transform tf in transform.GetChild(2))
+                        {
+                            tf.GetComponent<MeshRenderer>().material = materials[4];
+                        }
+                        break;
+                }
+
+                
+
+
                 break;
             case AnimType.Paint:
                 CCW_TF = transform.Find("Square_Offset");

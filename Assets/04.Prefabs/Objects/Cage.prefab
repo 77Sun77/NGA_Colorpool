@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7077353493284866939}
   - component: {fileID: 7077353493284866919}
   - component: {fileID: 7077353493284866940}
+  - component: {fileID: 7968780090512962533}
   m_Layer: 0
   m_Name: Cage
   m_TagString: Untagged
@@ -127,3 +128,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75dc98fc1f97a440bfa85ce34c6e5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7968780090512962533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077353493284866918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048578cd646437347bd2f8ab4bcfb654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: b49d4f7fa6ee2914898837c943cc4dbc, type: 2}
+  - {fileID: 2100000, guid: 76980e4675e8b5a4ebe20c0dd87e1a49, type: 2}
+  - {fileID: 2100000, guid: 50d59f45bcef5c64da75207b193dfdd6, type: 2}
+  - {fileID: 2100000, guid: d09eb70c24a30974aa181e9fde9a22c3, type: 2}
+  - {fileID: 2100000, guid: bea17ca0e7c40464eb23fe9fd3bd7079, type: 2}
+  seconds: 0
+  animType: 3
+  isAnimWall: 0
+  isAnimBall: 0
+  isAnimKey: 0
+  isAnimCage: 0
+  isAnimPaint: 0
+  isBrushSpawned: 0
+  isBrushMoving: 0
+  curTime: 0
+  isDownCount: 0
+  isUpCount: 0
