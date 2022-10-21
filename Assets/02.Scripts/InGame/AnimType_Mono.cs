@@ -61,54 +61,19 @@ public class AnimType_Mono : MonoBehaviour
                 switch (transform.GetChild(0).gameObject.name)
                 {
                     case "NewCage_Circle_C":
-                        foreach (Transform tf in transform.GetChild(1))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[0];
-                        }
-                        foreach (Transform tf in transform.GetChild(2))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[0];
-                        }
+                        CageMaterial(0);
                         break;
                     case "NewCage_Heart_C":
-                        foreach (Transform tf in transform.GetChild(1))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[1];
-                        }
-                        foreach (Transform tf in transform.GetChild(2))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[1];
-                        }
+                        CageMaterial(1);
                         break;
                     case "NewCage_Square_C":
-                        foreach (Transform tf in transform.GetChild(1))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[2];
-                        }
-                        foreach (Transform tf in transform.GetChild(2))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[2];
-                        }
+                        CageMaterial(2);
                         break;
                     case "NewCage_Star_C":
-                        foreach (Transform tf in transform.GetChild(1))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[3];
-                        }
-                        foreach (Transform tf in transform.GetChild(2))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[3];
-                        }
+                        CageMaterial(3);
                         break;
                     case "NewCage_Triangle_C":
-                        foreach (Transform tf in transform.GetChild(1))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[4];
-                        }
-                        foreach (Transform tf in transform.GetChild(2))
-                        {
-                            tf.GetComponent<MeshRenderer>().material = materials[4];
-                        }
+                        CageMaterial(4);
                         break;
                 }
 
@@ -254,7 +219,16 @@ public class AnimType_Mono : MonoBehaviour
     }
 
 
-
+    void CageMaterial(int num)
+    {
+        foreach (Transform child in transform)
+        {
+            foreach (Transform tf in child)
+            {
+                tf.GetComponent<MeshRenderer>().material = materials[num];
+            }
+        }
+    }
 
 
    
