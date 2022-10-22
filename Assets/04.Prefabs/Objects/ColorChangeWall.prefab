@@ -185,7 +185,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.83, y: 1, z: 0.69}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1679311797323601410
 Rigidbody:
@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048578cd646437347bd2f8ab4bcfb654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materials: []
   seconds: 0
   animType: 4
   isAnimWall: 0
@@ -238,6 +239,8 @@ MonoBehaviour:
   isBrushSpawned: 0
   isBrushMoving: 0
   curTime: 0
+  isDownCount: 0
+  isUpCount: 0
 --- !u!1 &2223886286744619443
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +946,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8749214925050741443}
-  m_LocalRotation: {x: -0, y: 0.099059254, z: -0, w: 0.99508154}
+  m_LocalRotation: {x: 0, y: 0.061832465, z: 0, w: 0.9980866}
   m_LocalPosition: {x: -0.5, y: -0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -957,4 +960,4 @@ Transform:
   - {fileID: 555086282158049272}
   m_Father: {fileID: 1679311797323601422}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 11.37, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 7.09, z: 0}

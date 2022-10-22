@@ -9,7 +9,8 @@ public class Swipe : MonoBehaviour
     Vector3 rayPos = Vector3.zero;
     Vector3 vec = Vector3.zero;
 
-    bool isShot;
+
+   public bool isShot;
 
     void Update()
     {
@@ -22,11 +23,12 @@ public class Swipe : MonoBehaviour
 
     void Mouse_Fun()
     {
+        //처음 마우스를 클릭할때 타겟을 정함
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            int layerMask = (1 << LayerMask.NameToLayer("Ball_Red")) | (1 << LayerMask.NameToLayer("Ball_Orange")) | (1 << LayerMask.NameToLayer("Ball_Yellow")) | (1 << LayerMask.NameToLayer("Ball_Green")) | (1 << LayerMask.NameToLayer("Ball_Blue")) | (1 << LayerMask.NameToLayer("Ball_Purple"));
+            int layerMask = (1 << LayerMask.NameToLayer("Ball_Red")) | (1 << LayerMask.NameToLayer("Ball_Orange")) | (1 << LayerMask.NameToLayer("Ball_Yellow")) | (1 << LayerMask.NameToLayer("Ball_Green")) | (1 << LayerMask.NameToLayer("Ball_Blue")) | (1 << LayerMask.NameToLayer("Ball_Purple") | (1 << LayerMask.NameToLayer("Ball_CurTargetting")));
             Physics.Raycast(ray, out hit, 100, layerMask);
             if (hit.collider != null)
             {
@@ -38,6 +40,7 @@ public class Swipe : MonoBehaviour
             }
         }
 
+        
         if (Input.GetMouseButton(0) && target != null)
         {
             RaycastHit hit;
@@ -49,6 +52,7 @@ public class Swipe : MonoBehaviour
                 rayPos = hit.point;
                 vec = rayPos - target.position;
                 Ball targetBall = target.GetComponent<Ball>();
+                targetBall.isTargetting = true;
                 float distance = 0;
                 if(targetBall.ballKind == Ball.BallKind.Small)
                 {
@@ -62,13 +66,15 @@ public class Swipe : MonoBehaviour
                 }
                 Vector3 vec2 = target.position - (vec.normalized* distance);
                 vec2.y = 0.5f;
+                //Debug.Log(distance);
                 isShot = target.GetComponent<Ball>().Set_Line(vec2);
-                
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+           target.GetComponent<Ball>().isTargetting = false;
+
             if (target != null && isShot)
             {
                 float power = Vector3.Distance(target.position, rayPos);

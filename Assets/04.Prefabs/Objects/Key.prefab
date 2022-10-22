@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2471314411971552031}
   - component: {fileID: 6661120182968722035}
   - component: {fileID: 3238656494282795817}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048578cd646437347bd2f8ab4bcfb654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materials: []
   seconds: 0
   animType: 2
   isAnimWall: 0
@@ -151,6 +152,9 @@ MonoBehaviour:
   isAnimPaint: 0
   isBrushSpawned: 0
   isBrushMoving: 0
+  curTime: 0
+  isDownCount: 0
+  isUpCount: 0
 --- !u!95 &3238656494282795817
 Animator:
   serializedVersion: 4
