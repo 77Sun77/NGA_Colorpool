@@ -80,7 +80,7 @@ public class Ball : MonoBehaviour
     {
         velocity = myRIgid.velocity;
 
-        if (myRIgid.velocity.magnitude <= 0.01f && isShot)
+        if (myRIgid.velocity.magnitude <= 0.07f && isShot)
         {
             isShot = false;
         }
@@ -186,7 +186,7 @@ public class Ball : MonoBehaviour
         string ReflectWall_LayerName = LayerMask.LayerToName(num_ballIndex + 20);//ColorRefect에 적합한 색깔이라면
         Debug.Log(ReflectWall_LayerName);
         color_Line1 = color_Name;//Line1의 컬러를 저장해둠
-        int layerMask = (-1) - (1 << LayerMask.NameToLayer("ColorChangeWall") |1<< LayerMask.NameToLayer(ReflectWall_LayerName)|1<<2);//ColorChangeWall,ColorReflect,Key 레이어 제외
+        int layerMask = (-1) - (1 << LayerMask.NameToLayer("ColorChangeWall") |1<< LayerMask.NameToLayer(ReflectWall_LayerName)| 1 << LayerMask.NameToLayer("Ball_CurTargetting")|1 <<2);//ColorChangeWall,ColorReflect,Key 레이어 제외
 
         if (Physics.Raycast(transform.position, (curPos - transform.position).normalized, out wallHit, distance, layerMask))
         {
@@ -212,7 +212,7 @@ public class Ball : MonoBehaviour
                     ChangeColor(color_Line1, color_Line1, "Line2");
                 }
 
-                int layerMask2 = (-1) - (1 << LayerMask.NameToLayer("ColorChangeWall") | 1 << LayerMask.NameToLayer(ReflectWall_LayerName) | 1 << 2);//ColorChangeWall,ColorReflect,Key 레이어 제외
+                int layerMask2 = (-1) - (1 << LayerMask.NameToLayer("ColorChangeWall") | 1 << LayerMask.NameToLayer(ReflectWall_LayerName) | 1 << LayerMask.NameToLayer("Ball_CurTargetting") | 1 << 2);//ColorChangeWall,ColorReflect,Key 레이어 제외
                 //한번 튕길때 두번째 직선 레이 쏘기
                 if (Physics.Raycast(curPos, (newPos - curPos).normalized, out wallHit, newDistance, layerMask2))
                 {
@@ -250,6 +250,7 @@ public class Ball : MonoBehaviour
         else //아무에게도 부딪히지 않았을때
         {
             Debug.Log("None");
+            curPos = vec;
             ChangeColor(color_Name, color_Name, "Line");
             ChangeColor(color_Name, color_Name, "Line2");
             //ResetColor();
