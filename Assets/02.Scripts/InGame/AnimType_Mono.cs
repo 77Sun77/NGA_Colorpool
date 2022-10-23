@@ -225,7 +225,8 @@ public class AnimType_Mono : MonoBehaviour
         {
             foreach (Transform tf in child)
             {
-                tf.GetComponent<MeshRenderer>().material = materials[num];
+                if(tf.name != "Lock") tf.GetComponent<MeshRenderer>().material = materials[num];
+
             }
         }
     }
