@@ -31,6 +31,17 @@ public class StageBtn : MonoBehaviour
     {
         print(mapName + " stage open");
         GameManager.stageLV = int.Parse(mapName) - 1;
+        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
+        StartCoroutine(DelayTime());
+        
+    }
+
+    IEnumerator DelayTime()
+    {
+        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        while (!fade.isFade) yield return new WaitForFixedUpdate();
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene("PlayScene");
     }
 }

@@ -64,7 +64,7 @@ Material:
     - _DirectionPitch: 74
     - _DirectionYaw: 180
     - _DstBlend: 0
-    - _Exponent: 2.4
+    - _Exponent: 0.42
     - _Glossiness: 0.5
     - _Intensity: 1
     - _Metallic: 0
@@ -78,8 +78,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.59607846, g: 0.21176472, b: 0.7960785, a: 0}
-    - _Color2: {r: 0.19607845, g: 0.74509805, b: 0.7725491, a: 0}
+    - _Color1: {r: 0.6156863, g: 0.89019614, b: 0.9450981, a: 1}
+    - _Color2: {r: 0.86274517, g: 0.6627451, b: 0.83921576, a: 1}
     - _Direction: {r: -0.00000008403617, g: 0.2756374, b: -0.9612617, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _UpVector: {r: -0.33412823, g: 0.91025054, b: -0.24454492, a: 0}

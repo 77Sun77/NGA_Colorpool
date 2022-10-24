@@ -61,7 +61,7 @@ public class MapAnim : MonoBehaviour
     }
 
     IEnumerator OpenMovingWalls()
-    {
+    {/*
         while (true)
         {
             yield return new WaitForFixedUpdate();
@@ -71,6 +71,27 @@ public class MapAnim : MonoBehaviour
             {
                 GameManager.instance.movingWall1.gameObject.SetActive(false);
                 GameManager.instance.movingWall2.gameObject.SetActive(false);
+                break;
+            }
+        }*/
+        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        fade.ChangeFade(Fade_InOut.Fade.Fade_In);
+        while (!fade.isFade) yield return new WaitForFixedUpdate();
+
+        Transform wall1 = GameManager.instance.movingWall1;
+        Transform wall2 = GameManager.instance.movingWall2;
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+            wall1.Translate(Vector3.left * 3.5f * Time.deltaTime);
+            wall2.Translate(Vector3.right * 3.5f * Time.deltaTime);
+            wall1.localScale -= new Vector3(0.1f, 0, 0) * 7 * Time.deltaTime;
+            wall2.localScale -= new Vector3(0.1f, 0, 0) * 7 * Time.deltaTime;
+
+            if (wall1.localScale.x <= 0 && wall2.localScale.x <= 0)
+            {
+                wall1.gameObject.SetActive(false);
+                wall2.gameObject.SetActive(false);
                 break;
             }
         }

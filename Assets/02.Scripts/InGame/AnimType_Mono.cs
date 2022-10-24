@@ -37,6 +37,11 @@ public class AnimType_Mono : MonoBehaviour
         {
             Initialize();
         }
+        if (animType == AnimType.Paint)
+        {
+            SpriteRenderer sr = transform.GetChild(1).GetChild(0).GetComponent<SpriteRenderer>();
+            sr.material = (Material)Resources.Load("Ground");
+        }
 
     }
 
@@ -223,10 +228,9 @@ public class AnimType_Mono : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            foreach (Transform tf in child)
+            for(int i=0; i<9; i++)
             {
-                if(tf.name != "Lock") tf.GetComponent<MeshRenderer>().material = materials[num];
-
+                child.GetChild(i).GetComponent<MeshRenderer>().material = materials[num];
             }
         }
     }
