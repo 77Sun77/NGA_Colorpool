@@ -36,7 +36,8 @@ public class UIManager : MonoBehaviour
     public int h_interval = 90;
     public int v_interval;
 
-    public bool isOnScoreBoard;
+    public bool isOnScoreBoard, isMenuOpen;
+    public GameObject Menu;
 
     Dictionary<GameObject, string> colorImages = new Dictionary<GameObject, string>();
     List<GameObject> check_Object = new List<GameObject>();
@@ -44,6 +45,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Time.timeScale = 1;
     }
     private void Start()
     {
@@ -234,23 +236,47 @@ public class UIManager : MonoBehaviour
 
     }
 
+
+    public void OpenMenu()
+    {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen)
+        {
+            Time.timeScale = 0;
+            Menu.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Menu.SetActive(false);
+        }
+        
+
+    }
     public void RestartStage()
     {
-        InitializeStage();
-        SceneManager.LoadScene("PlayScene");
-
+        StartCoroutine(DelayStage("PlayScene"));
     }
 
     public void NextStage()
-    {
-        InitializeStage();
+    {   
         GameManager.stageLV++;
-        SceneManager.LoadScene("PlayScene");
-
+        StartCoroutine(DelayStage("PlayScene"));
     }
+
+    IEnumerator DelayStage(string SceneName)
+    {
+        Time.timeScale = 1;
+        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
+        while (!fade.isFade) yield return new WaitForFixedUpdate();
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneName);
+    }
+
     public void OpenLobby()
     {
-        SceneManager.LoadScene("Lobby");
+        StartCoroutine(DelayStage("Lobby"));
     }
 
     Vector3 GetPositon(int i)
