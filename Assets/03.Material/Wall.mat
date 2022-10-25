@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 078b2a90d062e49c9903390f113619d3, type: 3}
   m_ValidKeywords:
   - BACK_GRADIENT_ON
-  - FRONT_SOLID_ON
+  - FRONT_GRADIENT_ON
   - LEFT_GRADIENT_ON
   - LIGHTMAP_COLR_ON
   - RIGHT_GRADIENT_ON
@@ -93,7 +93,7 @@ Material:
     - _AmbientColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0}
     - _BackBottomColor: {r: 0.62352943, g: 0.5882353, b: 0.49803922, a: 0}
     - _BackTopColor: {r: 0.62352943, g: 0.5882353, b: 0.49803922, a: 0}
-    - _BottomColor: {r: 0.62352943, g: 0.5882353, b: 0.49803922, a: 0}
+    - _BottomColor: {r: 0.9607843, g: 0.9137255, b: 0.7921569, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0, g: 0.7, b: 0.74, a: 0}
     - _Color2: {r: 0.97, g: 0.67, b: 0.51, a: 0}

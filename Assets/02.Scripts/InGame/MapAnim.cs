@@ -43,10 +43,12 @@ public class MapAnim : MonoBehaviour
                     AM.Initialize();
                     continue;
                 }
+                else if(AM.animType == AnimType_Mono.AnimType.Ball) _tr.localScale = new Vector3(_tr.localScale.x, 0.9f, _tr.localScale.z);
             }
 
+
             Vector3 vec = _tr.position;
-            _tr.position = new Vector3(vec.x, -2f, vec.z);
+            _tr.position = new Vector3(vec.x, -1f, vec.z);
             walls.Add(_tr);
         }
 
