@@ -120,6 +120,8 @@ public class MapAnim : MonoBehaviour
             tf.position += (Vector3.up * 2 * Time.deltaTime);
         }
 
+        tf.position = new Vector3(tf.position.x, 0.5f, tf.position.z);
+
         //키 애니메이션 실행
         if (tf.TryGetComponent(out AnimType_Mono AM))
         {
