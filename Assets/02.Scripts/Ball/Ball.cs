@@ -310,7 +310,6 @@ public class Ball : MonoBehaviour
     // Ball Collision
     private void OnCollisionEnter(Collision coll)
     {
-        //SoundManager.instance.BallHitSounds[(int)num_ballIndex].PlayOneShot(SoundManager.instance.BallHitSounds[(int)num_ballIndex].clip);
         if (coll.gameObject.CompareTag("BALL"))
         {
             if (kind == ObjectKind.Ball)

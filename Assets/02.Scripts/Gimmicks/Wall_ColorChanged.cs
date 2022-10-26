@@ -20,6 +20,8 @@ public class Wall_ColorChanged : MonoBehaviour
         {
             Ball ball = other.GetComponent<Ball>();
             ball.ChangeColor(color, ball.color_Name, "Wall");
+
+            SoundManager.instance.PlayTargetSound(SoundManager.instance.PaintSound);
         }
     }
 }

@@ -12,8 +12,12 @@ public class SoundManager : MonoBehaviour
     public AudioSource MainBGM4;
     public AudioSource MainBGM5;
 
+    public AudioSource ClearSFX;
+
     public AudioSource BubbleSFX;
     public AudioSource[] BallHitSounds;
+    public AudioSource PaintSound;
+
     private void Awake()
     {
         instance = this;
@@ -24,6 +28,10 @@ public class SoundManager : MonoBehaviour
         BubbleSFX.pitch = 1;
     }
 
-    
+    public void PlayTargetSound(AudioSource AS)
+    {
+        AS.PlayOneShot(AS.clip);
+;   }
+
 
 }
