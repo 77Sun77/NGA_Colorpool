@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-        Set_Target_Img();
+
     }
     private void Update()
     {
@@ -83,7 +83,7 @@ public class UIManager : MonoBehaviour
 
     }
 
-    void Set_Target_Img()
+    public void Set_Target_Img()
     {
         int count = GameManager.instance.targetList.Count;
         for(int i=0; i<count; i++)
@@ -92,6 +92,7 @@ public class UIManager : MonoBehaviour
             GameObject go = Instantiate(UI_ballImagePrefabs[SetBallColorToIndex(colorName)], UI_TargetPlace.transform);
             colorImages.Add(go, colorName);
         }
+        
     }
     public void Set_Check(string[] colors)
     {
@@ -213,14 +214,13 @@ public class UIManager : MonoBehaviour
     }
     IEnumerator EnableStar(int score)
     {
-        yield return new WaitForSeconds(1.5f);
         UI_ScoreBoard.SetActive(true);
         yield return new WaitForSeconds(1.7f);
         UI_ScoreBoard.GetComponent<Animator>().enabled = false;
         for (int i = 0; i < score; i++)
         {
             UI_Stars[i].SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.35f);
             print("?");
             
         }

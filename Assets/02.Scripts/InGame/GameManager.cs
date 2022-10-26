@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     public Transform movingWall1;
     public Transform movingWall2;
 
+    public GameObject ClearAnim_Prefab;
+
     void Awake()
     {
         instance = this;
@@ -55,16 +57,21 @@ public class GameManager : MonoBehaviour
 
         shotCount = 0;
 
+        
+    }
+
+    void Start()
+    {
         //1스테이지 실행
         PlayStage();
     }
-
    public void PlayStage()
     {
         SoundManager.instance.InitializeBubble();
         Instantiate(stageOptions[stageLV]);
         stageOptions[stageLV].SetStageRule();
         SetBalls();
+        UIManager.instance.Set_Target_Img();
     }
 
 
@@ -159,7 +166,7 @@ public class GameManager : MonoBehaviour
         {
             if (isClear)
             {
-                OnStageEnd();
+                FindObjectOfType<MapAnim>().EndMapAnim();
             }
             else
             {
@@ -257,6 +264,21 @@ public class GameManager : MonoBehaviour
 
         }
        
+    }
+    public void ColorEnable()
+    {
+        StartCoroutine(ColorAnim_Enable());
+    }
+    IEnumerator ColorAnim_Enable()
+    {
+        foreach (Ball ball in balls)
+        {
+            Vector3 ballPos = ball.transform.position;
+            GameObject go = Instantiate(ClearAnim_Prefab, new Vector3(ballPos.x, 1.1f, ballPos.z), Quaternion.Euler(Vector3.right*90));
+            go.GetComponent<SpriteRenderer>().color = ball.myMaterial.color;
+        }
+        yield return new WaitForSeconds(1);
+        OnStageEnd();
     }
 
     /// <summary>
