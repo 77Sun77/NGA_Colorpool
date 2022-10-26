@@ -27,7 +27,9 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("BALL"))
         {
-            foreach(Portal portal in portals)
+            SoundManager.instance.PlayTargetSound(SoundManager.instance.PortalSFX);
+
+            foreach (Portal portal in portals)
             {
                 if (portal.isTrigger && portal != this) return;
             }

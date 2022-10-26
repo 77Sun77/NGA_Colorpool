@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource BubbleSFX;
     public AudioSource[] BallHitSounds;
     public AudioSource PaintSound;
+    public AudioSource PortalSFX;
 
     private void Awake()
     {
