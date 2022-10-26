@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour
     public BallKind ballKind;
 
     // Components
-    Material myMaterial;
+    public Material myMaterial;
     Rigidbody myRIgid;
     public Animator anim;
     List<LineRenderer> lines = new List<LineRenderer>();

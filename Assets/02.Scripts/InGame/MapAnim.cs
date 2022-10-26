@@ -87,8 +87,8 @@ public class MapAnim : MonoBehaviour
             yield return new WaitForFixedUpdate();
             wall1.Translate(Vector3.left * 3.5f * Time.deltaTime);
             wall2.Translate(Vector3.right * 3.5f * Time.deltaTime);
-            wall1.localScale -= new Vector3(0.1f, 0, 0) * 7 * Time.deltaTime;
-            wall2.localScale -= new Vector3(0.1f, 0, 0) * 7 * Time.deltaTime;
+            wall1.localScale -= new Vector3(1f, 0, 0) * 7 * Time.deltaTime;
+            wall2.localScale -= new Vector3(1f, 0, 0) * 7 * Time.deltaTime;
 
             if (wall1.localScale.x <= 0 && wall2.localScale.x <= 0)
             {
@@ -156,7 +156,7 @@ public class MapAnim : MonoBehaviour
 
 
     [ContextMenu("EndAnim")]
-    void EndMapAnim()
+    public void EndMapAnim()
     {
         StartCoroutine(EndMapLoad());
     }
@@ -210,8 +210,25 @@ public class MapAnim : MonoBehaviour
             }
             StartCoroutine(MoveDownWall(wall));
             yield return new WaitForSeconds(0.12f);
-            }
+        }
+        Transform wall1 = GameManager.instance.movingWall1;
+        Transform wall2 = GameManager.instance.movingWall2;
+        wall1.gameObject.SetActive(true);
+        wall2.gameObject.SetActive(true);
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+            wall1.Translate(Vector3.right * 3.5f * Time.deltaTime);
+            wall2.Translate(Vector3.left * 3.5f * Time.deltaTime);
+            wall1.localScale += new Vector3(1f, 0, 0) * 7 * Time.deltaTime;
+            wall2.localScale += new Vector3(1f, 0, 0) * 7 * Time.deltaTime;
 
+            if (wall1.localScale.x >= 10 && wall2.localScale.x >= 10)
+            {
+                break;
+            }
+        }
+        GameManager.instance.ColorEnable();
     }
 
     IEnumerator MoveDownWall(Transform tf)
