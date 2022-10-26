@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
    public void PlayStage()
     {
+        SoundManager.instance.InitializeBubble();
         Instantiate(stageOptions[stageLV]);
         stageOptions[stageLV].SetStageRule();
         SetBalls();

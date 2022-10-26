@@ -13,10 +13,17 @@ public class SoundManager : MonoBehaviour
     public AudioSource MainBGM5;
 
     public AudioSource BubbleSFX;
+    public AudioSource[] BallHitSounds;
     private void Awake()
     {
         instance = this;
     }
 
+    public void InitializeBubble()
+    {
+        BubbleSFX.pitch = 1;
+    }
+
+    
 
 }
