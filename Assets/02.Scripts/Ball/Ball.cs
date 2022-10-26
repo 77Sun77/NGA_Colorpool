@@ -182,7 +182,6 @@ public class Ball : MonoBehaviour
         }
         //여기까지 WallColorChange를 위한 레이캐스트
 
-
         string ReflectWall_LayerName = LayerMask.LayerToName(num_ballIndex + 20);//ColorRefect에 적합한 색깔이라면
         Debug.Log(ReflectWall_LayerName);
         color_Line1 = color_Name;//Line1의 컬러를 저장해둠
@@ -192,9 +191,13 @@ public class Ball : MonoBehaviour
         {
             if (wallHit.collider.CompareTag("WALL") || wallHit.collider.gameObject.layer == 3)//벽에 부딪혔을때
             {
+                Debug.DrawRay(transform.position, curPos - transform.position);
+
+
                 curPos = wallHit.point;
                 newDistance = distance - Vector3.Distance(transform.position, curPos);
-                Vector3 reflect = Vector3.Reflect((vec - curPos).normalized, wallHit.normal);
+                //Vector3 reflect = Vector3.Reflect((vec - curPos).normalized, wallHit.normal);
+                Vector3 reflect = Vector3.Reflect((curPos-transform.position).normalized, wallHit.normal);
                 newPos = reflect * newDistance + curPos;
                 count = 3;
 
@@ -219,7 +222,7 @@ public class Ball : MonoBehaviour
                     if (wallHit.collider != null)
                     {
                         newPos = reflect * newDistance+curPos;
-                        Debug.DrawRay(curPos, newPos,Color.green);
+                        //Debug.DrawRay(curPos, newPos,Color.green);
                         if (wallHit.collider.CompareTag("BALL"))
                         {
                             Debug.Log("Ball By SeconLine");
@@ -307,6 +310,7 @@ public class Ball : MonoBehaviour
     // Ball Collision
     private void OnCollisionEnter(Collision coll)
     {
+        //SoundManager.instance.BallHitSounds[(int)num_ballIndex].PlayOneShot(SoundManager.instance.BallHitSounds[(int)num_ballIndex].clip);
         if (coll.gameObject.CompareTag("BALL"))
         {
             if (kind == ObjectKind.Ball)

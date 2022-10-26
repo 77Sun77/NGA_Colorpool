@@ -51,6 +51,7 @@ public class Swipe : MonoBehaviour
             {
                 rayPos = hit.point;
                 vec = rayPos - target.position;
+                //vec = target.position - rayPos;
                 Ball targetBall = target.GetComponent<Ball>();
                 targetBall.isTargetting = true;
                 float distance = 0;
@@ -65,6 +66,7 @@ public class Swipe : MonoBehaviour
                     distance = Mathf.Clamp(distance, 0.2f, 8f);
                 }
                 Vector3 vec2 = target.position - (vec.normalized* distance);
+                //Vector3 vec2 = (vec.normalized* distance);
                 vec2.y = 0.5f;
                 //Debug.Log(distance);
                 isShot = target.GetComponent<Ball>().Set_Line(vec2);
@@ -73,10 +75,12 @@ public class Swipe : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-           target.GetComponent<Ball>().isTargetting = false;
+          
 
             if (target != null && isShot)
             {
+                target.GetComponent<Ball>().isTargetting = false;
+
                 float power = Vector3.Distance(target.position, rayPos);
                 Ball targetBall = target.GetComponent<Ball>();
                 targetBall.Set_Line(vec, 1);

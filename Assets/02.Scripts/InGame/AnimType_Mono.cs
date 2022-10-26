@@ -56,7 +56,7 @@ public class AnimType_Mono : MonoBehaviour
             //    transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
             //    break;
             case AnimType.Ball:
-                //transform.position.Scale(Vector3.one / 10);
+
                 break;
             case AnimType.Key:
                 keyPos = transform.position;
@@ -90,7 +90,7 @@ public class AnimType_Mono : MonoBehaviour
                 CCW_TF = transform.Find("Square_Offset");
                 //Vector3 colorScale = CCW_TF.localScale;
                 //CCW_TF.localScale = new Vector3(0, colorScale.y, colorScale.z);
-                Debug.Log("페인트 초기화");
+                //Debug.Log("페인트 초기화");
                 break;
         }
 
@@ -122,8 +122,9 @@ public class AnimType_Mono : MonoBehaviour
             //transform.GetComponent<Animator>().SetBool("SizeAnim2",true);
             //transform.GetComponent<Animator>().SetTrigger("SizeAnim2");
             transform.GetComponent<Animator>().SetTrigger("SizeAnim2");
-
-
+            SoundManager.instance.BubbleSFX.PlayOneShot(SoundManager.instance.BubbleSFX.clip);
+            //Debug.Log("둗");
+            SoundManager.instance.BubbleSFX.pitch += 0.07f;
             isAnimBall = false;
         }
 
@@ -187,8 +188,9 @@ public class AnimType_Mono : MonoBehaviour
         if (!isBrushSpawned)
         {
             brushPrefab_Ins = Instantiate(GameManager.instance.paintBrush_Prefab, transform.Find("StartPoint").position, Quaternion.identity);
+            brushPrefab_Ins.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
             brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeIn", true);
-            Debug.Log("페이드인");
+            //Debug.Log("페이드인");
             isBrushSpawned = true;
             yield return new WaitForSeconds(0.1f);
             isBrushMoving = true;
@@ -199,7 +201,7 @@ public class AnimType_Mono : MonoBehaviour
         {
             if (brushPrefab_Ins.GetComponent<Animator>().GetBool("isFadeOut")==false)
             {
-                Debug.Log("페이드아웃");
+                //Debug.Log("페이드아웃");
                 brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeOut", true);
                 yield return new WaitForSeconds(0.2f);
                 isAnimPaint =false;
