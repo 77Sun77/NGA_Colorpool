@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+
     public static SoundManager instance;
 
     public AudioSource MainBGM1;
@@ -15,9 +16,13 @@ public class SoundManager : MonoBehaviour
     public AudioSource ClearSFX;
 
     public AudioSource BubbleSFX;
-    public AudioSource[] BallHitSounds;
+    public AudioSource[]BallHitSounds;
     public AudioSource PaintSound;
     public AudioSource PortalSFX;
+    public AudioSource KeySFX;
+    public AudioSource BallWaveSFX;
+
+    public bool isEnable_BallHitSound;
 
     private void Awake()
     {
@@ -31,6 +36,17 @@ public class SoundManager : MonoBehaviour
 
     public void PlayTargetSound(AudioSource AS)
     {
+        if (!isEnable_BallHitSound)
+        {
+            for (int i = 0; i < BallHitSounds.Length; i++)
+            {
+                if (AS == BallHitSounds[i])
+                {
+                    return;
+                }
+            }
+        }
+        
         AS.PlayOneShot(AS.clip);
 ;   }
 
