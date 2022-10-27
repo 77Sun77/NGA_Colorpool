@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 
         shotCount = 0;
 
-        
+        Application.targetFrameRate = 60;
     }
 
     void Start()
