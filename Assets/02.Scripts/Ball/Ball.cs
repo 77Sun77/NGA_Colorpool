@@ -63,6 +63,8 @@ public class Ball : MonoBehaviour
             {
                 lines.Add(children.GetComponent<LineRenderer>());
             }
+
+            hitParticle = (GameObject)Resources.Load("Hit_Particle");
         }
 
         Set_Ball();
@@ -75,7 +77,6 @@ public class Ball : MonoBehaviour
         }
 
     }
-
     void Update()
     {
         velocity = myRIgid.velocity;
@@ -85,7 +86,10 @@ public class Ball : MonoBehaviour
             isShot = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && kind == ObjectKind.Ball) anim.SetTrigger("SizeAnim");
+        if (Input.GetKeyDown(KeyCode.Space) && kind == ObjectKind.Ball)
+        {
+
+        }
 
         if (isTargetting)
             gameObject.layer = LayerMask.NameToLayer("Ball_CurTargetting");//자기자신한테 예측선이 막히는 거 방지
@@ -131,10 +135,12 @@ public class Ball : MonoBehaviour
         myMaterial.color = colors[num_ballIndex];// 이미지 만들어지면 색깔이 아니라 이미지 변경
         if (call == "Ball" && changeCount > 0)
         {
-            GameObject particle = Instantiate(hitParticle, transform.position + new Vector3(-0.5f, 0.5f, 0.25f), Quaternion.Euler(new Vector3(50, -50, 0)));
-            particle.transform.localScale = transform.localScale;
+            Transform particle = Instantiate(hitParticle, transform.position, Camera.main.transform.rotation).transform;
+            particle.position += particle.transform.forward * -0.75f;
+            if(ballKind == BallKind.Small) particle.localScale = Vector3.one * 0.2f;
+            else particle.localScale = Vector3.one * 0.3f;
             particle.GetComponent<SpriteRenderer>().color = myMaterial.color;
-            Destroy(particle, 1.5f);
+            Destroy(particle.gameObject, 1.5f);
         }
         changeCount++;
     }

@@ -218,10 +218,10 @@ public class MapAnim : MonoBehaviour
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            wall1.Translate(Vector3.right * 3.5f * Time.deltaTime);
-            wall2.Translate(Vector3.left * 3.5f * Time.deltaTime);
-            wall1.localScale += new Vector3(1f, 0, 0) * 7 * Time.deltaTime;
-            wall2.localScale += new Vector3(1f, 0, 0) * 7 * Time.deltaTime;
+            wall1.Translate(Vector3.right * 5f * Time.deltaTime);
+            wall2.Translate(Vector3.left * 5f * Time.deltaTime);
+            wall1.localScale += new Vector3(1f, 0, 0) * 10 * Time.deltaTime;
+            wall2.localScale += new Vector3(1f, 0, 0) * 10 * Time.deltaTime;
 
             if (wall1.localScale.x >= 10 && wall2.localScale.x >= 10)
             {

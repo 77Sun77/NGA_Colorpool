@@ -4,119 +4,47 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    new Camera camera;
+    GameManager gm;
+    Camera camera;
+    float size;
 
-    bool isActive, isMove;
-    float size, speed;
-    Vector3 target;
-
-    enum direction { none, down, up };
-    direction dir;
+    Fade_InOut fade;
     void Start()
     {
+        gm = GameManager.instance;
         camera = GetComponent<Camera>();
+        size = 12;
 
-        size = 10;
-        speed = 3.5f;
-        isActive = false; 
-        isMove = false;
+        fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
     }
 
     void Update()
     {
-        if (isActive)
+        //transform.parent.Rotate(Vector3.up * 50 * Time.deltaTime);
+        if (fade.isFade)
         {
-            Camera_Move();
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Start_Move(Vector3.left);
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Start_Move(Vector3.right);
-        }
-
-        transform.position = new Vector3(transform.position.x, 13, 0);
-    }
-
-    public void Start_Move(Vector3 direction)
-    {
-        if (dir == CameraMove.direction.up ||(target.x <= 0 && direction.x < 0)) return;
-        if (isMove && dir == CameraMove.direction.none && Mathf.Abs(target.x - transform.position.x) <= 1.5f)
-        {
-            Vector3 vec = new Vector3(0, 10, 0);
-            target += (direction * 30);
-            target += vec;
-            return;
-        }
-        if (isMove && dir == CameraMove.direction.down)
-        {
-            isMove = false;
-            Vector3 vec = new Vector3(0, 10, 0);
-            target += (direction * 30);
-            target += vec;
-            return;
-        }
-
-
-        if(transform.position.x >= 0)
-        {
-            isActive = true;
-            Vector3 vec = new Vector3(0, 10, 0);
-            target += (direction * 30);
-            target += vec;
-        }
-
-        if(target.x < 0)
-        {
-            target = new Vector3(0, 10, 0);
-        }
-    }
-
-    void Camera_Move()
-    {
-        if (isMove)
-        {
-            //transform.Translate(target.normalized * Time.deltaTime * 20f);
-            transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime*speed);
-            if (Mathf.Abs(target.x - transform.position.x) <= 1.5f) speed = 6f;
-            if (Mathf.Abs(target.x - transform.position.x) <= 0.1f)
+            if (!gm.isAllBallShot && !gm.isClear)
             {
-                dir = direction.down;
-                size = Mathf.Lerp(size, 10, Time.deltaTime*4);
-                camera.orthographicSize = size;
-                if(size <= 10.01f)
+                if (size >= 11.9f)
                 {
-                    transform.position = target;
-                    size = 10;
-                    camera.orthographicSize = size;
-                    isMove = false;
-                    isActive = false;
-                    speed = 3.5f;
+                    camera.orthographicSize = 12;
+                    return;
                 }
-            }
-
-        }
-        else
-        {
-            if (size >= 14.9f)
-            {
-                dir = direction.none;
-                size = 15;
+                size = Mathf.Lerp(size, 12, 4 * Time.deltaTime);
                 camera.orthographicSize = size;
-                isMove = true;
             }
             else
             {
-                dir = direction.up;
-                size = Mathf.Lerp(size, 15, Time.deltaTime*4);
+                if (size <= 9.1f)
+                {
+                    camera.orthographicSize = 9;
+                    return;
+                }
+                size = Mathf.Lerp(size, 9, 4 * Time.deltaTime);
                 camera.orthographicSize = size;
-                return;
             }
         }
-
+        
     }
+
 }

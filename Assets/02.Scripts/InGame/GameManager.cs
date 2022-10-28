@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
- 
+    public bool isClear;
+
 
 
     [Header("StageOption")]
@@ -161,6 +162,7 @@ public class GameManager : MonoBehaviour
                 
             }
         }
+        this.isClear = isClear;
         UIManager.instance.Set_Check(curColorCount.ToArray());
         if (UIManager.instance.isOnScoreBoard == false)
         {

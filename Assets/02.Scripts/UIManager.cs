@@ -220,9 +220,11 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < score; i++)
         {
             UI_Stars[i].SetActive(true);
+            UI_Stars[i].transform.parent.GetComponent<RectTransform>().SetAsLastSibling();
             yield return new WaitForSeconds(0.35f);
-            print("?");
             
+
+
         }
     }
     public void InitializeStage()

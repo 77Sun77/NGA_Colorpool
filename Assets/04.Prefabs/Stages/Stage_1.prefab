@@ -351,6 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 0
   ballKind: 0
+  myMaterial: {fileID: 0}
   anim: {fileID: 0}
   color_Name: 0
   color_Line1: 0
@@ -369,6 +370,7 @@ MonoBehaviour:
   hitParticle: {fileID: 689902589048989076, guid: ae1dd0f73d7f48144974bddd3cda8977, type: 3}
   isPassingPaint: 0
   isPassingPaint2: 0
+  TestParticle: {fileID: 6408127886161144875, guid: 2dcc890ce337aef42a59cff840858f8b, type: 3}
 --- !u!95 &5342925757608939669
 Animator:
   serializedVersion: 4
@@ -1044,6 +1046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 0
   ballKind: 0
+  myMaterial: {fileID: 0}
   anim: {fileID: 0}
   color_Name: 2
   color_Line1: 0
@@ -1062,6 +1065,7 @@ MonoBehaviour:
   hitParticle: {fileID: 689902589048989076, guid: ae1dd0f73d7f48144974bddd3cda8977, type: 3}
   isPassingPaint: 0
   isPassingPaint2: 0
+  TestParticle: {fileID: 6408127886161144875, guid: 2dcc890ce337aef42a59cff840858f8b, type: 3}
 --- !u!95 &5342925758310172291
 Animator:
   serializedVersion: 4
