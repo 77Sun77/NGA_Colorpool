@@ -2,34 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class LobbyManager : MonoBehaviour
 {
     public static LobbyManager instance;
     public GameObject[] Stages;
     public GameObject[] Circles;
     public int pageNum;
+    Transform canvas;
+
     void Start()
     {
         instance = this;
         pageNum = 1;
-        Application.targetFrameRate = 60;
+
+        canvas = GameObject.Find("Canvas").transform;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /*
+        if (Input.GetMouseButtonUp(0))
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.farClipPlane;
-            print(Camera.main.ScreenToWorldPoint(mousePos).x);
-            if (Camera.main.ScreenToWorldPoint(mousePos).x <= 0) OnClick_Left();
+            Vector3 vec = Camera.main.ScreenToWorldPoint(mousePos);
+            if (vec.x <= 0) OnClick_Left();
             else OnClick_Right();
         }
-
+        */
     }
 
-    void OnClick_Left()
+    public void OnClick_Left()
     {
         if (pageNum == 1) return;
         pageNum--;
@@ -38,7 +41,7 @@ public class LobbyManager : MonoBehaviour
         Stages[pageNum - 1].SetActive(true);
         Circles[pageNum - 1].SetActive(true);
     }
-    void OnClick_Right()
+    public void OnClick_Right()
     {
         if (pageNum == 5) return;
         pageNum++;
@@ -47,4 +50,6 @@ public class LobbyManager : MonoBehaviour
         Stages[pageNum - 1].SetActive(true);
         Circles[pageNum - 1].SetActive(true);
     }
+
+    
 }

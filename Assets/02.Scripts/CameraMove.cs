@@ -41,22 +41,22 @@ public class CameraMove : MonoBehaviour
 
             if (!gm.isAllBallShot && !gm.isClear)
             {
-                if (size >= 11.9f)
-                {
-                    camera.orthographicSize = 12;
-                    return;
-                }
-                size = Mathf.Lerp(size, 12, 4 * Time.deltaTime);
-                camera.orthographicSize = size;
-            }
-            else
-            {
-                if (size <= 9.1f)
+                if (size <= 9f)
                 {
                     camera.orthographicSize = 9;
                     return;
                 }
                 size = Mathf.Lerp(size, 9, 4 * Time.deltaTime);
+                camera.orthographicSize = size;
+            }
+            else
+            {
+                if (size >= 12f)
+                {
+                    camera.orthographicSize = 12;
+                    return;
+                }
+                size = Mathf.Lerp(size, 12, 4 * Time.deltaTime);
                 camera.orthographicSize = size;
             }
 
