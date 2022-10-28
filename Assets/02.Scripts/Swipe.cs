@@ -5,7 +5,7 @@ using UnityEngine;
 public class Swipe : MonoBehaviour
 {
 
-    Transform target;
+    public Transform target;
     Vector3 rayPos = Vector3.zero;
     Vector3 vec = Vector3.zero;
 
