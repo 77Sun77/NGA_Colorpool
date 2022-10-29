@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject ClearAnim_Prefab;
 
+    public int HitSoundIndex;
+
     void Awake()
     {
         instance = this;
@@ -121,6 +123,7 @@ public class GameManager : MonoBehaviour
             if (ball.isShot)
                 return true;
         }
+        HitSoundIndex = 0;
         return false;
     }
 

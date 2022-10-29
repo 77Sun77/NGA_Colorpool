@@ -81,7 +81,7 @@ public class Ball : MonoBehaviour
     {
         velocity = myRIgid.velocity;
 
-        if (myRIgid.velocity.magnitude <= 0.07f && isShot)
+        if (myRIgid.velocity.magnitude <= 0.05f && isShot)
         {
             isShot = false;
         }
@@ -316,9 +316,9 @@ public class Ball : MonoBehaviour
     // Ball Collision
     private void OnCollisionEnter(Collision coll)
     {
-        SoundManager.instance.PlayTargetSound(SoundManager.instance.BallHitSounds[num_ballIndex]);
         if (coll.gameObject.CompareTag("BALL"))
         {
+
             if (kind == ObjectKind.Ball)
             {
                 Ball hit_Ball = coll.gameObject.GetComponent<Ball>();
@@ -332,7 +332,24 @@ public class Ball : MonoBehaviour
                 ballRigid.velocity = Vector3.Reflect(velocity, -coll.GetContact(0).normal);
             }
         }
+
+        if (coll.gameObject.TryGetComponent(out WallReflect WR))
+        {
+            PlayHitSound();            
+        }
+        else if(coll.gameObject.TryGetComponent(out Ball ball))
+        {
+            PlayHitSound();
+        }
+
     }
+
+    void PlayHitSound()
+    {
+        GameManager.instance.HitSoundIndex++;
+        SoundManager.instance.PlayTargetSound(SoundManager.instance.BubbleSFX);
+    }
+
 
     public void ChangeColor(Ball_Color c1, Ball_Color c2, string call = "Ball")
     {
