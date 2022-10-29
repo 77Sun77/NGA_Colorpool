@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class ClickMove : MonoBehaviour, IPointerDownHandler
+public class ClickMove : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.position.x <= Display.main.systemWidth/2)
+        print("Down : " + eventData.position);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (eventData.position.x <= Display.main.systemWidth / 2)
         {
             LobbyManager.instance.OnClick_Left();
         }
