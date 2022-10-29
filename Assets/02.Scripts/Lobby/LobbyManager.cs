@@ -2,71 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class LobbyManager : MonoBehaviour
 {
-    GameObject canvas;
-    public GameObject left, right;
+    public static LobbyManager instance;
+    public GameObject[] Stages;
+    public GameObject[] Circles;
+    public int pageNum;
+    Transform canvas;
 
-    public Transform Content;
-    public Transform endPoint;
-    public Transform[] contentsPos;
-    Vector3 start_Pos;
-    Vector3 end_Pos;
-    Vector3 direction;
-    int pageNum;
-    bool isMove;
     void Start()
     {
-        canvas = GameObject.Find("Canvas");
+        instance = this;
         pageNum = 1;
-        isMove = false;
-        end_Pos = canvas.transform.InverseTransformPoint(endPoint.position);
 
-        Application.targetFrameRate = 60;
+        canvas = GameObject.Find("Canvas").transform;
     }
 
     void Update()
     {
-        if (isMove)
+        /*
+        if (Input.GetMouseButtonUp(0))
         {
-            Vector3 pos = canvas.transform.InverseTransformPoint(contentsPos[pageNum - 1].position);
-            bool distance = false;
-            if (direction == Vector3.right) distance = pos.x > end_Pos.x;
-            else distance = pos.x < end_Pos.x;
-            if (distance)
-            {
-                Content.position += Vector3.right * Vector3.Distance(pos, end_Pos);
-                left.SetActive(true);
-                right.SetActive(true);
-                isMove = false;
-            }
-            else
-            {
-                Content.Translate(direction * 2000 * Time.deltaTime);
-            }
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.farClipPlane;
+            Vector3 vec = Camera.main.ScreenToWorldPoint(mousePos);
+            if (vec.x <= 0) OnClick_Left();
+            else OnClick_Right();
         }
-        print(Content.position);
+        */
     }
 
     public void OnClick_Left()
     {
         if (pageNum == 1) return;
         pageNum--;
-        isMove = true;
-        left.SetActive(false);
-        right.SetActive(false);
-        start_Pos = canvas.transform.InverseTransformPoint(contentsPos[pageNum - 1].position);
-        direction = Vector3.right;
+        foreach (GameObject stage in Stages) stage.SetActive(false);
+        foreach (GameObject circle in Circles) circle.SetActive(false);
+        Stages[pageNum - 1].SetActive(true);
+        Circles[pageNum - 1].SetActive(true);
     }
     public void OnClick_Right()
     {
-        if (pageNum == 4) return;
+        if (pageNum == 5) return;
         pageNum++;
-        isMove = true;
-        left.SetActive(false);
-        right.SetActive(false);
-        start_Pos = canvas.transform.InverseTransformPoint(contentsPos[pageNum - 1].position);
-        direction = Vector3.left;
+        foreach (GameObject stage in Stages) stage.SetActive(false);
+        foreach (GameObject circle in Circles) circle.SetActive(false);
+        Stages[pageNum - 1].SetActive(true);
+        Circles[pageNum - 1].SetActive(true);
     }
+
+    
 }

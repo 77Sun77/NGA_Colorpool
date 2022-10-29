@@ -8,13 +8,18 @@ public class CameraMove : MonoBehaviour
     Camera camera;
     float size;
 
+    Swipe swipe;
     Fade_InOut fade;
+
+    float xRotate;
     void Start()
     {
         gm = GameManager.instance;
         camera = GetComponent<Camera>();
         size = 12;
+        xRotate = 0;
 
+        swipe = GetComponent<Swipe>();
         fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
     }
 
@@ -23,19 +28,20 @@ public class CameraMove : MonoBehaviour
         //transform.parent.Rotate(Vector3.up * 50 * Time.deltaTime);
         if (fade.isFade)
         {
+            if (Input.GetMouseButton(0))
+            {
+                if (swipe.target == null)
+                {
+                    float y = Input.GetAxis("Mouse X") * Time.deltaTime * 200;
+                    xRotate = xRotate + y;
+                    transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
+                }
+                
+            }
+
             if (!gm.isAllBallShot && !gm.isClear)
             {
-                if (size >= 11.9f)
-                {
-                    camera.orthographicSize = 12;
-                    return;
-                }
-                size = Mathf.Lerp(size, 12, 4 * Time.deltaTime);
-                camera.orthographicSize = size;
-            }
-            else
-            {
-                if (size <= 9.1f)
+                if (size <= 9f)
                 {
                     camera.orthographicSize = 9;
                     return;
@@ -43,6 +49,18 @@ public class CameraMove : MonoBehaviour
                 size = Mathf.Lerp(size, 9, 4 * Time.deltaTime);
                 camera.orthographicSize = size;
             }
+            else
+            {
+                if (size >= 12f)
+                {
+                    camera.orthographicSize = 12;
+                    return;
+                }
+                size = Mathf.Lerp(size, 12, 4 * Time.deltaTime);
+                camera.orthographicSize = size;
+            }
+
+            
         }
         
     }

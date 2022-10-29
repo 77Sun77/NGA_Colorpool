@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5553624893520529729}
   - component: {fileID: 4268033120779645818}
   - component: {fileID: 8927144387025247353}
+  - component: {fileID: 1295478336552047462}
   m_Layer: 0
   m_Name: Hit_Particle
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1074165389, guid: e993370b4f88abd45881e77c910b6b79, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,3 +106,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1295478336552047462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408127886161144875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7daeff995a9b4a84fb333259306eebbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
