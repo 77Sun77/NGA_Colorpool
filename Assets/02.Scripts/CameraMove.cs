@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    public static Quaternion parentRotation;
+    public static float xRotate = 0;
     GameManager gm;
     Camera camera;
     float size;
@@ -11,23 +13,24 @@ public class CameraMove : MonoBehaviour
     Swipe swipe;
     Fade_InOut fade;
 
-    float xRotate;
+    
     void Start()
     {
+        transform.parent.rotation = parentRotation;
         gm = GameManager.instance;
         camera = GetComponent<Camera>();
         size = 12;
-        xRotate = 0;
 
         swipe = GetComponent<Swipe>();
-        //fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
     }
 
     void Update()
     {
         //transform.parent.Rotate(Vector3.up * 50 * Time.deltaTime);
-        //if (fade.isFade)
+        if (GameManager.instance.isStart)
         {
+            parentRotation = transform.parent.rotation;
             if (Input.GetMouseButton(0))
             {
                 if (swipe.target == null)

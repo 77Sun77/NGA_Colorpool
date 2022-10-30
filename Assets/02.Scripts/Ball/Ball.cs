@@ -81,7 +81,7 @@ public class Ball : MonoBehaviour
     {
         velocity = myRIgid.velocity;
 
-        if (myRIgid.velocity.magnitude <= 0.05f && isShot)
+        if (Mathf.Abs(myRIgid.velocity.magnitude) <= 0f && isShot)
         {
             isShot = false;
         }

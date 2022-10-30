@@ -45,6 +45,7 @@ public class MapAnim : MonoBehaviour
                 }
                 else if(AM.animType == AnimType_Mono.AnimType.Ball) _tr.localScale = new Vector3(_tr.localScale.x, 0.99f, _tr.localScale.z);
             }
+            if(_tr.GetComponent<Wall_ColorReflect>() != null) _tr.localScale = new Vector3(_tr.localScale.x, 0.99f, _tr.localScale.z);
 
 
             Vector3 vec = _tr.position;
@@ -76,7 +77,7 @@ public class MapAnim : MonoBehaviour
                 break;
             }
         }*/
-<<<<<<< HEAD
+
         if(GameManager.moveScene == "Lobby" || GameManager.moveScene == null)
         {
             Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
@@ -84,11 +85,6 @@ public class MapAnim : MonoBehaviour
             while (!fade.isFade) yield return new WaitForFixedUpdate();
 
         }
-=======
-        //Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-        //fade.ChangeFade(Fade_InOut.Fade.Fade_In);
-        //while (!fade.isFade) yield return new WaitForFixedUpdate();
->>>>>>> 36a73d4af6f556f6de250cda9425c8d03c8d2dd2
 
         Transform wall1 = GameManager.instance.movingWall1;
         Transform wall2 = GameManager.instance.movingWall2;
@@ -161,6 +157,8 @@ public class MapAnim : MonoBehaviour
             objects[i].GetComponent<AnimType_Mono>().TriggerAnimBool();
             yield return new WaitForSeconds(0.17f);
         }
+        yield return new WaitForSeconds(0.5f);
+        GameManager.instance.isStart = true;
     }
 
 
@@ -174,6 +172,18 @@ public class MapAnim : MonoBehaviour
     IEnumerator EndMapLoad()
     {
         List<Transform> tempList = new();
+        objects.Clear();
+        foreach (Transform tr in transform)
+        {
+
+            if (tr.TryGetComponent(out AnimType_Mono AM))
+            {
+                objects.Add(tr);
+
+                //맵 오브젝트들 위치 초기화 및 할당
+                AM.Initialize();
+            }
+        }
         foreach (Transform obj in objects)
         {
             if (obj.TryGetComponent(out AnimType_Mono AM))

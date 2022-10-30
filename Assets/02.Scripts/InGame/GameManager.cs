@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public bool isClear;
+    public bool isClear, isStart;
 
     public static string moveScene;
 
@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
             Add_ColorCount(ball.color_Name.ToString());
         }
         bool isClear = false;
+        bool isBreak = false;
         List<string> curColorCount = new List<string>();
         foreach(KeyValuePair<string, int> rule in colorRule)
         {
@@ -156,6 +157,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         isClear = false;
+                        isBreak = true;
                         break;
                     }
 
@@ -163,6 +165,7 @@ public class GameManager : MonoBehaviour
                 
             }
         }
+        if (isBreak) isClear = false;
         this.isClear = isClear;
         UIManager.instance.Set_Check(curColorCount.ToArray());
         if (UIManager.instance.isOnScoreBoard == false)
@@ -170,10 +173,6 @@ public class GameManager : MonoBehaviour
             if (isClear)
             {
                 FindObjectOfType<MapAnim>().EndMapAnim();
-            }
-            else
-            {
-
             }
         }
             

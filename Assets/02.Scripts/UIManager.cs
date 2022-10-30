@@ -277,18 +277,20 @@ public class UIManager : MonoBehaviour
     IEnumerator DelayStage(string SceneName)
     {
         Time.timeScale = 1;
-        if (!GameManager.instance.isClear)
-        {
-            Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-            fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
-            while (!fade.isFade) yield return new WaitForFixedUpdate();
-        }
-        else
+        if (GameManager.instance.isClear)
         {
             GameManager.moveScene = SceneName;
             UI_ScoreBoard.GetComponent<Animator>().enabled = true;
             UI_ScoreBoard.GetComponent<Animator>().SetTrigger("DoSlideDown");
         }
+        if (!GameManager.instance.isClear || SceneName == "Lobby")
+        {
+            GameManager.moveScene = "Lobby";
+            Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+            fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
+            while (!fade.isFade) yield return new WaitForFixedUpdate();
+        }
+        
         
         
         yield return new WaitForSeconds(2);
@@ -298,6 +300,8 @@ public class UIManager : MonoBehaviour
 
     public void OpenLobby()
     {
+        CameraMove.parentRotation = Quaternion.Euler(Vector3.zero);
+        CameraMove.xRotate = 0;
         StartCoroutine(DelayStage("Lobby"));
     }
 

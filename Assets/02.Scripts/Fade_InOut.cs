@@ -10,10 +10,6 @@ public class Fade_InOut : MonoBehaviour
     public Fade fade_InOut;
 
     public bool isFade; // False일때 실행 중 / True일때 실행 완료
-    void Awake()
-    {
-        
-    }
 
     void Update()
     {
