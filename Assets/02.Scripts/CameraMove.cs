@@ -20,13 +20,13 @@ public class CameraMove : MonoBehaviour
         xRotate = 0;
 
         swipe = GetComponent<Swipe>();
-        fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        //fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
     }
 
     void Update()
     {
         //transform.parent.Rotate(Vector3.up * 50 * Time.deltaTime);
-        if (fade.isFade)
+        //if (fade.isFade)
         {
             if (Input.GetMouseButton(0))
             {

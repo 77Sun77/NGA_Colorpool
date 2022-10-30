@@ -221,11 +221,19 @@ public class UIManager : MonoBehaviour
         {
             UI_Stars[i].SetActive(true);
             UI_Stars[i].transform.parent.GetComponent<RectTransform>().SetAsLastSibling();
+            //SoundManager.instance.UI_StarSFX.pitch += 0.35f;
+            SoundManager.instance.PlayTargetSound(SoundManager.instance.BallHitSounds[GameManager.instance.HitSoundIndex]);
+            GameManager.instance.HitSoundIndex += 2;
+
             yield return new WaitForSeconds(0.35f);
             
-
-
         }
+        //if (score == 3)
+        //{
+        //    SoundManager.instance.PlayTargetSound(SoundManager.instance.BallHitSounds[7]);
+        //    SoundManager.instance.PlayTargetSound(SoundManager.instance.BallHitSounds[9]);
+        //    SoundManager.instance.PlayTargetSound(SoundManager.instance.BallHitSounds[11]);
+        //}
     }
     public void InitializeStage()
     {

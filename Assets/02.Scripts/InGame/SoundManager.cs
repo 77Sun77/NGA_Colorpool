@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource PortalSFX;
     public AudioSource KeySFX;
     public AudioSource BallWaveSFX;
+    public AudioSource UI_StarSFX;
 
     public bool isEnable_BallHitSound;
 

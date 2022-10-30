@@ -346,7 +346,7 @@ public class Ball : MonoBehaviour
 
     void PlayHitSound()
     {
-        GameManager.instance.HitSoundIndex++;
+        //GameManager.instance.HitSoundIndex++;
         SoundManager.instance.PlayTargetSound(SoundManager.instance.BubbleSFX);
     }
 

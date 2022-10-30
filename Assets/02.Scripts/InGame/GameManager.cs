@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             if (ball.isShot)
                 return true;
         }
-        HitSoundIndex = 0;
+        //HitSoundIndex = 0;
         return false;
     }
 

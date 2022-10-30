@@ -76,9 +76,9 @@ public class MapAnim : MonoBehaviour
                 break;
             }
         }*/
-        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-        fade.ChangeFade(Fade_InOut.Fade.Fade_In);
-        while (!fade.isFade) yield return new WaitForFixedUpdate();
+        //Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        //fade.ChangeFade(Fade_InOut.Fade.Fade_In);
+        //while (!fade.isFade) yield return new WaitForFixedUpdate();
 
         Transform wall1 = GameManager.instance.movingWall1;
         Transform wall2 = GameManager.instance.movingWall2;
