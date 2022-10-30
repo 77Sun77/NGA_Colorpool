@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball_Color: 0
+  kind: 0
   materials:
   - {fileID: 2100000, guid: 293baf977fee84747b48f18552ffcd1e, type: 2}
   - {fileID: 2100000, guid: 942b7bb060b412041bcf81d9070a6682, type: 2}

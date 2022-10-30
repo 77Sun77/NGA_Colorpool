@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public bool isClear;
 
-
+    public static string moveScene;
 
     [Header("StageOption")]
     public static int stageLV;

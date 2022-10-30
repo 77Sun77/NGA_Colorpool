@@ -268,15 +268,21 @@ public class UIManager : MonoBehaviour
 
     IEnumerator DelayStage(string SceneName)
     {
-        //Time.timeScale = 1;
-        //Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-        //fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
-        //while (!fade.isFade) yield return new WaitForFixedUpdate();
-
-        //yield return new WaitForSeconds(2);
-        UI_ScoreBoard.GetComponent<Animator>().enabled = true;
-        UI_ScoreBoard.GetComponent<Animator>().SetTrigger("DoSlideDown");
-        Debug.Log("DOSL");
+        Time.timeScale = 1;
+        if (!GameManager.instance.isClear)
+        {
+            Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+            fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
+            while (!fade.isFade) yield return new WaitForFixedUpdate();
+        }
+        else
+        {
+            GameManager.moveScene = SceneName;
+            UI_ScoreBoard.GetComponent<Animator>().enabled = true;
+            UI_ScoreBoard.GetComponent<Animator>().SetTrigger("DoSlideDown");
+        }
+        
+        
         yield return new WaitForSeconds(2);
         
         SceneManager.LoadScene(SceneName);

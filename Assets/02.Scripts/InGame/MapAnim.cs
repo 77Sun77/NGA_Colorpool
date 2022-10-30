@@ -43,7 +43,7 @@ public class MapAnim : MonoBehaviour
                     AM.Initialize();
                     continue;
                 }
-                else if(AM.animType == AnimType_Mono.AnimType.Ball) _tr.localScale = new Vector3(_tr.localScale.x, 0.9f, _tr.localScale.z);
+                else if(AM.animType == AnimType_Mono.AnimType.Ball) _tr.localScale = new Vector3(_tr.localScale.x, 0.99f, _tr.localScale.z);
             }
 
 
@@ -76,9 +76,13 @@ public class MapAnim : MonoBehaviour
                 break;
             }
         }*/
-        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-        fade.ChangeFade(Fade_InOut.Fade.Fade_In);
-        while (!fade.isFade) yield return new WaitForFixedUpdate();
+        if(GameManager.moveScene == "Lobby" || GameManager.moveScene == null)
+        {
+            Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+            fade.ChangeFade(Fade_InOut.Fade.Fade_In);
+            while (!fade.isFade) yield return new WaitForFixedUpdate();
+
+        }
 
         Transform wall1 = GameManager.instance.movingWall1;
         Transform wall2 = GameManager.instance.movingWall2;
