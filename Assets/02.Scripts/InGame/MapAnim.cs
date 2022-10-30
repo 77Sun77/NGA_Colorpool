@@ -76,6 +76,7 @@ public class MapAnim : MonoBehaviour
                 break;
             }
         }*/
+<<<<<<< HEAD
         if(GameManager.moveScene == "Lobby" || GameManager.moveScene == null)
         {
             Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
@@ -83,6 +84,11 @@ public class MapAnim : MonoBehaviour
             while (!fade.isFade) yield return new WaitForFixedUpdate();
 
         }
+=======
+        //Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        //fade.ChangeFade(Fade_InOut.Fade.Fade_In);
+        //while (!fade.isFade) yield return new WaitForFixedUpdate();
+>>>>>>> 36a73d4af6f556f6de250cda9425c8d03c8d2dd2
 
         Transform wall1 = GameManager.instance.movingWall1;
         Transform wall2 = GameManager.instance.movingWall2;
