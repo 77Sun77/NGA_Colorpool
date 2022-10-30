@@ -296,6 +296,8 @@ public class GameManager : MonoBehaviour
                 targetList.Add(rule.Key);
             }
         }
+
+        UIManager.instance.SetBallUi_BG(targetList.ToArray());
     }
 
 

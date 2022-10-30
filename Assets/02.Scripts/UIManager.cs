@@ -42,6 +42,10 @@ public class UIManager : MonoBehaviour
     Dictionary<GameObject, string> colorImages = new Dictionary<GameObject, string>();
     List<GameObject> check_Object = new List<GameObject>();
 
+    public Transform targetBG;
+    public GameObject leftCircle, rightCircle;
+    public GameObject image;
+
     private void Awake()
     {
         instance = this;
@@ -170,6 +174,15 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void SetBallUi_BG(string[] array)
+    {
+        Instantiate(leftCircle, targetBG);
+        for(int i=0; i<array.Length; i++)
+        {
+            Instantiate(image, targetBG);
+        }
+        Instantiate(rightCircle, targetBG);
+    }
     void SetBallUI()
     {
 

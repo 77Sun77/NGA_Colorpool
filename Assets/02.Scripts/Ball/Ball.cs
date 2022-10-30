@@ -81,9 +81,10 @@ public class Ball : MonoBehaviour
     {
         velocity = myRIgid.velocity;
 
-        if (Mathf.Abs(myRIgid.velocity.magnitude) <= 0f && isShot)
+        if (myRIgid.velocity.magnitude <= 0f && isShot)
         {
             isShot = false;
+            myRIgid.velocity = Vector3.zero;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && kind == ObjectKind.Ball)
