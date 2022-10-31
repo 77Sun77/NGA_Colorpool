@@ -304,11 +304,7 @@ public class UIManager : MonoBehaviour
             fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
             while (!fade.isFade) yield return new WaitForFixedUpdate();
         }
-        
-        
-        
-<<<<<<< HEAD
-        yield return new WaitForSeconds(2);
+
         if(SceneName == "Lobby")
         {
             Destroy(GameManager.static_SoundManager);
@@ -316,9 +312,7 @@ public class UIManager : MonoBehaviour
             CameraMove.xRotate = 0;
             CameraMove.parentRotation = Quaternion.identity;
         }
-=======
-        
->>>>>>> 200312d0d1f9902f3937ae2652a8fdfbccfd28a3
+
         SceneManager.LoadScene(SceneName);
     }
 
