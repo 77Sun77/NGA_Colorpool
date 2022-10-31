@@ -14,7 +14,7 @@ public class Swipe : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.instance.isAllBallShot)
+        if (!GameManager.instance.isAllBallShot && GameManager.instance.isStart && !GameManager.instance.isClear)
         {
             Mouse_Fun();
         }
@@ -76,7 +76,7 @@ public class Swipe : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
           
-
+            if(target != null) target.GetComponent<Ball>().isTargetting = false;
             if (target != null && isShot)
             {
                 target.GetComponent<Ball>().isTargetting = false;

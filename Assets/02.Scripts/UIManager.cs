@@ -304,10 +304,15 @@ public class UIManager : MonoBehaviour
             fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
             while (!fade.isFade) yield return new WaitForFixedUpdate();
         }
-        
-        
-        
-        
+
+        if(SceneName == "Lobby")
+        {
+            Destroy(GameManager.static_SoundManager);
+            GameManager.static_SoundManager = null;
+            CameraMove.xRotate = 0;
+            CameraMove.parentRotation = Quaternion.identity;
+        }
+
         SceneManager.LoadScene(SceneName);
     }
 

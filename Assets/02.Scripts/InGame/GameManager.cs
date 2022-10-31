@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     public int HitSoundIndex;
 
+    public static GameObject static_SoundManager;
+    public GameObject soundManager;
     void Awake()
     {
         instance = this;
@@ -59,6 +61,13 @@ public class GameManager : MonoBehaviour
         isValid = false;
 
         shotCount = 0;
+
+        if (static_SoundManager == null)
+        {
+            soundManager.SetActive(true);
+            static_SoundManager = soundManager;
+            DontDestroyOnLoad(soundManager);
+        }
     }
 
     void Start()
