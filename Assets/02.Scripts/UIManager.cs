@@ -307,7 +307,13 @@ public class UIManager : MonoBehaviour
         
         
         yield return new WaitForSeconds(2);
-        
+        if(SceneName == "Lobby")
+        {
+            Destroy(GameManager.static_SoundManager);
+            GameManager.static_SoundManager = null;
+            CameraMove.xRotate = 0;
+            CameraMove.parentRotation = Quaternion.identity;
+        }
         SceneManager.LoadScene(SceneName);
     }
 
