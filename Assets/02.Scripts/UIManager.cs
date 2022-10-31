@@ -295,8 +295,9 @@ public class UIManager : MonoBehaviour
             GameManager.moveScene = SceneName;
             UI_ScoreBoard.GetComponent<Animator>().enabled = true;
             UI_ScoreBoard.GetComponent<Animator>().SetTrigger("DoSlideDown");
+            yield return new WaitForSeconds(2);
         }
-        if (!GameManager.instance.isClear || SceneName == "Lobby")
+        else if (!GameManager.instance.isClear || SceneName == "Lobby")
         {
             GameManager.moveScene = "Lobby";
             Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
@@ -306,7 +307,6 @@ public class UIManager : MonoBehaviour
         
         
         
-        yield return new WaitForSeconds(2);
         
         SceneManager.LoadScene(SceneName);
     }
