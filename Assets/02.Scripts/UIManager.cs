@@ -295,8 +295,9 @@ public class UIManager : MonoBehaviour
             GameManager.moveScene = SceneName;
             UI_ScoreBoard.GetComponent<Animator>().enabled = true;
             UI_ScoreBoard.GetComponent<Animator>().SetTrigger("DoSlideDown");
+            yield return new WaitForSeconds(2);
         }
-        if (!GameManager.instance.isClear || SceneName == "Lobby")
+        else if (!GameManager.instance.isClear || SceneName == "Lobby")
         {
             GameManager.moveScene = "Lobby";
             Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
@@ -306,6 +307,7 @@ public class UIManager : MonoBehaviour
         
         
         
+<<<<<<< HEAD
         yield return new WaitForSeconds(2);
         if(SceneName == "Lobby")
         {
@@ -314,6 +316,9 @@ public class UIManager : MonoBehaviour
             CameraMove.xRotate = 0;
             CameraMove.parentRotation = Quaternion.identity;
         }
+=======
+        
+>>>>>>> 200312d0d1f9902f3937ae2652a8fdfbccfd28a3
         SceneManager.LoadScene(SceneName);
     }
 
