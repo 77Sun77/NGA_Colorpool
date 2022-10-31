@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -90,13 +92,14 @@ public class UIManager : MonoBehaviour
     public void Set_Target_Img()
     {
         int count = GameManager.instance.targetList.Count;
-        for(int i=0; i<count; i++)
+        for (int i = 0; i < count; i++)
         {
             string colorName = GameManager.instance.targetList[i];
             GameObject go = Instantiate(UI_ballImagePrefabs[SetBallColorToIndex(colorName)], UI_TargetPlace.transform);
+            go.transform.localScale = Vector3.zero;
             colorImages.Add(go, colorName);
         }
-        
+
     }
     public void Set_Check(string[] colors)
     {
@@ -119,7 +122,7 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-        
+
 
     }
 
@@ -177,12 +180,51 @@ public class UIManager : MonoBehaviour
     public void SetBallUi_BG(string[] array)
     {
         Instantiate(leftCircle, targetBG);
-        for(int i=0; i<array.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
             Instantiate(image, targetBG);
         }
         Instantiate(rightCircle, targetBG);
     }
+
+    public void DoBallUIAnim()
+    {
+        StartCoroutine(nameof(DoUIBallAnim_Cor));
+    }
+
+    IEnumerator DoUIBallAnim_Cor()
+    {
+        Vector3 _pos = GameObject.Find("BG_Pos").transform.position;
+        Debug.Log("UIAnim");
+        targetBG.DOMove(_pos, 0.3f);
+
+        yield return new WaitForSeconds(0.3f);
+
+        foreach (var image in colorImages)
+        {
+            Transform imgTF = image.Key.transform;
+            imgTF.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBack, 1.1f);
+            yield return new WaitForSeconds(0.15f);
+        }
+    }
+    [ContextMenu("Exit")]
+    public void DoBallUIAnim_Exit()
+    {
+        StartCoroutine(nameof(DoUIBallAnim_Exit_Cor));
+    }
+    IEnumerator DoUIBallAnim_Exit_Cor()
+    {
+        foreach (var image in colorImages)
+        {
+            Transform imgTF = image.Key.transform;
+            imgTF.DOLocalMoveY(170, 0.6f).SetEase(Ease.InBack, 1.2f);
+            yield return new WaitForSeconds(0.03f);
+        }
+
+        targetBG.DOLocalMoveY(170, 0.6f).SetEase(Ease.InBack, 1.2f);
+        yield return new WaitForSeconds(0.03f);
+    }
+
     void SetBallUI()
     {
 
@@ -220,7 +262,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("스코어보드 실행");
         isOnScoreBoard = true;
-        
+
         StartCoroutine(EnableStar(score));
         targetText.text = $"Goal Shot Count:{GameManager.instance.shotRule}";
         shotText.text = $"Shot Count:{GameManager.instance.shotCount}";
@@ -239,7 +281,7 @@ public class UIManager : MonoBehaviour
             GameManager.instance.HitSoundIndex += 2;
 
             yield return new WaitForSeconds(0.35f);
-            
+
         }
         //if (score == 3)
         //{
@@ -273,18 +315,21 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1;
             Menu.SetActive(false);
         }
-        
+
 
     }
     public void RestartStage()
     {
         StartCoroutine(DelayStage("PlayScene"));
+        //StartCoroutine(DelayStage("LoadingScene"));
     }
 
     public void NextStage()
-    {   
+    {
         GameManager.stageLV++;
         StartCoroutine(DelayStage("PlayScene"));
+        //StartCoroutine(DelayStage("LoadingScene"));
+
     }
 
     IEnumerator DelayStage(string SceneName)
@@ -295,18 +340,23 @@ public class UIManager : MonoBehaviour
             GameManager.moveScene = SceneName;
             UI_ScoreBoard.GetComponent<Animator>().enabled = true;
             UI_ScoreBoard.GetComponent<Animator>().SetTrigger("DoSlideDown");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
+            DoBallUIAnim_Exit();
+            yield return new WaitForSeconds(1);
+
         }
         else if (!GameManager.instance.isClear || SceneName == "Lobby")
         {
+            LobbyManager.instance.Initialize_Lobby();
             GameManager.moveScene = "Lobby";
             Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
             fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
             while (!fade.isFade) yield return new WaitForFixedUpdate();
         }
 
-        if(SceneName == "Lobby")
+        if (SceneName == "Lobby")
         {
+            LobbyManager.instance.Initialize_Lobby();
             Destroy(GameManager.static_SoundManager);
             GameManager.static_SoundManager = null;
             CameraMove.xRotate = 0;

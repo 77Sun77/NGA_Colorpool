@@ -103,6 +103,9 @@ public class MapAnim : MonoBehaviour
                 break;
             }
         }
+
+        UIManager.instance.DoBallUIAnim();
+
         StartCoroutine(LoadingWalls());
     }
 

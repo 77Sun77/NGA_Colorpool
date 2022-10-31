@@ -24,7 +24,7 @@ public class Fade_InOut : MonoBehaviour
             Color color = FadeIn_Img.color;
             color.a -= 1 * Time.deltaTime;
             FadeIn_Img.color = color;
-            if (FadeIn_Img.color.a <= 0)
+            if (FadeIn_Img.color.a <= 0.15)
             {
                 color.a = 0;
                 FadeIn_Img.color = color;
@@ -42,7 +42,7 @@ public class Fade_InOut : MonoBehaviour
             Color color = FadeOut_Img.color;
             color.a += 1 * Time.deltaTime;
             FadeOut_Img.color = color;
-            if(FadeOut_Img.color.a >= 1)
+            if(FadeOut_Img.color.a >= 0.85)
             {
                 color.a = 1;
                 FadeOut_Img.color = color;
@@ -61,11 +61,13 @@ public class Fade_InOut : MonoBehaviour
             color.a = 1;
             FadeIn_Img.color = color;
             FadeIn_Img.gameObject.SetActive(true);
+            FadeOut_Img.gameObject.SetActive(false);
         }
         else if(fade == Fade.Fade_Out)
         {
             color.a = 0;
             FadeOut_Img.color = color;
+            FadeIn_Img.gameObject.SetActive(false);
             FadeOut_Img.gameObject.SetActive(true);
         }
         fade_InOut = fade;

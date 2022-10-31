@@ -10,6 +10,9 @@ public class LobbyManager : MonoBehaviour
     public int pageNum;
     Transform canvas;
 
+    public GameObject UI;
+    public SceneLoad Obj_SL;
+
     void Start()
     {
         instance = this;
@@ -52,4 +55,12 @@ public class LobbyManager : MonoBehaviour
     }
 
     
+   public void Initialize_Lobby()
+    {
+        Camera.main.gameObject.SetActive(true);
+        LobbyManager.instance.Obj_SL.gameObject.SetActive(false);
+        LobbyManager.instance.UI.transform.localScale = Vector3.one;
+    }
+
+
 }

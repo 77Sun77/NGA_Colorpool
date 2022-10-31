@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class StageBtn : MonoBehaviour
 {
     Button btn;
@@ -31,17 +32,40 @@ public class StageBtn : MonoBehaviour
     {
         print(mapName + " stage open");
         GameManager.stageLV = int.Parse(mapName) - 1;
+        //Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        //fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
+        //StartCoroutine(DelayTime());
+        StartCoroutine(LoadGameScene());
+    }
+
+    IEnumerator LoadGameScene()
+    {
         Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
         fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
-        StartCoroutine(DelayTime());
-        
+        while (!fade.isFade) yield return new WaitForFixedUpdate();
+        //Debug.Log("±× ¹¹³Ä");
+
+        Camera.main.gameObject.SetActive(false);
+        LobbyManager.instance.Obj_SL.gameObject.SetActive(true);
+        LobbyManager.instance.UI.transform.localScale = Vector3.zero;
+        fade.ChangeFade(Fade_InOut.Fade.Fade_In);
+        while (!fade.isFade) yield return new WaitForFixedUpdate();
+        //Debug.Log("±× ¹¹³Ä2");
+
+
+        LobbyManager.instance.Obj_SL.LoadScene();
+
     }
+
+
+
 
     IEnumerator DelayTime()
     {
         Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-        while (!fade.isFade) yield return new WaitForFixedUpdate();
-        yield return new WaitForSeconds(2);
+        //while (!fade.isFade) yield return new WaitForFixedUpdate();
+        yield return null;
+       
         SceneManager.LoadScene("PlayScene");
     }
 }
