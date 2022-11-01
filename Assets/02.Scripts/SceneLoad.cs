@@ -21,8 +21,8 @@ public class SceneLoad : MonoBehaviour
     void Start()
     {
         isOpen = false;
-        LoadScene();
-        //StartCoroutine(Fade(true));
+        //LoadScene();
+        StartCoroutine(Fade(true));
     }
     IEnumerator Fade(bool isFadeIn)
     { 
@@ -82,8 +82,8 @@ public class SceneLoad : MonoBehaviour
                 MovingBall.transform.position = Vector3.Lerp(OriginPos, TargetBall.transform.position, MoveDistance);
                 if (MoveDistance >= 1f)
                 {
-                    //StartCoroutine(Fade(false));
-                    //while (!isOpen) yield return new WaitForFixedUpdate();
+                    StartCoroutine(Fade(false));
+                    while (!isOpen) yield return new WaitForFixedUpdate();
                     yield return new WaitForSeconds(0.5f);
                     oper.allowSceneActivation = true;
                     yield break;
