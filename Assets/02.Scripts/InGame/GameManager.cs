@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
         stageOptions[stageLV].SetStageRule();
         SetBalls();
         UIManager.instance.Set_Target_Img();
+        ValidColor();
     }
 
 
