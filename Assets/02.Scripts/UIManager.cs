@@ -345,25 +345,25 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(1);
 
         }
-        else if (!GameManager.instance.isClear || SceneName == "Lobby")
+        if (SceneName == "Lobby")
         {
-            LobbyManager.instance.Initialize_Lobby();
             GameManager.moveScene = "Lobby";
             Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
             fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
             while (!fade.isFade) yield return new WaitForFixedUpdate();
-        }
-
-        if (SceneName == "Lobby")
-        {
-            LobbyManager.instance.Initialize_Lobby();
+            SceneLoad.sceneName = "Lobby";
+            SceneManager.LoadScene("LoadingScene");
             Destroy(GameManager.static_SoundManager);
             GameManager.static_SoundManager = null;
             CameraMove.xRotate = 0;
             CameraMove.parentRotation = Quaternion.identity;
         }
+        else
+        {
+            GameManager.moveScene = SceneName;
+            SceneManager.LoadScene(SceneName);
+        }
 
-        SceneManager.LoadScene(SceneName);
     }
 
     public void OpenLobby()

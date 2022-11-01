@@ -6,6 +6,7 @@ using TMPro;
 
 public class SceneLoad : MonoBehaviour
 {
+    public static string sceneName;
     public GameObject MovingBall;
     public GameObject TargetBall;
     public Vector3 OriginPos;
@@ -14,6 +15,33 @@ public class SceneLoad : MonoBehaviour
     public float curTextChangeDelay;
     public int TextState;
     public TMPro.TextMeshPro LoadingText;
+
+    bool isOpen;
+
+    void Start()
+    {
+        isOpen = false;
+        LoadScene();
+        //StartCoroutine(Fade(true));
+    }
+    IEnumerator Fade(bool isFadeIn)
+    { 
+
+        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        if (isFadeIn)
+        {
+            fade.ChangeFade(Fade_InOut.Fade.Fade_In);
+            while (!fade.isFade) yield return new WaitForFixedUpdate();
+            LoadScene();
+        }
+        else
+        {
+            fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
+            while (!fade.isFade) yield return new WaitForFixedUpdate();
+            
+            isOpen = true;
+        }
+    }
     public void LoadScene()
     {
         while (MovingBall == null)
@@ -30,7 +58,7 @@ public class SceneLoad : MonoBehaviour
 
     IEnumerator LoadScene_Cor()
     {
-        AsyncOperation oper = SceneManager.LoadSceneAsync("PlayScene");
+        AsyncOperation oper = SceneManager.LoadSceneAsync(sceneName);
         oper.allowSceneActivation = false;
 
         while (!oper.isDone)
@@ -54,6 +82,9 @@ public class SceneLoad : MonoBehaviour
                 MovingBall.transform.position = Vector3.Lerp(OriginPos, TargetBall.transform.position, MoveDistance);
                 if (MoveDistance >= 1f)
                 {
+                    //StartCoroutine(Fade(false));
+                    //while (!isOpen) yield return new WaitForFixedUpdate();
+                    yield return new WaitForSeconds(0.5f);
                     oper.allowSceneActivation = true;
                     yield break;
                 }

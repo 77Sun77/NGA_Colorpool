@@ -10,6 +10,9 @@ public class LobbyManager : MonoBehaviour
     public int pageNum;
     Transform canvas;
 
+
+    public static GameObject static_UI;
+    public static SceneLoad static_SL;
     public GameObject UI;
     public SceneLoad Obj_SL;
 
@@ -17,8 +20,12 @@ public class LobbyManager : MonoBehaviour
     {
         instance = this;
         pageNum = 1;
-
+        static_UI = UI;
+        static_SL = Obj_SL;
         canvas = GameObject.Find("Canvas").transform;
+
+        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+        fade.ChangeFade(Fade_InOut.Fade.Fade_In);
     }
 
     void Update()
@@ -58,8 +65,9 @@ public class LobbyManager : MonoBehaviour
    public void Initialize_Lobby()
     {
         Camera.main.gameObject.SetActive(true);
-        LobbyManager.instance.Obj_SL.gameObject.SetActive(false);
-        LobbyManager.instance.UI.transform.localScale = Vector3.one;
+        static_SL.gameObject.SetActive(false);
+        static_UI.transform.localScale = Vector3.one;
+
     }
 
 

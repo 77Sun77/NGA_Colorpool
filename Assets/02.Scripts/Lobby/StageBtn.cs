@@ -32,9 +32,6 @@ public class StageBtn : MonoBehaviour
     {
         print(mapName + " stage open");
         GameManager.stageLV = int.Parse(mapName) - 1;
-        //Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-        //fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
-        //StartCoroutine(DelayTime());
         StartCoroutine(LoadGameScene());
     }
 
@@ -43,29 +40,10 @@ public class StageBtn : MonoBehaviour
         Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
         fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
         while (!fade.isFade) yield return new WaitForFixedUpdate();
-        //Debug.Log("±× ¹¹³Ä");
-
-        Camera.main.gameObject.SetActive(false);
-        LobbyManager.instance.Obj_SL.gameObject.SetActive(true);
-        LobbyManager.instance.UI.transform.localScale = Vector3.zero;
-        fade.ChangeFade(Fade_InOut.Fade.Fade_In);
-        while (!fade.isFade) yield return new WaitForFixedUpdate();
-        //Debug.Log("±× ¹¹³Ä2");
-
-
-        LobbyManager.instance.Obj_SL.LoadScene();
-
+        SceneLoad.sceneName = "PlayScene";
+        SceneManager.LoadScene("LoadingScene");
     }
 
 
 
-
-    IEnumerator DelayTime()
-    {
-        Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-        //while (!fade.isFade) yield return new WaitForFixedUpdate();
-        yield return null;
-       
-        SceneManager.LoadScene("PlayScene");
-    }
 }

@@ -24,7 +24,7 @@ public class Fade_InOut : MonoBehaviour
             Color color = FadeIn_Img.color;
             color.a -= 1 * Time.deltaTime;
             FadeIn_Img.color = color;
-            if (FadeIn_Img.color.a <= 0.15)
+            if (FadeIn_Img.color.a <= 0)
             {
                 color.a = 0;
                 FadeIn_Img.color = color;
@@ -42,7 +42,7 @@ public class Fade_InOut : MonoBehaviour
             Color color = FadeOut_Img.color;
             color.a += 1 * Time.deltaTime;
             FadeOut_Img.color = color;
-            if(FadeOut_Img.color.a >= 0.85)
+            if(FadeOut_Img.color.a >= 1)
             {
                 color.a = 1;
                 FadeOut_Img.color = color;
