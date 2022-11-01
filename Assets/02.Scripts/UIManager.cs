@@ -103,26 +103,43 @@ public class UIManager : MonoBehaviour
     }
     public void Set_Check(string[] colors)
     {
-        foreach (GameObject checkObj in check_Object)
-        {
-            checkObj.transform.parent = GameObject.Find("Canvas").transform;
-            Destroy(checkObj);
-        }
+        List<GameObject> checkTemp = new List<GameObject>(check_Object);
         check_Object.Clear();
         foreach (string color in colors)
         {
             foreach (KeyValuePair<GameObject, string> image in colorImages)
             {
-                if (image.Value == color && image.Key.transform.childCount == 0)
+                if (image.Value == color)
                 {
-                    GameObject go = Instantiate(UI_CheckImagePrefab, image.Key.transform);
-                    go.transform.localPosition = new Vector3(0, 0, 0);
-                    check_Object.Add(go);
-                    break;
+                    if(image.Key.transform.childCount == 1)
+                    {
+                        GameObject child = image.Key.transform.GetChild(0).gameObject;
+                        if (check_Object.Contains(child)) continue;
+                        else
+                        {
+                            checkTemp.Remove(child);
+                            check_Object.Add(child);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        GameObject go = Instantiate(UI_CheckImagePrefab, image.Key.transform);
+                        go.transform.localPosition = new Vector3(0, 0, 0);
+                        checkTemp.Remove(go);
+                        check_Object.Add(go);
+                        break;
+                    }
+                    
                 }
+
             }
         }
-
+        
+        foreach (GameObject checkObj in checkTemp)
+        {
+            Destroy(checkObj);
+        }
 
     }
 
