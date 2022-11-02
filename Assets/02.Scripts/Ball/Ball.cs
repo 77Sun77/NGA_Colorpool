@@ -41,6 +41,7 @@ public class Ball : MonoBehaviour
     public bool isTargetting;
 
     int num_ballIndex = 0;
+    int num_lineIndex = 0;
 
     public GameObject hitParticle;
 
@@ -108,17 +109,28 @@ public class Ball : MonoBehaviour
         if (call == "Line"|| call == "Line2") color = line_Color;
         else color = color_Name;
 
-        if (color == Ball_Color.Red) num_ballIndex = 0;
-        if (color == Ball_Color.Orange) num_ballIndex = 1;
-        if (color == Ball_Color.Yellow) num_ballIndex = 2;
-        if (color == Ball_Color.Green) num_ballIndex = 3;
-        if (color == Ball_Color.Blue) num_ballIndex = 4;
-        if (color == Ball_Color.Purple) num_ballIndex = 5;
-        if (color == Ball_Color.Black) num_ballIndex = 6;
-
+        if(call == "Ball")
+        {
+            if (color == Ball_Color.Red) num_ballIndex = 0;
+            if (color == Ball_Color.Orange) num_ballIndex = 1;
+            if (color == Ball_Color.Yellow) num_ballIndex = 2;
+            if (color == Ball_Color.Green) num_ballIndex = 3;
+            if (color == Ball_Color.Blue) num_ballIndex = 4;
+            if (color == Ball_Color.Purple) num_ballIndex = 5;
+            if (color == Ball_Color.Black) num_ballIndex = 6;
+        }
+        
         if (call == "Line")
         {
-            Color mat = colors[num_ballIndex];
+            if (color == Ball_Color.Red) num_lineIndex = 0;
+            if (color == Ball_Color.Orange) num_lineIndex = 1;
+            if (color == Ball_Color.Yellow) num_lineIndex = 2;
+            if (color == Ball_Color.Green) num_lineIndex = 3;
+            if (color == Ball_Color.Blue) num_lineIndex = 4;
+            if (color == Ball_Color.Purple) num_lineIndex = 5;
+            if (color == Ball_Color.Black) num_lineIndex = 6;
+
+            Color mat = colors[num_lineIndex];
             mat.a = 0.7f;
             //foreach (LineRenderer line in lines) line.SetColors(mat, mat);
             lines[0].SetColors(mat, mat);
@@ -126,7 +138,7 @@ public class Ball : MonoBehaviour
         }
         else if (call == "Line2")
         {
-            Color mat = colors[num_ballIndex];
+            Color mat = colors[num_lineIndex];
             mat.a = 0.7f;
             lines[1].SetColors(mat, mat);
             return;

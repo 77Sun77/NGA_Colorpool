@@ -372,6 +372,7 @@ public class UIManager : MonoBehaviour
             SceneManager.LoadScene("LoadingScene");
             Destroy(GameManager.static_SoundManager);
             GameManager.static_SoundManager = null;
+            GameManager.instance.isStart = false;
             CameraMove.xRotate = 0;
             CameraMove.parentRotation = Quaternion.identity;
         }

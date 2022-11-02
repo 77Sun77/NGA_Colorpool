@@ -220,10 +220,14 @@ public class MapAnim : MonoBehaviour
             yield return new WaitForSeconds(0.12f);
         }
 
-
-            foreach (Transform wall in walls)
-            {
-            //키 애니메이션을 비활성화
+        walls.Clear();
+        foreach (Transform _tr in transform.Find("Walls"))
+        {
+            walls.Add(_tr);
+        }
+        foreach (Transform wall in walls)
+        {
+                //키 애니메이션을 비활성화
             if (wall.TryGetComponent(out AnimType_Mono AM))
             {
                 if (AM.animType == AnimType_Mono.AnimType.Key)
