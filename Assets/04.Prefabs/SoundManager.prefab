@@ -1949,6 +1949,7 @@ MonoBehaviour:
   PortalSFX: {fileID: 2846487895352986113}
   KeySFX: {fileID: 2846487894522260358}
   BallWaveSFX: {fileID: 2846487894693728601}
+  UI_StarSFX: {fileID: 0}
   isEnable_BallHitSound: 1
 --- !u!1 &2846487894693728603
 GameObject:
@@ -3225,10 +3226,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 251976e665345b6469cc78a3372691ad, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.052
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

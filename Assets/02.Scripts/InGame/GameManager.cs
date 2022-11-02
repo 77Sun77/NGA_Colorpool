@@ -290,6 +290,7 @@ public class GameManager : MonoBehaviour
             GameObject go = Instantiate(ClearAnim_Prefab, new Vector3(ballPos.x, 1.1f, ballPos.z), Quaternion.Euler(Vector3.right*90));
             go.GetComponent<SpriteRenderer>().color = ball.myMaterial.color;
         }
+        SoundManager.instance.PlayTargetSound(SoundManager.instance.BallWaveSFX);
         yield return new WaitForSeconds(1);
         OnStageEnd();
     }
