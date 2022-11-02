@@ -221,8 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotCount: 1
   RedBallCount: 0
-  OrangeBallCount: 3
-  YellowBallCount: 0
+  OrangeBallCount: 0
+  YellowBallCount: 3
   GreenBallCount: 0
   BlueBallCount: 0
   PurpleBallCount: 0

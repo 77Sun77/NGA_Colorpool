@@ -865,7 +865,7 @@ MonoBehaviour:
   GreenBallCount: 0
   BlueBallCount: 0
   PurpleBallCount: 0
-  BlackBallCount: 0
+  BlackBallCount: 1
 --- !u!114 &7461889328382929129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,7 +1008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2800731678996693508, guid: 78d40f75b9b6e2b4fb9426eb40e191a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.25
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2800731678996693508, guid: 78d40f75b9b6e2b4fb9426eb40e191a0, type: 3}
       propertyPath: m_LocalPosition.y

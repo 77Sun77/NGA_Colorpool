@@ -3142,7 +3142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1679311797323601422, guid: e6d7fe2cba08d7b44a2852eebdae63fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.025126
+      value: -1.739592
       objectReference: {fileID: 0}
     - target: {fileID: 1679311797323601422, guid: e6d7fe2cba08d7b44a2852eebdae63fd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3879,7 +3879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1628030631586125490, guid: 12acf921800407547b79067c1944f8df, type: 3}
       propertyPath: ball_Color
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1628030631586125502, guid: 12acf921800407547b79067c1944f8df, type: 3}
       propertyPath: m_RootOrder
@@ -3903,7 +3903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1628030631586125502, guid: 12acf921800407547b79067c1944f8df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.7395923
+      value: 3.0104077
       objectReference: {fileID: 0}
     - target: {fileID: 1628030631586125502, guid: 12acf921800407547b79067c1944f8df, type: 3}
       propertyPath: m_LocalRotation.w
