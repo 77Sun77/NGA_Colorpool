@@ -28,14 +28,14 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         //transform.parent.Rotate(Vector3.up * 50 * Time.deltaTime);
-        if (GameManager.instance.isStart)
+        if (GameManager.instance.isStart && !GameManager.instance.isClear)
         {
             parentRotation = transform.parent.rotation;
             if (Input.GetMouseButton(0))
             {
                 if (swipe.target == null)
                 {
-                    float y = Input.GetAxis("Mouse X") * Time.deltaTime * 200;
+                    float y = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
                     xRotate = xRotate + y;
                     transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
                 }
