@@ -192,7 +192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3645264925537420636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0.75, z: -3}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -293,8 +293,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 0
   ballKind: 1
+  myMaterial: {fileID: 0}
   anim: {fileID: 0}
   color_Name: 0
+  color_Line1: 0
+  color_Line2: 0
   colors:
   - {r: 1, g: 0.3019608, b: 0.2509804, a: 9.5401875e+26}
   - {r: 1, g: 0.57254905, b: 0.18431373, a: 6.770915e+22}
@@ -305,7 +308,10 @@ MonoBehaviour:
   - {r: 0.12156863, g: 0.12156863, b: 0.12156863, a: 1}
   velocity: {x: 0, y: 0, z: 0}
   isShot: 0
+  isTargetting: 0
   hitParticle: {fileID: 689902589048989076, guid: ae1dd0f73d7f48144974bddd3cda8977, type: 3}
+  isPassingPaint: 0
+  isPassingPaint2: 0
 --- !u!95 &93669411386879562
 Animator:
   serializedVersion: 4

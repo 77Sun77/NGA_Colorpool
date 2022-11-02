@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfac4fab9c618c4696e2d1d05d6b634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotCount: 3
+  shotCount: 2
   RedBallCount: 0
   OrangeBallCount: 0
   YellowBallCount: 0

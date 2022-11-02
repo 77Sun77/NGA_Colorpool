@@ -159,14 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfac4fab9c618c4696e2d1d05d6b634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotCount: 1
+  shotCount: 2
   RedBallCount: 0
   OrangeBallCount: 0
   YellowBallCount: 2
   GreenBallCount: 0
   BlueBallCount: 0
   PurpleBallCount: 0
-  BlackBallCount: 0
+  BlackBallCount: 1
 --- !u!114 &7396381106047255339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,6 +754,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5034210177170956766}
     m_Modifications:
+    - target: {fileID: 1679311797323601409, guid: e6d7fe2cba08d7b44a2852eebdae63fd, type: 3}
+      propertyPath: color
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1679311797323601422, guid: e6d7fe2cba08d7b44a2852eebdae63fd, type: 3}
       propertyPath: m_RootOrder
       value: 5

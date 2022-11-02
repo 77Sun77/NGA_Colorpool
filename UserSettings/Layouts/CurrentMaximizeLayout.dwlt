@@ -418,9 +418,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.2815702, y: -8.848723, z: 9.657841}
+    m_Target: {x: 0.023526192, y: 0.5000002, z: -0.0827086}
     speed: 2
-    m_Value: {x: 1.2815702, y: -8.848723, z: 9.657841}
+    m_Value: {x: -0.15072918, y: 0.47550008, z: 0.49983287}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -467,13 +467,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.3445152, y: 0.07227385, z: -0.026627848, w: -0.93563616}
+    m_Target: {x: -0.51294935, y: 0.02238894, z: -0.013405472, w: -0.858044}
     speed: 2
-    m_Value: {x: -0.3459514, y: 0.07082972, z: -0.026216831, w: -0.9352078}
+    m_Value: {x: -0.51293975, y: 0.022388522, z: -0.0134052215, w: -0.858028}
   m_Size:
-    m_Target: 9.723151
+    m_Target: 10.568751
     speed: 2
-    m_Value: 9.634382
+    m_Value: 6.887025
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -626,7 +626,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -334166
+  m_LastSelectedObjectID: 2124416
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -677,7 +677,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 42671
+  controlID: 25709
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -734,10 +734,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 32}
-      m_SelectedIDs: b44efaff
-      m_LastClickedID: -373068
-      m_ExpandedIDs: b44efaffa452faff2cf4410038f4410042f4410048f441006cf441008ef44100a2f44100dcf44100ecf4410008f5410036f5410056f54100
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 9e642200
+      m_LastClickedID: 2253982
+      m_ExpandedIDs: d6b9f0ff886422009e642200b0642200bc642200d6642200de6422000665220018652200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -828,22 +828,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/04.Prefabs/Objects/Key and Cage/Keys
+    - Assets/04.Prefabs/Stages
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/04.Prefabs/Objects/Key and Cage/Keys
+  - Assets/04.Prefabs/Stages
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\kagfh\GitHub\NGA_Colorpool
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: f6370500
-    m_LastClickedID: 342006
-    m_ExpandedIDs: 00000000c4770000d277000030780000f237050000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 87.80002}
+    m_SelectedIDs: fe410100
+    m_LastClickedID: 82430
+    m_ExpandedIDs: 00000000ee3f01009841010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -871,7 +871,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c477000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000ee3f010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -896,8 +896,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: b44efaff
-    m_LastClickedInstanceID: -373068
+    m_SelectedInstanceIDs: 9e642200
+    m_LastClickedInstanceID: 2253982
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
@@ -923,7 +923,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 812.80005}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 115

@@ -5353,7 +5353,7 @@ MonoBehaviour:
   OrangeBallCount: 2
   YellowBallCount: 0
   GreenBallCount: 0
-  BlueBallCount: 0
+  BlueBallCount: 1
   PurpleBallCount: 0
   BlackBallCount: 0
 --- !u!114 &7687275011503113281
