@@ -5,7 +5,11 @@ using UnityEngine;
 public class Key : MonoBehaviour
 {
     public GameObject cage;
-    
+
+    private void Start()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Key");
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("BALL"))
