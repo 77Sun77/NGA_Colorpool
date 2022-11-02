@@ -16,7 +16,7 @@ public class Wall_ColorReflect : MonoBehaviour
         gameObject.layer = 20 + (int)ball_Color;
         Material material = materials[((int)ball_Color)];
         GetComponent<Renderer>().material = material;
-
+        gameObject.tag = "WALL";
 
     }
 

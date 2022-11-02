@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class WallReflect : MonoBehaviour
 {
+    private void Start()
+    {
+        gameObject.tag = "WALL";
+    }
     private void OnCollisionEnter(Collision coll)
     {
         if (coll.gameObject.CompareTag("BALL"))

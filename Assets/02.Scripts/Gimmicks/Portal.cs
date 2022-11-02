@@ -8,6 +8,7 @@ public class Portal : MonoBehaviour
     public Transform teleportPoint;
 
     public bool isTrigger;
+    public List<Transform> balls = new List<Transform>();
 
     [SerializeField] Color[] colors;
     ParticleSystem particle;
@@ -31,10 +32,10 @@ public class Portal : MonoBehaviour
 
             foreach (Portal portal in portals)
             {
-                if (portal.isTrigger && portal != this) return;
+                if (portal.balls.Contains(other.transform) && portal != this) return;
             }
             Teleport(other.transform);
-            isTrigger = true;
+            balls.Add(other.transform);
         }
     }
 
@@ -42,10 +43,10 @@ public class Portal : MonoBehaviour
     {
         foreach (Portal portal in portals)
         {
-            if (portal.isTrigger && portal == this) return;
-            else portal.isTrigger = false;
+            if (portal.balls.Contains(other.transform) && portal == this) return;
+            else portal.balls.Remove(other.transform);
         }
-        isTrigger = false;
+        balls.Remove(other.transform);
     }
 
     void Teleport(Transform ball)

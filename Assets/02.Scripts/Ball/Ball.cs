@@ -189,8 +189,17 @@ public class Ball : MonoBehaviour
 
         }
         //여기까지 WallColorChange를 위한 레이캐스트
+        int layer = 0;
+        if (color_Name == Ball_Color.Red) layer = 10;
+        else if (color_Name == Ball_Color.Orange) layer = 11;
+        else if (color_Name == Ball_Color.Yellow) layer = 12;
+        else if (color_Name == Ball_Color.Green) layer = 13;
+        else if (color_Name == Ball_Color.Blue) layer = 14;
+        else if (color_Name == Ball_Color.Purple) layer = 15;
+        else if (color_Name == Ball_Color.Black) layer = 16;
 
-        string ReflectWall_LayerName = LayerMask.LayerToName(num_ballIndex + 20);//ColorRefect에 적합한 색깔이라면
+        string ReflectWall_LayerName = LayerMask.LayerToName(layer + 10);//ColorRefect에 적합한 색깔이라면
+
         Debug.Log(ReflectWall_LayerName);
         color_Line1 = color_Name;//Line1의 컬러를 저장해둠
         int layerMask = (-1) - (1 << LayerMask.NameToLayer("ColorChangeWall") |1<< LayerMask.NameToLayer(ReflectWall_LayerName)| 1 << LayerMask.NameToLayer("Ball_CurTargetting")|1 <<2|1<<LayerMask.NameToLayer("Key"));//ColorChangeWall,ColorReflect,Key 레이어 제외
@@ -200,7 +209,7 @@ public class Ball : MonoBehaviour
             if (wallHit.collider.CompareTag("WALL") || wallHit.collider.gameObject.layer == 3)//벽에 부딪혔을때
             {
                 Debug.DrawRay(transform.position, curPos - transform.position);
-
+                print(wallHit.collider.transform);
 
                 curPos = wallHit.point;
                 newDistance = distance - Vector3.Distance(transform.position, curPos);
@@ -223,7 +232,7 @@ public class Ball : MonoBehaviour
                     ChangeColor(color_Line1, color_Line1, "Line2");
                 }
 
-                int layerMask2 = (-1) - (1 << LayerMask.NameToLayer("ColorChangeWall") | 1 << LayerMask.NameToLayer(ReflectWall_LayerName) | 1 << LayerMask.NameToLayer("Ball_CurTargetting") | 1 << 2);//ColorChangeWall,ColorReflect,Key 레이어 제외
+                int layerMask2 = (-1) - (1 << LayerMask.NameToLayer("ColorChangeWall") | 1 << LayerMask.NameToLayer(ReflectWall_LayerName) | 1 << LayerMask.NameToLayer("Ball_CurTargetting") | 1 << 2 | 1 << LayerMask.NameToLayer("Key"));//ColorChangeWall,ColorReflect,Key 레이어 제외
                 //한번 튕길때 두번째 직선 레이 쏘기
                 if (Physics.Raycast(curPos, (newPos - curPos).normalized, out wallHit, newDistance, layerMask2))
                 {

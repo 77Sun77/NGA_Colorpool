@@ -182,6 +182,7 @@ public class GameManager : MonoBehaviour
         {
             if (isClear)
             {
+                foreach (Ball ball in balls) ball.GetComponent<Collider>().isTrigger = true;
                 FindObjectOfType<MapAnim>().EndMapAnim();
             }
         }
