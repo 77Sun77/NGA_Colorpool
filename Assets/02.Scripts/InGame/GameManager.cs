@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [Header("StageOption")]
     public static int stageLV;
     public List<StageOption> stageOptions = new List<StageOption>();
+    int star_Count;
 
     [Header("BallOption")]
     public bool isAllBallShot, isValid;
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
         isValid = false;
 
         shotCount = 0;
+        star_Count = 0;
 
         if (static_SoundManager == null)
         {
@@ -182,6 +184,9 @@ public class GameManager : MonoBehaviour
         {
             if (isClear)
             {
+                Star_Calculate();
+                if (PlayerPrefs.GetInt("STAGE") < stageLV+1) PlayerPrefs.SetInt("STAGE", stageLV+1);
+                if (PlayerPrefs.GetInt((stageLV + 1)+"_STAR") < star_Count) PlayerPrefs.SetInt((stageLV + 1) + "_STAR", star_Count);
                 foreach (Ball ball in balls) ball.GetComponent<Collider>().isTrigger = true;
                 FindObjectOfType<MapAnim>().EndMapAnim();
             }
@@ -255,29 +260,29 @@ public class GameManager : MonoBehaviour
     }
 
     //점수 정산
-    void OnStageEnd()
+    void Star_Calculate()
     {
         if (shotCount <= shotRule)
         {
             //3점
-            UIManager.instance.EnableScoreBoard(3);
+            star_Count = 3;
         }
         else if (shotCount > shotRule)
         {
             if (shotCount == shotRule + 1)
             {
                 //2점
-                UIManager.instance.EnableScoreBoard(2);
+                star_Count = 2;
             }
             else
             {
                 //1점
-                UIManager.instance.EnableScoreBoard(1);
+                star_Count = 1;
             }
 
         }
-       
     }
+
     public void ColorEnable()
     {
         StartCoroutine(ColorAnim_Enable());
@@ -293,7 +298,7 @@ public class GameManager : MonoBehaviour
         }
         SoundManager.instance.PlayTargetSound(SoundManager.instance.BallWaveSFX);
         yield return new WaitForSeconds(1);
-        OnStageEnd();
+        UIManager.instance.EnableScoreBoard(star_Count);
     }
 
     /// <summary>

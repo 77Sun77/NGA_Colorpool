@@ -13,8 +13,13 @@ public class LobbyManager : MonoBehaviour
     public GameObject UI;
     public SceneLoad Obj_SL;
 
-    void Start()
+    public List<GameObject> levels = new List<GameObject>(); 
+    int Stage_DB;
+
+    void Awake()
     {
+        if (!PlayerPrefs.HasKey("STAGE")) PlayerPrefs.SetInt("STAGE", 0);
+
         instance = this;
         pageNum = 1;
 
@@ -22,6 +27,18 @@ public class LobbyManager : MonoBehaviour
 
         Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
         fade.ChangeFade(Fade_InOut.Fade.Fade_In);
+
+        Stage_DB = PlayerPrefs.GetInt("STAGE");
+        /*
+        for(int i=0; i < Stage_DB+1; i++) // 디버깅 후 추가 할 코드
+        {
+            levels[i].GetComponent<Button>().interactable = true;
+        }*/
+
+        for (int i = 0; i < levels.Count; i++) // 디버깅 후 삭제 할 코드
+        {
+            levels[i].GetComponent<Button>().interactable = true;
+        }
     }
 
     void Update()
@@ -36,6 +53,7 @@ public class LobbyManager : MonoBehaviour
             else OnClick_Right();
         }
         */
+        if (Input.GetKeyDown(KeyCode.Space)) PlayerPrefs.DeleteAll();
     }
 
     public void OnClick_Left()

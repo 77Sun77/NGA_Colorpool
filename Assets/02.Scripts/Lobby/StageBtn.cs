@@ -10,6 +10,8 @@ public class StageBtn : MonoBehaviour
     Button btn;
     Text text;
     string mapName;
+
+    GameObject stars_Prefab, stars;
     void Start()
     {
         btn = GetComponent<Button>();
@@ -18,8 +20,21 @@ public class StageBtn : MonoBehaviour
 
         mapName = gameObject.name.Substring(6);
 
-        text.fontSize = 55;
-        text.text = mapName + " Stage";
+        text.fontSize = 70;
+        text.text = mapName;
+
+        /* // 디버깅 후 추가 할 코드
+        if (!GetComponent<Button>().interactable) return; 
+        stars_Prefab = (GameObject)Resources.Load("Stars");
+        stars = Instantiate(stars_Prefab, transform);
+        if(PlayerPrefs.HasKey(mapName + "_STAR"))
+        {
+            int star_Num = PlayerPrefs.GetInt(mapName + "_STAR");
+            for(int i = 0; i < star_Num; i++)
+            {
+                stars.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
+            }
+        }*/
     }
 
     
