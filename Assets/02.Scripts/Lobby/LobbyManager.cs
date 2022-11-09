@@ -29,16 +29,12 @@ public class LobbyManager : MonoBehaviour
         fade.ChangeFade(Fade_InOut.Fade.Fade_In);
 
         Stage_DB = PlayerPrefs.GetInt("STAGE");
-        /*
-        for(int i=0; i < Stage_DB+1; i++) // 디버깅 후 추가 할 코드
-        {
-            levels[i].GetComponent<Button>().interactable = true;
-        }*/
-
-        for (int i = 0; i < levels.Count; i++) // 디버깅 후 삭제 할 코드
+        
+        for(int i=0; i < Stage_DB+1; i++) 
         {
             levels[i].GetComponent<Button>().interactable = true;
         }
+
     }
 
     void Update()

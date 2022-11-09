@@ -23,7 +23,7 @@ public class StageBtn : MonoBehaviour
         text.fontSize = 70;
         text.text = mapName;
 
-        /* // 디버깅 후 추가 할 코드
+       
         if (!GetComponent<Button>().interactable) return; 
         stars_Prefab = (GameObject)Resources.Load("Stars");
         stars = Instantiate(stars_Prefab, transform);
@@ -34,7 +34,7 @@ public class StageBtn : MonoBehaviour
             {
                 stars.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
             }
-        }*/
+        }
     }
 
     

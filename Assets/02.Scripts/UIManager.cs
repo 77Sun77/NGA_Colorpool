@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
     public int v_interval;
 
     public bool isOnScoreBoard, isMenuOpen;
-    public GameObject Menu;
+    public DropDown Menu;
 
     Dictionary<GameObject, string> colorImages = new Dictionary<GameObject, string>();
     List<GameObject> check_Object = new List<GameObject>();
@@ -51,11 +51,10 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        Time.timeScale = 1;
     }
     private void Start()
     {
-
+        isMenuOpen = false;
     }
     private void Update()
     {
@@ -324,16 +323,12 @@ public class UIManager : MonoBehaviour
         isMenuOpen = !isMenuOpen;
         if (isMenuOpen)
         {
-            Time.timeScale = 0;
-            Menu.SetActive(true);
+            Menu.Change_State(DropDown.State.MoveIn);
         }
         else
         {
-            Time.timeScale = 1;
-            Menu.SetActive(false);
+            Menu.Change_State(DropDown.State.MoveOut);
         }
-
-
     }
     public void RestartStage()
     {
