@@ -22,7 +22,7 @@ public class DropDown : MonoBehaviour
         if(WindowState == State.MoveIn)
         {
             Vector3 vec = tr.position;
-            tr.position = Vector3.Lerp(vec, EndPoint.position, 20 * Time.deltaTime);
+            tr.position = Vector3.Lerp(vec, EndPoint.position, 15 * Time.deltaTime);
             if(Vector3.Distance(transform.position, EndPoint.position) <= 0.1f)
             {
                 WindowState = State.None;
@@ -32,7 +32,7 @@ public class DropDown : MonoBehaviour
         else if(WindowState == State.MoveOut)
         {
             Vector3 vec = tr.position;
-            tr.position = Vector3.Lerp(vec, StartPoint.position, 20 * Time.deltaTime);
+            tr.position = Vector3.Lerp(vec, StartPoint.position, 15 * Time.deltaTime);
             if (Vector3.Distance(transform.position, StartPoint.position) <= 0.1f)
             {
                 WindowState = State.None;

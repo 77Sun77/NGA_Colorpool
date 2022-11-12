@@ -370,6 +370,7 @@ public class UIManager : MonoBehaviour
             GameManager.instance.isStart = false;
             CameraMove.xRotate = 0;
             CameraMove.parentRotation = Quaternion.identity;
+            SoundManager.instance = null;
         }
         else
         {

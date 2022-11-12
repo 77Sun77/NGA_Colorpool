@@ -27,7 +27,12 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if(instance == null)
+        {
+            instance = this;
+            MainBGM5.PlayOneShot(MainBGM5.clip);
+        }
+        
     }
 
     public void InitializeBubble()
