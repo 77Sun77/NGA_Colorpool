@@ -330,6 +330,10 @@ public class UIManager : MonoBehaviour
             Menu.Change_State(DropDown.State.MoveOut);
         }
     }
+    public void OpenTutorial()
+    {
+        TutorialManager.instance.OpenTutorial();
+    }
     public void RestartStage()
     {
         StartCoroutine(DelayStage("PlayScene"));
