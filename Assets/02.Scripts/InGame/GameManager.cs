@@ -289,7 +289,6 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator ColorAnim_Enable()
     {
-        SoundManager.instance.PlayTargetSound(SoundManager.instance.BallWaveSFX);
         foreach (Ball ball in balls)
         {
             Vector3 ballPos = ball.transform.position;

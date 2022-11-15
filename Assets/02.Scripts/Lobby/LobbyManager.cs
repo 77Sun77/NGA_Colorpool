@@ -34,7 +34,7 @@ public class LobbyManager : MonoBehaviour
         {
             levels[i].GetComponent<Button>().interactable = true;
         }
-
+        StageBtn.isPlay = false;
     }
 
     void Update()

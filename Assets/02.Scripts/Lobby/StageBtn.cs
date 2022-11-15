@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class StageBtn : MonoBehaviour
 {
+    public static bool isPlay;
+
     Button btn;
     Text text;
     string mapName;
@@ -37,14 +39,11 @@ public class StageBtn : MonoBehaviour
         }
     }
 
-    
-    void Update()
-    {
-        
-    }
 
     void OnClick_Btn()
     {
+        if (isPlay) return;
+        isPlay = true;
         print(mapName + " stage open");
         GameManager.stageLV = int.Parse(mapName) - 1;
         //Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();

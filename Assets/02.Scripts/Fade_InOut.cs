@@ -45,6 +45,8 @@ public class Fade_InOut : MonoBehaviour
                 fade_InOut = Fade.None;
                 isFade = true;
                 FadeIn_Img.gameObject.SetActive(false);
+                tr.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 2500);
+                tr.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 2500);
             }
         }
     }

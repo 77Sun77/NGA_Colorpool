@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 492}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 3417
+  controlID: 26018
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 3418
+  controlID: 25936
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 3304
+  controlID: 25972
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -329,8 +329,10 @@ MonoBehaviour:
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
-  m_SerializedViewNames: []
-  m_SerializedViewValues: []
+  m_SerializedViewNames:
+  - UnityEditor.DeviceSimulation.SimulatorWindow
+  m_SerializedViewValues:
+  - C:\Users\kagfh\GitHub\NGA_Colorpool\Library\PlayModeViewStates\d6590caf595cac04586c74b3e0873b95
   m_PlayModeViewName: GameView
   m_ShowGizmos: 0
   m_TargetDisplay: 0
@@ -426,8 +428,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -100, y: -25.600006}
+      snapOffset: {x: -101, y: -26}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -437,9 +439,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -141, y: 149}
+      snapOffset: {x: -141, y: -200.59998}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 1
+      snapCorner: 3
       id: unity-grid-and-snap-toolbar
       index: 1
       layout: 1
@@ -640,9 +642,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -30.490387, y: -38.9274, z: 54.22293}
+    m_Target: {x: 752, y: 45, z: 0}
     speed: 2
-    m_Value: {x: -30.490387, y: -38.9274, z: 54.22293}
+    m_Value: {x: 752, y: 45, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -689,13 +691,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.26633453, y: 0.24832363, z: -0.071219645, w: -0.9286208}
+    m_Target: {x: 0.036748786, y: 0.1561526, z: -0.005791531, w: 0.98705804}
     speed: 2
-    m_Value: {x: -0.266546, y: 0.24553575, z: -0.07042006, w: -0.9293581}
+    m_Value: {x: 0.036747843, y: 0.1561486, z: -0.0057913824, w: 0.9870328}
   m_Size:
-    m_Target: 45.7369
+    m_Target: 268.9145
     speed: 2
-    m_Value: 43.76737
+    m_Value: 268.9145
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -751,9 +753,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d2d6feff
-      m_LastClickedID: -76078
-      m_ExpandedIDs: 6ad7feff5afafeff5a01fffffe01ffffe00affffb02effffba2fffff4654ffff5055ffff3a84ffffcc85ffff6aabffff74acfffffcfafffff4ffffffa2b3010072b50100dcb6010032b70100966a0400b4340500d25d06000c6e0600bc860800fc860800368708004887080056870800
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 90c0fbff76e2fbff80e3fbff72b9fcff3258fdff667bfdff24ccfdff76ccfdff1ecffdff80f1fdffe6f1fdffeef1fdff74f2fdff2e62feffd863feffc665feff14affeff6eaffefff8d1feff9ed2feff14e3feff1806fffff408ffff8609ffffca2cffff4a3fffffdc47ffff4a48ffff226bffff8a6bffff5e8effff7295ffff3cb8fffff8b8ffff1ed0ffff4af3fffffcfafffff4ffffff5c6e0000686e00007c6e0000866e0000f29701000a980100129801001c9801002ec302009ccb0200fe20030062c2030082c203008ac2030094c203003cc50300b4c803009eca030006cc03002e1f0400621f04002a2604004e280400da280400dc740400287c0400c2d10400608d0500c4920500e4940500489a0500b89b05001ca10500ce2307001a240700242407007c040800a2d0090034cc0b00046d0c00626e0c00826f0c009a710c00ca710c0052720c005a720c0094720c00
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -818,22 +820,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/01.Scenes
+    - Assets/02.Scripts/Lobby
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/01.Scenes
+  - Assets/02.Scripts/Lobby
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\kagfh\GitHub\NGA_Colorpool
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 55.80002}
-    m_SelectedIDs: d8770000
-    m_LastClickedID: 30680
-    m_ExpandedIDs: 00000000d277000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 78980100
+    m_LastClickedID: 104568
+    m_ExpandedIDs: 00000000e86e00008c70000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -861,7 +863,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d277000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000e86e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -888,7 +890,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -913,7 +915,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 2.8000183}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 115
