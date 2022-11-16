@@ -24,7 +24,7 @@ public class TextFade : MonoBehaviour
             Color c = text.color;
             if (isUp)
             {
-                alpha += Time.deltaTime * 1.7f;
+                alpha += Time.deltaTime * 2f;
                 if(alpha >= 1)
                 {
                     alpha = 1;
@@ -33,7 +33,7 @@ public class TextFade : MonoBehaviour
             }
             else
             {
-                alpha -= Time.deltaTime * 1.7f;
+                alpha -= Time.deltaTime * 2f;
                 if (alpha <= 0)
                 {
                     alpha = 0;
