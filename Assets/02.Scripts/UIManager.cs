@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
     public int h_interval = 90;
     public int v_interval;
 
-    public bool isOnScoreBoard, isMenuOpen;
+    public bool isOnScoreBoard, isMenuOpen, isClick;
     public DropDown Menu;
 
     Dictionary<GameObject, string> colorImages = new Dictionary<GameObject, string>();
@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         isMenuOpen = false;
+        isClick = false;
     }
     private void Update()
     {
@@ -336,15 +337,19 @@ public class UIManager : MonoBehaviour
     }
     public void RestartStage()
     {
+        if (UI_ScoreBoard.GetComponent<Animator>().enabled || isClick) return;
         StartCoroutine(DelayStage("PlayScene"));
         //StartCoroutine(DelayStage("LoadingScene"));
+        isClick = true;
     }
 
     public void NextStage()
     {
+        if (UI_ScoreBoard.GetComponent<Animator>().enabled || isClick) return;
         GameManager.stageLV++;
         StartCoroutine(DelayStage("PlayScene"));
         //StartCoroutine(DelayStage("LoadingScene"));
+        isClick = true;
 
     }
 
@@ -386,9 +391,11 @@ public class UIManager : MonoBehaviour
 
     public void OpenLobby()
     {
+        if (UI_ScoreBoard.GetComponent<Animator>().enabled || isClick) return;
         CameraMove.parentRotation = Quaternion.Euler(Vector3.zero);
         CameraMove.xRotate = 0;
         StartCoroutine(DelayStage("Lobby"));
+        isClick = true;
     }
 
     Vector3 GetPositon(int i)
