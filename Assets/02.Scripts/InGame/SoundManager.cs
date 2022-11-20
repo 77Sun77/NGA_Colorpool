@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public enum State { InGame, Start };
+    public State ManagerState;
 
     public static SoundManager instance;
 
@@ -30,7 +32,7 @@ public class SoundManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            MainBGM5.PlayOneShot(MainBGM5.clip);
+            if(ManagerState == State.InGame) MainBGM5.Play();
         }
         
     }

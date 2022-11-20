@@ -16,6 +16,7 @@ public class StartManager : MonoBehaviour
         loadingSlider.value = 0;
         StartCoroutine(LoadScene_Cor());
     }
+
     IEnumerator Fade()
     {
 

@@ -36,7 +36,7 @@ public class Fade_InOut : MonoBehaviour
             }*/
             RectTransform tr = FadeIn_Img.GetComponent<RectTransform>();
 
-            inSize -= 2500 * Time.deltaTime;
+            inSize -= 2700 * Time.deltaTime;
             tr.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, inSize);
             tr.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, inSize);
 
@@ -67,11 +67,11 @@ public class Fade_InOut : MonoBehaviour
             }*/
             RectTransform tr = FadeOut_Img.GetComponent<RectTransform>();
 
-            outSize += 2500 * Time.deltaTime;
+            outSize += 2700 * Time.deltaTime;
             tr.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, outSize);
             tr.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, outSize);
             
-            if(outSize >= 2500)
+            if(outSize >= 2700)
             {
                 fade_InOut = Fade.None;
                 isFade = true;
@@ -90,7 +90,7 @@ public class Fade_InOut : MonoBehaviour
             FadeIn_Img.gameObject.SetActive(true);
             FadeOut_Img.gameObject.SetActive(false);
 
-            inSize = 2500;
+            inSize = 2700;
         }
         else if(fade == Fade.Fade_Out)
         {

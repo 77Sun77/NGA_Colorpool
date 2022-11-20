@@ -288,7 +288,6 @@ public class UIManager : MonoBehaviour
     {
         UI_ScoreBoard.SetActive(true);
         yield return new WaitForSeconds(1.7f);
-        UI_ScoreBoard.GetComponent<Animator>().enabled = false;
         for (int i = 0; i < score; i++)
         {
             UI_Stars[i].SetActive(true);
@@ -337,19 +336,25 @@ public class UIManager : MonoBehaviour
     }
     public void RestartStage()
     {
-        if (UI_ScoreBoard.GetComponent<Animator>().enabled || isClick) return;
-        StartCoroutine(DelayStage("PlayScene"));
-        //StartCoroutine(DelayStage("LoadingScene"));
-        isClick = true;
+        if (!isClick)
+        {
+            StartCoroutine(DelayStage("PlayScene"));
+            //StartCoroutine(DelayStage("LoadingScene"));
+            isClick = true;
+        }
+        
     }
 
     public void NextStage()
     {
-        if (UI_ScoreBoard.GetComponent<Animator>().enabled || isClick) return;
-        GameManager.stageLV++;
-        StartCoroutine(DelayStage("PlayScene"));
-        //StartCoroutine(DelayStage("LoadingScene"));
-        isClick = true;
+        if (!isClick)
+        {
+            GameManager.stageLV++;
+            StartCoroutine(DelayStage("PlayScene"));
+            //StartCoroutine(DelayStage("LoadingScene"));
+            isClick = true;
+        }
+        
 
     }
 
@@ -391,11 +396,14 @@ public class UIManager : MonoBehaviour
 
     public void OpenLobby()
     {
-        if (UI_ScoreBoard.GetComponent<Animator>().enabled || isClick) return;
-        CameraMove.parentRotation = Quaternion.Euler(Vector3.zero);
-        CameraMove.xRotate = 0;
-        StartCoroutine(DelayStage("Lobby"));
-        isClick = true;
+        if (!isClick)
+        {
+            CameraMove.parentRotation = Quaternion.Euler(Vector3.zero);
+            CameraMove.xRotate = 0;
+            StartCoroutine(DelayStage("Lobby"));
+            isClick = true;
+        }
+        
     }
 
     Vector3 GetPositon(int i)

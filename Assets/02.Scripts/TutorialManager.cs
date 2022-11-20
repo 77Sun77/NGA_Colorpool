@@ -137,7 +137,7 @@ public class TutorialManager : MonoBehaviour
         uiOpen = true;
         count = 0;
         btns.SetActive(true);
-        delayTime = StartCoroutine(DelayTime(videos[0], isFirst: true));
+        delayTime = StartCoroutine(DelayTime(videos[0], isFirst: false));
     }
 
     public void OnClick_Left()
