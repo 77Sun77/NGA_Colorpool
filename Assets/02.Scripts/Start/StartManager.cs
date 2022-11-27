@@ -8,6 +8,7 @@ public class StartManager : MonoBehaviour
 {
     public Slider loadingSlider;
     public Text guide, startText;
+    public GameObject image;
 
     bool isOpen;
     void Start()
@@ -15,6 +16,7 @@ public class StartManager : MonoBehaviour
         isOpen = false;
         loadingSlider.value = 0;
         StartCoroutine(LoadScene_Cor());
+        StartCoroutine(DelayImage());
     }
 
     IEnumerator Fade()
@@ -70,5 +72,11 @@ public class StartManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    IEnumerator DelayImage()
+    {
+        yield return new WaitForSeconds(0.5f);
+        image.SetActive(true);
     }
 }

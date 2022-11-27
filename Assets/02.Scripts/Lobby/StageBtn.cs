@@ -13,12 +13,14 @@ public class StageBtn : MonoBehaviour
     Text text;
     string mapName;
 
-    GameObject stars_Prefab, stars;
+    GameObject stars_Prefab, stars, blackCircle;
+
+    public Sprite[] starSprite;
     void Start()
     {
         btn = GetComponent<Button>();
         btn.onClick.AddListener(OnClick_Btn);
-        text = transform.GetChild(0).GetComponent<Text>();
+        text = transform.GetChild(1).GetComponent<Text>();
 
         mapName = gameObject.name.Substring(6);
 
@@ -26,16 +28,19 @@ public class StageBtn : MonoBehaviour
         text.text = mapName;
 
        
-        if (!GetComponent<Button>().interactable) return; 
+        if (!GetComponent<Button>().interactable)
+        {
+            blackCircle = (GameObject)Resources.Load("Black_Circle");
+            Instantiate(blackCircle, transform);
+            return;
+        }
         stars_Prefab = (GameObject)Resources.Load("Stars");
+        
         stars = Instantiate(stars_Prefab, transform);
         if(PlayerPrefs.HasKey(mapName + "_STAR"))
         {
             int star_Num = PlayerPrefs.GetInt(mapName + "_STAR");
-            for(int i = 0; i < star_Num; i++)
-            {
-                stars.transform.GetChild(i).GetChild(0).gameObject.SetActive(true);
-            }
+            stars.transform.GetChild(0).GetComponent<Image>().sprite = starSprite[star_Num];
         }
     }
 
@@ -46,9 +51,6 @@ public class StageBtn : MonoBehaviour
         isPlay = true;
         print(mapName + " stage open");
         GameManager.stageLV = int.Parse(mapName) - 1;
-        //Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
-        //fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
-        //StartCoroutine(DelayTime());
         StartCoroutine(LoadGameScene());
     }
 
@@ -57,15 +59,11 @@ public class StageBtn : MonoBehaviour
         Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
         fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
         while (!fade.isFade) yield return new WaitForFixedUpdate();
-        //Debug.Log("±× ¹¹³Ä");
 
         SceneLoad.sceneName = "PlayScene";
         Camera.main.gameObject.SetActive(false);
         LobbyManager.instance.Obj_SL.gameObject.SetActive(true);
         LobbyManager.instance.UI.transform.localScale = Vector3.zero;
-        //fade.ChangeFade(Fade_InOut.Fade.Fade_In);
-        //while (!fade.isFade) yield return new WaitForFixedUpdate();
-        //Debug.Log("±× ¹¹³Ä2");
         
     }
 

@@ -295,7 +295,7 @@ public class UIManager : MonoBehaviour
             //SoundManager.instance.UI_StarSFX.pitch += 0.35f;
             SoundManager.instance.PlayTargetSound(SoundManager.instance.BallHitSounds[GameManager.instance.HitSoundIndex]);
             GameManager.instance.HitSoundIndex += 2;
-
+            print("?");
             yield return new WaitForSeconds(0.35f);
 
         }

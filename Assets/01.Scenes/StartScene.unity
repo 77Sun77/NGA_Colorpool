@@ -717,7 +717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1268693778
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1449,6 +1449,7 @@ MonoBehaviour:
   loadingSlider: {fileID: 1344157746}
   guide: {fileID: 2142279852}
   startText: {fileID: 1621669836}
+  image: {fileID: 1268693777}
 --- !u!1 &1621669834
 GameObject:
   m_ObjectHideFlags: 0
