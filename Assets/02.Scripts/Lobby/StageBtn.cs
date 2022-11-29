@@ -48,6 +48,8 @@ public class StageBtn : MonoBehaviour
     void OnClick_Btn()
     {
         if (isPlay) return;
+        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+
         isPlay = true;
         print(mapName + " stage open");
         GameManager.stageLV = int.Parse(mapName) - 1;

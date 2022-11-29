@@ -10,9 +10,12 @@ public class StartManager : MonoBehaviour
     public Text guide, startText;
     public GameObject image;
 
+    public SoundManager SoundManager;
     bool isOpen;
     void Start()
     {
+        DontDestroyOnLoad(SoundManager);
+
         isOpen = false;
         loadingSlider.value = 0;
         StartCoroutine(LoadScene_Cor());

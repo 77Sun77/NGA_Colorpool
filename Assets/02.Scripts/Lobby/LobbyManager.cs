@@ -35,6 +35,9 @@ public class LobbyManager : MonoBehaviour
             levels[i].GetComponent<Button>().interactable = true;
         }
         StageBtn.isPlay = false;
+        //공 부딪히는 소리 비활성화
+        if (SoundManager.instance!=null)
+            SoundManager.instance.isEnable_BallHitSound = false;
     }
 
     void Update()
@@ -54,6 +57,8 @@ public class LobbyManager : MonoBehaviour
 
     public void OnClick_Left()
     {
+        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+
         if (pageNum == 1) return;
         pageNum--;
         foreach (GameObject stage in Stages) stage.SetActive(false);
@@ -63,6 +68,8 @@ public class LobbyManager : MonoBehaviour
     }
     public void OnClick_Right()
     {
+        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+
         if (pageNum == 5) return;
         pageNum++;
         foreach (GameObject stage in Stages) stage.SetActive(false);

@@ -339,6 +339,8 @@ public class UIManager : MonoBehaviour
     }
     public void OpenTutorial()
     {
+        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+
         TutorialManager.instance.OpenTutorial();
     }
     public void RestartStage()
@@ -379,6 +381,8 @@ public class UIManager : MonoBehaviour
             GameManager.stageLV++;
             StartCoroutine(DelayStage("PlayScene"));
             //StartCoroutine(DelayStage("LoadingScene"));
+            SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+
             isClick = true;
         }
         
@@ -406,12 +410,12 @@ public class UIManager : MonoBehaviour
             while (!fade.isFade) yield return new WaitForFixedUpdate();
             SceneLoad.sceneName = "Lobby";
             SceneManager.LoadScene("LoadingScene");
-            Destroy(GameManager.static_SoundManager);
-            GameManager.static_SoundManager = null;
+            //Destroy(GameManager.static_SoundManager);
+            //GameManager.static_SoundManager = null;
             GameManager.instance.isStart = false;
             CameraMove.xRotate = 0;
             CameraMove.parentRotation = Quaternion.identity;
-            SoundManager.instance = null;
+            //SoundManager.instance = null;
         }
         else
         {
@@ -429,6 +433,7 @@ public class UIManager : MonoBehaviour
             CameraMove.xRotate = 0;
             StartCoroutine(DelayStage("Lobby"));
             SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+            SoundManager.instance.isEnable_BallHitSound = false;
             isClick = true;
         }
         

@@ -64,10 +64,21 @@ public class GameManager : MonoBehaviour
         shotCount = 0;
         star_Count = 0;
 
-        if (static_SoundManager == null)
+        //if (static_SoundManager == null)
+        //{
+        //    if (GameObject.Find("SoundManager"))
+        //        return;
+
+        //    soundManager.SetActive(true);
+        //    static_SoundManager = soundManager;
+        //    DontDestroyOnLoad(soundManager);
+        //}
+
+
+       if (!GameObject.Find("SoundManager"))
         {
             soundManager.SetActive(true);
-            static_SoundManager = soundManager;
+            SoundManager.instance = soundManager.GetComponent<SoundManager>();
             DontDestroyOnLoad(soundManager);
         }
     }
@@ -80,6 +91,8 @@ public class GameManager : MonoBehaviour
    public void PlayStage()
     {
         SoundManager.instance.InitializeBubble();
+        SoundManager.instance.isEnable_BallHitSound = true;
+
         Instantiate(stageOptions[stageLV]);
         stageOptions[stageLV].SetStageRule();
         SetBalls();

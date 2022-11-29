@@ -44,11 +44,14 @@ public class SoundManager : MonoBehaviour
 
     public void PlayTargetSound(AudioSource AS)
     {
+
+
+
         if (!isEnable_BallHitSound)
         {
             for (int i = 0; i < BallHitSounds.Length; i++)
             {
-                if (AS == BallHitSounds[i])
+                if (AS == BallHitSounds[i]||AS==BubbleSFX)
                 {
                     return;
                 }
