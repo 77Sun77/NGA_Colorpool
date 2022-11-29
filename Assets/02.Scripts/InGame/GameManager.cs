@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.instance.InitializeBubble();
         SoundManager.instance.isEnable_BallHitSound = true;
+        SoundManager.instance.ManagerState = SoundManager.State.InGame;
 
         Instantiate(stageOptions[stageLV]);
         stageOptions[stageLV].SetStageRule();

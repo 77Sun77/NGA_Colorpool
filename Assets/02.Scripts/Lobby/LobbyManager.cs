@@ -36,8 +36,11 @@ public class LobbyManager : MonoBehaviour
         }
         StageBtn.isPlay = false;
         //공 부딪히는 소리 비활성화
-        if (SoundManager.instance!=null)
+        if (SoundManager.instance != null)
+        {
             SoundManager.instance.isEnable_BallHitSound = false;
+            SoundManager.instance.ManagerState = SoundManager.State.Lobby;
+        }
     }
 
     void Update()

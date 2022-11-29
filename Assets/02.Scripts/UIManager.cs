@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
     public GameObject Camera;
     public GameObject[] UI_CamLockImgs;
 
+    float SceneLoadOper_F;
     private void Awake()
     {
         instance = this;
@@ -410,11 +411,15 @@ public class UIManager : MonoBehaviour
             while (!fade.isFade) yield return new WaitForFixedUpdate();
             SceneLoad.sceneName = "Lobby";
             SceneManager.LoadScene("LoadingScene");
-            //Destroy(GameManager.static_SoundManager);
-            //GameManager.static_SoundManager = null;
+
+            
+
             GameManager.instance.isStart = false;
             CameraMove.xRotate = 0;
             CameraMove.parentRotation = Quaternion.identity;
+
+            //Destroy(GameManager.static_SoundManager);
+            //GameManager.static_SoundManager = null;
             //SoundManager.instance = null;
         }
         else

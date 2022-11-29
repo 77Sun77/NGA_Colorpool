@@ -49,6 +49,7 @@ public class StageBtn : MonoBehaviour
     {
         if (isPlay) return;
         SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+        //SoundManager.instance.ManagerState = SoundManager.State.InGame;
 
         isPlay = true;
         print(mapName + " stage open");
