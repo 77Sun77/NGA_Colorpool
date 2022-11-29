@@ -48,6 +48,9 @@ public class UIManager : MonoBehaviour
     public GameObject leftCircle, rightCircle;
     public GameObject image;
 
+    public GameObject Camera;
+    public GameObject[] UI_CamLockImgs;
+
     private void Awake()
     {
         instance = this;
@@ -56,6 +59,8 @@ public class UIManager : MonoBehaviour
     {
         isMenuOpen = false;
         isClick = false;
+        UI_CamLockImgs[0].SetActive(false);
+        UI_CamLockImgs[1].SetActive(true);
     }
     private void Update()
     {
@@ -321,6 +326,8 @@ public class UIManager : MonoBehaviour
     public void OpenMenu()
     {
         isMenuOpen = !isMenuOpen;
+        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+
         if (isMenuOpen)
         {
             Menu.Change_State(DropDown.State.MoveIn);
@@ -340,10 +347,30 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(DelayStage("PlayScene"));
             //StartCoroutine(DelayStage("LoadingScene"));
+            SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
             isClick = true;
         }
-        
+
     }
+
+    public void LockCamRot()
+    {
+        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+
+        if (Camera.GetComponent<CameraMove>().isLocked == true)
+        {
+            Camera.GetComponent<CameraMove>().isLocked = false;
+            UI_CamLockImgs[0].SetActive(false);
+            UI_CamLockImgs[1].SetActive(true);
+        }
+        else
+        {
+            Camera.GetComponent<CameraMove>().isLocked = true;
+            UI_CamLockImgs[0].SetActive(true);
+            UI_CamLockImgs[1].SetActive(false);
+        }
+    }
+
 
     public void NextStage()
     {
@@ -401,6 +428,7 @@ public class UIManager : MonoBehaviour
             CameraMove.parentRotation = Quaternion.Euler(Vector3.zero);
             CameraMove.xRotate = 0;
             StartCoroutine(DelayStage("Lobby"));
+            SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
             isClick = true;
         }
         

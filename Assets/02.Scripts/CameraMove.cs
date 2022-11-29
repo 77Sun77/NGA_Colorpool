@@ -13,6 +13,7 @@ public class CameraMove : MonoBehaviour
     Swipe swipe;
     Fade_InOut fade;
 
+    public bool isLocked;
     
     void Start()
     {
@@ -28,6 +29,8 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         //transform.parent.Rotate(Vector3.up * 50 * Time.deltaTime);
+        if (isLocked)
+            return;
         if (GameManager.instance.isStart && !GameManager.instance.isClear)
         {
             parentRotation = transform.parent.rotation;
