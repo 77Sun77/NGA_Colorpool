@@ -853,7 +853,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.28
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1923,6 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2fb6100f3ed654e923ce5c34b06b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ManagerState: 0
   MainBGM1: {fileID: 2846487894018986297}
   MainBGM2: {fileID: 2846487895923984895}
   MainBGM3: {fileID: 2846487894797060545}
@@ -2381,7 +2382,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.28
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3229,7 +3230,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.052
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3869,7 +3870,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.28
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4381,7 +4382,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.28
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
