@@ -64,21 +64,40 @@ public class SoundManager : MonoBehaviour
             MainBGM5.Stop();
             PlayTargetSound(MainBGM6);
         }
-
-
-
     }
 
-    //IEnumerator DoSoundFade(AudioSource FadeInSound, AudioSource FadeOutSound)
-    //{
-    //    for (int i = 0; i < length; i++)
-    //    {
-    //        FadeInSound.volume
-    //    }
+    public void DoSoundFade(AsyncOperation oper)
+    {
+        //StartCoroutine(DoSoundFade_Cor(oper));
+    }
 
 
+    IEnumerator DoSoundFade_Cor(AsyncOperation oper)
+    {
+        AudioSource FadeInSound = null;
+        AudioSource FadeOutSound = null;
+        if (isPlayingGame)
+        {
+            FadeInSound = MainBGM5;
+            FadeOutSound = MainBGM6;
+        }
+        else if (isPlayingLobby)
+        {
+            FadeInSound = MainBGM6;
+            FadeOutSound = MainBGM5;
+        }
 
-    //}
+        while (!oper.isDone)
+        {
+            yield return new WaitForFixedUpdate();
+            Debug.Log(oper.progress);
+            float originVol = FadeInSound.volume;
+            FadeInSound.volume = originVol * oper.progress;
+
+            float originVol2 = FadeOutSound.volume;
+            FadeOutSound.volume = originVol2 * (1 - oper.progress);
+        }
+    }
 
 
 
@@ -101,7 +120,7 @@ public class SoundManager : MonoBehaviour
         }
 
         AS.PlayOneShot(AS.clip);
-        
+
     }
 
 

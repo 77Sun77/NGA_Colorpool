@@ -410,8 +410,8 @@ public class UIManager : MonoBehaviour
             fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
             while (!fade.isFade) yield return new WaitForFixedUpdate();
             SceneLoad.sceneName = "Lobby";
-            SceneManager.LoadScene("LoadingScene");
-
+            AsyncOperation oper=SceneManager.LoadSceneAsync("LoadingScene");
+            SoundManager.instance.DoSoundFade(oper);
             
 
             GameManager.instance.isStart = false;
@@ -425,7 +425,8 @@ public class UIManager : MonoBehaviour
         else
         {
             GameManager.moveScene = SceneName;
-            SceneManager.LoadScene(SceneName);
+            AsyncOperation oper = SceneManager.LoadSceneAsync(SceneName);
+            SoundManager.instance.DoSoundFade(oper);
         }
 
     }
