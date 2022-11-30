@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class MapAnim : MonoBehaviour
 {
-    bool isStart, anim;
+    bool isStart;
+    public bool isAnim;
     public List<Transform> objects = new List<Transform>();
     public List<Transform> walls = new List<Transform>();
     public List<Transform> paints=new List<Transform>();
 
     Transform[] moveWalls = new Transform[2];
 
+    float fastAnimIndex=1;
     void Start()
     {
         StartMapAnim();
+        //Time.timeScale = 2.0f;
+    }
+
+    private void Update()
+    {
+        if (!isAnim)
+            Time.timeScale = 1.0f;
     }
 
     public void StartMapAnim()
     {
         isStart = true;
+        isAnim = true;
 
         foreach (Transform tr in transform)
         {
@@ -64,20 +74,7 @@ public class MapAnim : MonoBehaviour
     }
 
     IEnumerator OpenMovingWalls()
-    {/*
-        while (true)
-        {
-            yield return new WaitForFixedUpdate();
-            GameManager.instance.movingWall1.Translate(Vector3.back * 7 * Time.deltaTime);
-            GameManager.instance.movingWall2.Translate(Vector3.forward * 7 * Time.deltaTime);
-            if (GameManager.instance.movingWall1.position.z <= -24.5 && GameManager.instance.movingWall2.position.z >= 24.5)
-            {
-                GameManager.instance.movingWall1.gameObject.SetActive(false);
-                GameManager.instance.movingWall2.gameObject.SetActive(false);
-                break;
-            }
-        }*/
-
+    {
         if(GameManager.moveScene == "Lobby" || GameManager.moveScene == null)
         {
             Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
@@ -109,6 +106,38 @@ public class MapAnim : MonoBehaviour
         StartCoroutine(LoadingWalls());
     }
 
+    IEnumerator OpenMovingWalls_Fast()
+    {
+        if (GameManager.moveScene == "Lobby" || GameManager.moveScene == null)
+        {
+            Fade_InOut fade = GameObject.Find("Fade").GetComponent<Fade_InOut>();
+            fade.ChangeFade(Fade_InOut.Fade.Fade_In);
+            while (!fade.isFade) yield return new WaitForFixedUpdate();
+
+        }
+
+        Transform wall1 = GameManager.instance.movingWall1;
+        Transform wall2 = GameManager.instance.movingWall2;
+        while (true)
+         {
+            wall1.Translate(Vector3.left * 3.5f);
+            wall2.Translate(Vector3.right * 3.5f);
+            wall1.localScale -= new Vector3(1f, 0, 0) * 7;
+            wall2.localScale -= new Vector3(1f, 0, 0) * 7;
+
+            if (wall1.localScale.x <= 0 && wall2.localScale.x <= 0)
+            {
+                wall1.gameObject.SetActive(false);
+                wall2.gameObject.SetActive(false);
+                break;
+            }
+         }
+
+        UIManager.instance.DoBallUIAnim();
+
+        StartCoroutine(LoadingWalls());
+    }
+
     //순차적으로 벽을 올림
     IEnumerator LoadingWalls()
     {
@@ -120,6 +149,18 @@ public class MapAnim : MonoBehaviour
             yield return new WaitForSeconds(0.12f);
         }
         StartCoroutine(LoadingMap());
+    }
+
+    IEnumerator LoadingWalls_Fast()
+    {
+
+        for (int i = 0; i < walls.Count; i++)
+        {
+            //Debug.Log($"{walls[i].name} 실행");
+            StartCoroutine(MoveUpWall_Fast(walls[i]));
+        }
+        StartCoroutine(LoadingMap());
+        yield return null;
     }
 
     //벽을 올리는 기능을 하는 코드
@@ -143,7 +184,31 @@ public class MapAnim : MonoBehaviour
             }
         }
     }
+   
 
+    //벽을 올리는 기능을 하는 코드
+    IEnumerator MoveUpWall_Fast(Transform tf)
+    {
+        //while (tf.position.y < 0.5f)
+        //{
+        //    yield return new WaitForFixedUpdate();
+        //    tf.position += (Vector3.up * 2 * Time.deltaTime);
+        //}
+
+        tf.position = new Vector3(tf.position.x, 0.5f, tf.position.z);
+
+        //키 애니메이션 실행
+        if (tf.TryGetComponent(out AnimType_Mono AM))
+        {
+            if (AM.animType == AnimType_Mono.AnimType.Key)
+            {
+                AM.Initialize();
+                AM.TriggerAnimBool();
+            }
+        }
+
+        yield return null;
+    }
 
     //벽을 제외한 다른 오브젝트들을 실행함
     IEnumerator LoadingMap()
@@ -162,6 +227,7 @@ public class MapAnim : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
         GameManager.instance.isStart = true;
+        isAnim = false;
     }
 
 
@@ -170,6 +236,7 @@ public class MapAnim : MonoBehaviour
     public void EndMapAnim()
     {
         StartCoroutine(EndMapLoad());
+        isAnim = true;
     }
 
     IEnumerator EndMapLoad()
@@ -268,6 +335,7 @@ public class MapAnim : MonoBehaviour
         }
         yield return new WaitForSeconds(2f);
 
+        isAnim = false;
         StartCoroutine(CloseMovingWalls());
     }
 
@@ -282,5 +350,6 @@ public class MapAnim : MonoBehaviour
             GameManager.instance.movingWall1.Translate(Vector3.forward * 7 * Time.deltaTime);
             
         }
+      
     }
 }

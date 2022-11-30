@@ -33,11 +33,11 @@ public class GameManager : MonoBehaviour
     public StringInt colorRule = new();
     public StringInt colorCount = new();
 
-    public StringInt curTargetDic=new();
+    public StringInt curTargetDic = new();
 
     public List<string> targetList = new();//스테이지에서 요구하는 공(Rule의 List형태)
     public List<string> curTargetList = new();//현재 목표로 하는 공
-    
+
 
 
     public int shotRule;
@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
 
     public static GameObject static_SoundManager;
     public GameObject soundManager;
+
+    public ClickMove2 clickMove2;
     void Awake()
     {
         instance = this;
@@ -75,7 +77,7 @@ public class GameManager : MonoBehaviour
         //}
 
 
-       if (!GameObject.Find("SoundManager"))
+        if (!GameObject.Find("SoundManager"))
         {
             soundManager.SetActive(true);
             SoundManager.instance = soundManager.GetComponent<SoundManager>();
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         //1스테이지 실행
         PlayStage();
-        if(stageLV+1 == 1)
+        if (stageLV + 1 == 1)
         {
             text.SetActive(true);
             firstTuto = true;
@@ -96,23 +98,25 @@ public class GameManager : MonoBehaviour
         }
 
     }
-   public void PlayStage()
+    public void PlayStage()
     {
         SoundManager.instance.InitializeBubble();
         SoundManager.instance.isEnable_BallHitSound = true;
         SoundManager.instance.ManagerState = SoundManager.State.InGame;
 
-        Instantiate(stageOptions[stageLV]);
+        StageOption stage = Instantiate(stageOptions[stageLV]);
         stageOptions[stageLV].SetStageRule();
         SetBalls();
         UIManager.instance.Set_Target_Img();
         ValidColor();
+        if (stage.TryGetComponent(out MapAnim mapanim))
+            clickMove2.mapAnim = mapanim;
     }
 
 
     void Update()
     {
-        
+
         SetBalls();
         //if (firstAnim)
         //{
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour
             isAllBallShot = true;
             return;
         }
-        if(firstTuto2 && isClear)
+        if (firstTuto2 && isClear)
         {
             text2.SetActive(false);
         }
@@ -140,7 +144,7 @@ public class GameManager : MonoBehaviour
 
         if (isAllBallShot == false && shotCount != 0)
         {
-            if(!isValid) ValidColor();
+            if (!isValid) ValidColor();
 
         }
 
@@ -193,14 +197,14 @@ public class GameManager : MonoBehaviour
         bool isClear = false;
         bool isBreak = false;
         List<string> curColorCount = new List<string>();
-        foreach(KeyValuePair<string, int> rule in colorRule)
+        foreach (KeyValuePair<string, int> rule in colorRule)
         {
             foreach (KeyValuePair<string, int> color in colorCount)
             {
                 if (rule.Value == 0) continue;
-                if (rule.Key == color.Key )
+                if (rule.Key == color.Key)
                 {
-                    for(int i=0; i<color.Value; i++) curColorCount.Add(color.Key);
+                    for (int i = 0; i < color.Value; i++) curColorCount.Add(color.Key);
 
                     if (rule.Value == color.Value) isClear = true;
                     else
@@ -211,7 +215,7 @@ public class GameManager : MonoBehaviour
                     }
 
                 }
-                
+
             }
         }
         if (isBreak) isClear = false;
@@ -222,14 +226,14 @@ public class GameManager : MonoBehaviour
             if (isClear)
             {
                 Star_Calculate();
-                if (PlayerPrefs.GetInt("STAGE") < stageLV+1) PlayerPrefs.SetInt("STAGE", stageLV+1);
-                if (PlayerPrefs.GetInt((stageLV + 1)+"_STAR") < star_Count) PlayerPrefs.SetInt((stageLV + 1) + "_STAR", star_Count);
+                if (PlayerPrefs.GetInt("STAGE") < stageLV + 1) PlayerPrefs.SetInt("STAGE", stageLV + 1);
+                if (PlayerPrefs.GetInt((stageLV + 1) + "_STAR") < star_Count) PlayerPrefs.SetInt((stageLV + 1) + "_STAR", star_Count);
                 foreach (Ball ball in balls) ball.GetComponent<Collider>().isTrigger = true;
                 FindObjectOfType<MapAnim>().EndMapAnim();
             }
         }
-            
-        
+
+
 
         /*
         foreach (KeyValuePair<string, int> rule in colorRule)
@@ -258,7 +262,7 @@ public class GameManager : MonoBehaviour
 
         }
         */
-      
+
     }
     /// <summary>
     /// colorCount에 값 추가
@@ -329,7 +333,7 @@ public class GameManager : MonoBehaviour
         foreach (Ball ball in balls)
         {
             Vector3 ballPos = ball.transform.position;
-            GameObject go = Instantiate(ClearAnim_Prefab, new Vector3(ballPos.x, 1.1f, ballPos.z), Quaternion.Euler(Vector3.right*90));
+            GameObject go = Instantiate(ClearAnim_Prefab, new Vector3(ballPos.x, 1.1f, ballPos.z), Quaternion.Euler(Vector3.right * 90));
             go.GetComponent<SpriteRenderer>().color = ball.myMaterial.color;
         }
         SoundManager.instance.PlayTargetSound(SoundManager.instance.BallWaveSFX);
@@ -354,5 +358,5 @@ public class GameManager : MonoBehaviour
     }
 
 
-   
+
 }
