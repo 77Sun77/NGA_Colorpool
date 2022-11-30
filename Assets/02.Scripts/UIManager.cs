@@ -60,8 +60,8 @@ public class UIManager : MonoBehaviour
     {
         isMenuOpen = false;
         isClick = false;
-        UI_CamLockImgs[0].SetActive(false);
-        UI_CamLockImgs[1].SetActive(true);
+        UI_CamLockImgs[0].SetActive(SoundManager.instance.isCamLocked);
+        UI_CamLockImgs[1].SetActive(!SoundManager.instance.isCamLocked);
     }
     private void Update()
     {
@@ -362,13 +362,15 @@ public class UIManager : MonoBehaviour
 
         if (Camera.GetComponent<CameraMove>().isLocked == true)
         {
-            Camera.GetComponent<CameraMove>().isLocked = false;
+            //Camera.GetComponent<CameraMove>().isLocked = false;
+            SoundManager.instance.isCamLocked = false;
             UI_CamLockImgs[0].SetActive(false);
             UI_CamLockImgs[1].SetActive(true);
         }
         else
         {
-            Camera.GetComponent<CameraMove>().isLocked = true;
+            //Camera.GetComponent<CameraMove>().isLocked = true;
+            SoundManager.instance.isCamLocked = true;
             UI_CamLockImgs[0].SetActive(true);
             UI_CamLockImgs[1].SetActive(false);
         }
