@@ -7654,6 +7654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 565062579}
   - component: {fileID: 565062580}
+  - component: {fileID: 565062581}
   m_Layer: 5
   m_Name: GameQuit
   m_TagString: Untagged
@@ -7703,6 +7704,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &565062581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565062578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347870704f9bd13438535efb984fe471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameQuit: {fileID: 565062578}
 --- !u!1 &567702225
 GameObject:
   m_ObjectHideFlags: 0
@@ -16043,7 +16057,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 565062581}
         m_TargetAssemblyTypeName: GameQuit, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
