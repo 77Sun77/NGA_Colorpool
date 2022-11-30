@@ -41,7 +41,7 @@ public class CursorMove : MonoBehaviour
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            transform.DOMove(endPos, 1.4f).SetEase(Ease.OutQuad);
+            transform.DOMove(endPos, 1.4f);
             yield return new WaitForSeconds(1.5f);
 
             transform.DOMove(startPos, 0.4f);
