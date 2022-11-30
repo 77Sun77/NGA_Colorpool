@@ -31,6 +31,7 @@ public class SoundManager : MonoBehaviour
 
     public bool isEnable_BallHitSound;
 
+    public bool isCamLocked;
     private void Awake()
     {
         if (instance == null)
@@ -51,7 +52,7 @@ public class SoundManager : MonoBehaviour
             isPlayingGame = true;
             isPlayingLobby = false;
 
-            PlayTargetSound(MainBGM5);
+            MainBGM5.Play();
             MainBGM6.Stop();
         }
         else if (ManagerState == State.Lobby)
@@ -62,7 +63,7 @@ public class SoundManager : MonoBehaviour
             isPlayingLobby = true;
 
             MainBGM5.Stop();
-            PlayTargetSound(MainBGM6);
+            MainBGM6.Play();
         }
     }
 

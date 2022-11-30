@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CursorMove : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class CursorMove : MonoBehaviour
     Vector3 startPos, endPos;
     void Start()
     {
-        StartCoroutine(MoveCursor());
+        StartCoroutine(MoveCursor2());
         startPos = transform.position;
         endPos = EndPos.position;
+        
+
+
     }
     IEnumerator MoveCursor()
     {
@@ -31,4 +35,23 @@ public class CursorMove : MonoBehaviour
             }
         }
     }
+
+    IEnumerator MoveCursor2()
+    {
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+            transform.DOMove(endPos, 1.4f).SetEase(Ease.OutQuad);
+            yield return new WaitForSeconds(1.5f);
+
+            transform.DOMove(startPos, 0.4f);
+            yield return new WaitForSeconds(0.5f);
+
+
+        }
+    }
+
+
+
+
 }

@@ -13,7 +13,7 @@ public class CameraMove : MonoBehaviour
     Swipe swipe;
     Fade_InOut fade;
 
-    public bool isLocked;
+    public bool isLocked=>SoundManager.instance.isCamLocked;
     
     void Start()
     {
@@ -29,8 +29,7 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         //transform.parent.Rotate(Vector3.up * 50 * Time.deltaTime);
-        if (isLocked)
-            return;
+      
         if (GameManager.instance.isStart && !GameManager.instance.isClear)
         {
             parentRotation = transform.parent.rotation;
@@ -38,6 +37,9 @@ public class CameraMove : MonoBehaviour
             {
                 if (swipe.target == null)
                 {
+
+                    if (isLocked)
+                        return;
                     float y = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
                     xRotate = xRotate + y;
                     transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
