@@ -33,19 +33,7 @@ public class CameraMove : MonoBehaviour
         if (GameManager.instance.isStart && !GameManager.instance.isClear)
         {
             parentRotation = transform.parent.rotation;
-            if (Input.GetMouseButton(0))
-            {
-                if (swipe.target == null)
-                {
-
-                    if (isLocked)
-                        return;
-                    float y = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
-                    xRotate = xRotate + y;
-                    transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
-                }
-                
-            }
+            
 
             if (!gm.isAllBallShot && !gm.isClear)
             {
@@ -68,7 +56,20 @@ public class CameraMove : MonoBehaviour
                 camera.orthographicSize = size;
             }
 
-            
+            if (Input.GetMouseButton(0))
+            {
+                if (swipe.target == null)
+                {
+
+                    if (isLocked)
+                        return;
+                    float y = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
+                    xRotate = xRotate + y;
+                    transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
+                }
+
+            }
+
         }
         
     }
