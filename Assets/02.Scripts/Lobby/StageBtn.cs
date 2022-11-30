@@ -63,10 +63,10 @@ public class StageBtn : MonoBehaviour
         fade.ChangeFade(Fade_InOut.Fade.Fade_Out);
         while (!fade.isFade) yield return new WaitForFixedUpdate();
 
-        //SceneLoad.sceneName = "PlayScene";
+        SceneLoad.sceneName = "PlayScene";
 
-        AsyncOperation oper = SceneManager.LoadSceneAsync("PlayScene");
-        SoundManager.instance.DoSoundFade(oper);
+        //AsyncOperation oper = SceneManager.LoadSceneAsync("PlayScene");
+        //SoundManager.instance.DoSoundFade(oper);
 
         Camera.main.gameObject.SetActive(false);
         LobbyManager.instance.Obj_SL.gameObject.SetActive(true);
