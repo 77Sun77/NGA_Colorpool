@@ -90,13 +90,6 @@ public class GameManager : MonoBehaviour
     {
         //1스테이지 실행
         PlayStage();
-        if (stageLV + 1 == 1)
-        {
-            text.SetActive(true);
-            firstTuto = true;
-            firstTuto2 = true;
-        }
-
     }
     public void PlayStage()
     {
@@ -126,30 +119,13 @@ public class GameManager : MonoBehaviour
         //        else firstAnim = false;
         //    }
         //}
-        if (firstTuto)
-        {
-            if (ColorBook.activeInHierarchy)
-            {
-                firstTuto = false;
-            }
-            isAllBallShot = true;
-            return;
-        }
-        if (firstTuto2 && isClear)
-        {
-            text2.SetActive(false);
-        }
 
         isAllBallShot = Set_IsAllBallShot();
 
         if (isAllBallShot == false && shotCount != 0)
         {
             if (!isValid) ValidColor();
-
         }
-
-
-
     }
 
     void SetBalls()
