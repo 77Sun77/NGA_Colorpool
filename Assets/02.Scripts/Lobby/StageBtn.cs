@@ -48,7 +48,7 @@ public class StageBtn : MonoBehaviour
     void OnClick_Btn()
     {
         if (isPlay) return;
-        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+        if(SoundManager.instance) SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
         //SoundManager.instance.ManagerState = SoundManager.State.InGame;
 
         isPlay = true;

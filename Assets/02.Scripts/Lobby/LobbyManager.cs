@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class LobbyManager : MonoBehaviour
 {
     public static LobbyManager instance;
-    public GameObject[] Stages;
+    public GameObject[] Pages;
     public GameObject[] Circles;
     public int pageNum;
     Transform canvas;
@@ -60,24 +60,24 @@ public class LobbyManager : MonoBehaviour
 
     public void OnClick_Left()
     {
-        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+        if (SoundManager.instance) SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
 
         if (pageNum == 1) return;
         pageNum--;
-        foreach (GameObject stage in Stages) stage.SetActive(false);
+        foreach (GameObject stage in Pages) stage.SetActive(false);
         foreach (GameObject circle in Circles) circle.SetActive(false);
-        Stages[pageNum - 1].SetActive(true);
+        Pages[pageNum - 1].SetActive(true);
         Circles[pageNum - 1].SetActive(true);
     }
     public void OnClick_Right()
     {
-        SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
+        if (SoundManager.instance) SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
 
         if (pageNum == 5) return;
         pageNum++;
-        foreach (GameObject stage in Stages) stage.SetActive(false);
+        foreach (GameObject stage in Pages) stage.SetActive(false);
         foreach (GameObject circle in Circles) circle.SetActive(false);
-        Stages[pageNum - 1].SetActive(true);
+        Pages[pageNum - 1].SetActive(true);
         Circles[pageNum - 1].SetActive(true);
     }
 

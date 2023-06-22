@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 19077192}
   - component: {fileID: 19077193}
   m_Layer: 5
-  m_Name: Stages_5
+  m_Name: Pages_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3015,7 +3015,7 @@ GameObject:
   - component: {fileID: 211105645}
   - component: {fileID: 211105646}
   m_Layer: 5
-  m_Name: Stages_1
+  m_Name: Pages_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10555,7 +10555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 760941272}
   m_Layer: 5
-  m_Name: Stages
+  m_Name: Pages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10755,7 +10755,7 @@ GameObject:
   - component: {fileID: 781381183}
   - component: {fileID: 781381184}
   m_Layer: 5
-  m_Name: Stages_3
+  m_Name: Pages_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17910,7 +17910,7 @@ GameObject:
   - component: {fileID: 1253853927}
   - component: {fileID: 1253853928}
   m_Layer: 5
-  m_Name: Stages_4
+  m_Name: Pages_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22618,7 +22618,7 @@ GameObject:
   - component: {fileID: 1535989508}
   - component: {fileID: 1535989509}
   m_Layer: 5
-  m_Name: Stages_2
+  m_Name: Pages_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26214,7 +26214,7 @@ GameObject:
   - component: {fileID: 1760035026}
   - component: {fileID: 1760035027}
   m_Layer: 5
-  m_Name: Stage_Circles
+  m_Name: Page_Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
