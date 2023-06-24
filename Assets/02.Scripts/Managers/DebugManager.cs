@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class DebugManager : MonoBehaviour
 {
     public static DebugManager instance;
-   
+    public static bool IsDebugStart;
     public int stageIndex_ForDebugging;
     private void Awake()
     {
@@ -22,6 +22,7 @@ public class DebugManager : MonoBehaviour
     public void StartStage()
     {
         GameManager.stageLV = stageIndex_ForDebugging-1;
+        IsDebugStart = true;
         //GameManager.instance.PlayStage();
         SceneManager.LoadScene("PlayScene");
     }

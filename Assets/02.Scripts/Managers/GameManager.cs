@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     int star_Count;
 
     [Header("BallOption")]
-    public bool isAllBallShot, isValid;
+    public bool isAllBallShot, isValid, CanMoveBall;
     public List<Ball> balls;
 
     //Dictionary<string, int> colorRule = new Dictionary<string, int>();//스테이지에서 요구하는 공 
@@ -92,13 +92,11 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < stageOptions.Count; i++)
         {
-            if (stageOptions[i].gameObject.activeSelf)
-            {
-                stageLV = i;
-                stageOptions[i].gameObject.SetActive(false);
-            }
-        }
+            if (stageOptions[i].gameObject.activeSelf && !DebugManager.IsDebugStart) stageLV = i;
 
+            stageOptions[i].gameObject.SetActive(false);
+        }
+        DebugManager.IsDebugStart = false;
         PlayStage();
         //1스테이지 실행
     }
@@ -127,7 +125,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
         SetBalls();
         //if (firstAnim)
         //{
@@ -137,9 +134,11 @@ public class GameManager : MonoBehaviour
         //        else firstAnim = false;
         //    }
         //}
-
+      
         isAllBallShot = Set_IsAllBallShot();
 
+        if(TextManager.instance.TutoClear) CanMoveBall = !isAllBallShot;
+     
         if (isAllBallShot == false && shotCount != 0)
         {
             if (!isValid) ValidColor();

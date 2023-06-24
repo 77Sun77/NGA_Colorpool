@@ -34,8 +34,7 @@ public class CameraMove : MonoBehaviour
         {
             parentRotation = transform.parent.rotation;
             
-
-            if (!gm.isAllBallShot && !gm.isClear)
+            if (gm.CanMoveBall && !gm.isClear)
             {
                 if (size <= 9f)
                 {

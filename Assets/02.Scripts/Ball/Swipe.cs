@@ -14,7 +14,7 @@ public class Swipe : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.instance.isAllBallShot && GameManager.instance.isStart && !GameManager.instance.isClear)
+        if (GameManager.instance.CanMoveBall && GameManager.instance.isStart && !GameManager.instance.isClear)
         {
             Mouse_Fun();
         }

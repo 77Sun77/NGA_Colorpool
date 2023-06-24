@@ -20,12 +20,13 @@ public class ClickMove2 : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         //print("Down : " + eventData.position);
         isClicking = true;
+        Debug.Log("Down");
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         isClicking = false;
-        Debug.Log("Input");
+        Debug.Log("Up");
         if (mapAnim.isAnim)
         {
             Time.timeScale = 4.2f;

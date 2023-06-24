@@ -380,7 +380,8 @@ public class UIManager : MonoBehaviour
     public void NextStage()
     {
         if (!isClick)
-        {
+        { 
+            DebugManager.IsDebugStart = true;
             GameManager.stageLV++;
             StartCoroutine(DelayStage("PlayScene"));
             //StartCoroutine(DelayStage("LoadingScene"));
@@ -389,7 +390,6 @@ public class UIManager : MonoBehaviour
             isClick = true;
         }
         
-
     }
 
     IEnumerator DelayStage(string SceneName)
