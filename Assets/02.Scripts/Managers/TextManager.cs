@@ -6,39 +6,42 @@ using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour
 {
-    public GameObject TextBox_Top;
-    public GameObject TextBox_Bottom;
+    public TextMeshProUGUI Text_Top;
+    public TextMeshProUGUI Text_Bottom;
     public ColorBook colorBook;
     public string[] texts;
 
-    public Text Text_Top;
-    public Text Text_Bottom;
-
     bool TutoClear;
-  
-    private void Awake()
-    {
-        Text_Top = TextBox_Top.GetComponentInChildren<Text>();
-        Text_Bottom = TextBox_Bottom.GetComponentInChildren<Text>();
 
+    private void Start()
+    {
         TutoClear = false;
-       
-        if (GameManager.stageLV == 0)
-        {
-            TextBox_Top.SetActive(true);
-            Text_Top.text = texts[0];
-        }
-        else if (GameManager.stageLV == 1)
-        {
-            TextBox_Top.SetActive(true);
-            Text_Top.text = texts[3];
-        }
-        else if (GameManager.stageLV == 2)
-        {
-            TextBox_Top.SetActive(true);
-            Text_Top.text = texts[4];
-        }
+
+
+        StartCoroutine(DoPopUp(0, Text_Top, texts[0]));
+        StartCoroutine(DoPopUp(1, Text_Top, texts[3]));
+        StartCoroutine(DoPopUp(2, Text_Top, texts[4]));
+        StartCoroutine(DoPopUp(4, Text_Top, texts[5]));
+        StartCoroutine(DoPopUp(5, Text_Top, texts[6]));
     }
+
+    IEnumerator DoPopUp(int targetStageLV, TextMeshProUGUI textBox, string showingText)
+    {
+        if (GameManager.stageLV != targetStageLV)
+            yield break;
+
+        Debug.Log("DoPopUp" + GameManager.stageLV);
+
+        textBox.transform.parent.gameObject.SetActive(true);
+        textBox.text = showingText;
+
+
+        yield return new WaitUntil(() => { return GameManager.instance.isClear; });
+
+        textBox.transform.parent.gameObject.SetActive(false);
+        Debug.Log("DoPopUpEnd");
+    }
+
 
     private void Update()
     {
@@ -52,14 +55,14 @@ public class TextManager : MonoBehaviour
 
             if (TutoClear && !colorBook.gameObject.activeSelf)
             {
-                TextBox_Top.SetActive(false);
-                TextBox_Bottom.SetActive(true);
+                Text_Top.gameObject.SetActive(false);
+                Text_Bottom.gameObject.SetActive(true);
                 Text_Bottom.text = texts[2];
             }
 
             GameManager.instance.isAllBallShot = !TutoClear;
 
-            if (GameManager.instance.isClear) TextBox_Bottom.SetActive(false);
+            if (GameManager.instance.isClear) Text_Bottom.gameObject.SetActive(false);
         }
         else if (GameManager.stageLV == 1)
         {
@@ -70,7 +73,6 @@ public class TextManager : MonoBehaviour
             }
 
             GameManager.instance.isAllBallShot = !TutoClear;
-            if (GameManager.instance.isClear) TextBox_Top.SetActive(false);
         }
         else if (GameManager.stageLV == 2)
         {
@@ -79,9 +81,17 @@ public class TextManager : MonoBehaviour
                 TutoClear = true;
                 for (int i = 0; i < 2; i++) colorBook.OnClick_Right();
             }
-                
+
             GameManager.instance.isAllBallShot = !TutoClear;
-            if (GameManager.instance.isClear) TextBox_Top.SetActive(false);
+        }
+        else if (GameManager.stageLV == 5)
+        {
+            if (colorBook.gameObject.activeSelf && !TutoClear)
+            {
+                TutoClear = true;
+                for (int i = 0; i < 3; i++) colorBook.OnClick_Right();
+            }
+            GameManager.instance.isAllBallShot = !TutoClear;
         }
     }
 

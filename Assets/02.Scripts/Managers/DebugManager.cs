@@ -10,9 +10,15 @@ public class DebugManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        stageIndex_ForDebugging = GameManager.stageLV + 1;
+        StartCoroutine(Initialize_DebugMan());
     }
    
+    IEnumerator Initialize_DebugMan()
+    {
+        yield return GameManager.instance;
+        stageIndex_ForDebugging = GameManager.stageLV + 1;
+    }
+
     public void StartStage()
     {
         GameManager.stageLV = stageIndex_ForDebugging-1;

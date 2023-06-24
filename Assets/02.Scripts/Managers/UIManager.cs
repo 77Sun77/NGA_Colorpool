@@ -316,7 +316,7 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.shotCount = 0;
         GameManager.instance.targetList.Clear();
-        //GameObject go = GameObject.Find($"Stage_{GameManager.stageLV}(Clone)");
+        //GameObject go = GameObject.Find($"Stage_{GameManager.instance.stageLV}(Clone)");
         //Destroy(go);
         isOnScoreBoard = false;
         UI_ScoreBoard.SetActive(false);

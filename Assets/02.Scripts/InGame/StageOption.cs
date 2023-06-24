@@ -16,9 +16,9 @@ public class StageOption : MonoBehaviour
     public int BlackBallCount;
 
   public void SetStageRule()
-    {
+  {
         GameManager.instance.Set_Rule(shotCount, RedBallCount, OrangeBallCount, YellowBallCount, GreenBallCount, BlueBallCount, PurpleBallCount, BlackBallCount);
         GameManager.instance.SetTargetCount();
-    }
+  }
 
 }

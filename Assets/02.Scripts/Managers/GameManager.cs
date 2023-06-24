@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     public static string moveScene;
 
     [Header("StageOption")]
-    public static int stageLV;
+    public static int stageLV = 0;
+    public Transform Stages_Parent;
     public List<StageOption> stageOptions = new List<StageOption>();
     int star_Count;
 
@@ -85,25 +86,42 @@ public class GameManager : MonoBehaviour
         }
     }
     public GameObject text, text2, ColorBook;
-    bool firstTuto, firstTuto2;
     void Start()
     {
-        //1스테이지 실행
+        stageOptions.AddRange(Stages_Parent.GetComponentsInChildren<StageOption>(true));
+
+        for (int i = 0; i < stageOptions.Count; i++)
+        {
+            if (stageOptions[i].gameObject.activeSelf)
+            {
+                stageLV = i;
+                stageOptions[i].gameObject.SetActive(false);
+            }
+        }
+
         PlayStage();
+        //1스테이지 실행
     }
     public void PlayStage()
     {
-        SoundManager.instance.InitializeBubble();
-        SoundManager.instance.isEnable_BallHitSound = true;
-        SoundManager.instance.ManagerState = SoundManager.State.InGame;
+        if(SoundManager.instance)
+        {
+            SoundManager.instance.InitializeBubble();
+            SoundManager.instance.isEnable_BallHitSound = true;
+            SoundManager.instance.ManagerState = SoundManager.State.InGame;
+        }
 
-        StageOption stage = Instantiate(stageOptions[stageLV]);
+        //SetBalls();
+        //ValidColor();
         stageOptions[stageLV].SetStageRule();
-        SetBalls();
+
+        if(UIManager.instance)
         UIManager.instance.Set_Target_Img();
-        ValidColor();
-        if (stage.TryGetComponent(out MapAnim mapanim))
-            clickMove2.mapAnim = mapanim;
+      
+        StageOption stage = Instantiate(stageOptions[stageLV]);
+        stage.gameObject.SetActive(true);
+        if (stage.TryGetComponent(out MapAnim mapanim)) clickMove2.mapAnim = mapanim;
+
     }
 
 
