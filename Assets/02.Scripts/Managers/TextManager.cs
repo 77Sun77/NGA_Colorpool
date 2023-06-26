@@ -36,8 +36,8 @@ public class TextManager : MonoBehaviour
         DoPopUp(2, Text_Top, texts[4], ref GameManager.instance.isClear);
         DoPopUp(4, Text_Top, texts[5], ref GameManager.instance.isClear);
         DoPopUp(5, Text_Top, texts[6], ref TutoClear);
-
-        if(!HasTuto) TutoClear = true;
+        DoPopUp(6, Text_Top, texts[8], ref TutoClear);
+        if (!HasTuto) TutoClear = true;
     }
 
     unsafe void DoPopUp(int targetStageLV, TextMeshProUGUI textBox, string showingText, ref bool _colorCloseCondition)
@@ -125,6 +125,10 @@ public class TextManager : MonoBehaviour
                 TutoClear = true;
                 for (int i = 0; i < 3; i++) colorBook.OnClick_Right();
             }
+        }
+        else if (GameManager.stageLV == 6)
+        {
+            if (GameManager.instance.clickMove2.isClicking) TutoClear = true;
         }
 
         if (BoolMemoryPos != null) detectCondition = *BoolMemoryPos;

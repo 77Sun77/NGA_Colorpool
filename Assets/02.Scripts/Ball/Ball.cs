@@ -306,7 +306,11 @@ public class Ball : MonoBehaviour
 
         return true;
     }
-
+    [ContextMenu("SetColorVisually")]
+    public void SetColorVisually()
+    {
+        GetComponent<MeshRenderer>().material.color = colors[(int)color_Name];
+    }
 
     void ResetColor()
     {
