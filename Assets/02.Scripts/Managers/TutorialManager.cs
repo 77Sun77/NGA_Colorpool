@@ -50,37 +50,38 @@ public class TutorialManager : MonoBehaviour
             PlayerPrefs.SetInt("Tutorial", 0);
         }
 
-        if (GameManager.stageLV+1 == 9 && tutorialCount == 0)
-        {
-            tutorialCount = 1;
-            delayTime = StartCoroutine(DelayTime(videos[0], isFirst: true, index:0));
-        }
-        else if (GameManager.stageLV+1 == 17 && tutorialCount == 1)
+        //if (GameManager.stageLV+1 == 9 && tutorialCount == 0)
+        //{
+        //    tutorialCount = 1;
+        //    delayTime = StartCoroutine(DelayTime(videos[0], isFirst: true, index:0));
+        //}
+        //else 
+        if (GameManager.stageLV+1 == 14 && tutorialCount == 1)
         {
             tutorialCount = 2;
             delayTime = StartCoroutine(DelayTime(videos[1], isFirst:true, index: 1));
         }
-        else if (GameManager.stageLV + 1 == 23 && tutorialCount == 2)
+        else if (GameManager.stageLV + 1 == 17 && tutorialCount == 2)
         {
             tutorialCount = 4;
             delayTime = StartCoroutine(DelayTime(videos[2], videos[3], true, index: 2));
         }
-        else if (GameManager.stageLV + 1 == 27 && tutorialCount == 4)
+        else if (GameManager.stageLV + 1 == 19 && tutorialCount == 4)
         {
             tutorialCount = 6;
             delayTime = StartCoroutine(DelayTime(videos[4], videos[5], true, index: 4));
         }
-        else if (GameManager.stageLV + 1 == 32 && tutorialCount == 6)
+        else if (GameManager.stageLV + 1 == 24 && tutorialCount == 6)
         {
             tutorialCount = 8;
             delayTime = StartCoroutine(DelayTime(videos[6], videos[7], true, index: 6));
         }
-        else if (GameManager.stageLV + 1 == 45 && tutorialCount == 8)
+        else if (GameManager.stageLV + 1 == 31 && tutorialCount == 8)
         {
             tutorialCount = 9;
             delayTime = StartCoroutine(DelayTime(videos[8], isFirst: true, index: 8));
         }
-        else if (GameManager.stageLV + 1 == 51 && tutorialCount == 9)
+        else if (GameManager.stageLV + 1 == 32 && tutorialCount == 9)
         {
             tutorialCount = 10;
             delayTime = StartCoroutine(DelayTime(videos[9], isFirst: true, index: 9));
@@ -178,4 +179,11 @@ public class TutorialManager : MonoBehaviour
         else if(count == 5) delayTime = StartCoroutine(DelayTime(videos[8]));
         else if(count == 6) delayTime = StartCoroutine(DelayTime(videos[9]));
     }
+
+    [ContextMenu("RemoveTutoPrefs")]
+    public void RemoveTutoPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
 }
