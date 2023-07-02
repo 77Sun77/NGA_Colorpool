@@ -44,7 +44,7 @@ public class DebugManager : MonoBehaviour
         GameManager.stageLV = stageIndex_ForDebugging - 1;
         IsDebugStart = true;
         //GameManager.instance.PlayStage();
-        SceneManager.LoadScene("PlayScene");
+        SceneManager.LoadScene("PlayScene_New");
     }
 
     [ContextMenu("SetBallColorVisually")]

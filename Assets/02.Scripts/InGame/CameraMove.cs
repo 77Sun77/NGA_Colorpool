@@ -33,13 +33,18 @@ public class CameraMove : MonoBehaviour
         if (GameManager.instance.isStart && !GameManager.instance.isClear)
         {
             parentRotation = transform.parent.rotation;
-            
+
+            if (Input.GetMouseButton(0))
+            {
+                if (swipe.target == null) RotateCam();
+            }
+
             if (gm.CanMoveBall && !gm.isClear)
             {
                 if (size <= 9f)
                 {
                     camera.orthographicSize = 9;
-                    return;
+                    //return;
                 }
                 size = Mathf.Lerp(size, 9, 4 * Time.deltaTime);
                 camera.orthographicSize = size;
@@ -49,28 +54,24 @@ public class CameraMove : MonoBehaviour
                 if (size >= 12f)
                 {
                     camera.orthographicSize = 12;
-                    return;
+                    //return;
                 }
                 size = Mathf.Lerp(size, 12, 4 * Time.deltaTime);
                 camera.orthographicSize = size;
             }
-
-            if (Input.GetMouseButton(0))
-            {
-                if (swipe.target == null)
-                {
-
-                    if (isLocked)
-                        return;
-                    float y = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
-                    xRotate = xRotate + y;
-                    transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
-                }
-
-            }
-
         }
         
     }
+
+    void RotateCam()
+    {
+        if (isLocked)
+            return;
+
+        float y = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
+        xRotate = xRotate + y;
+        transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
+    }
+
 
 }

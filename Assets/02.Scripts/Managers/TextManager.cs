@@ -11,10 +11,14 @@ public class TextManager : MonoBehaviour
 
     public TextMeshProUGUI Text_Top;
     public TextMeshProUGUI Text_Bottom;
+    public Button ColorBookButton;
     public ColorBook colorBook;
+    public GameObject FingerImg;
+    public GameObject UI_TutorialBG;
+
     public string[] texts;
 
-    
+    public static bool IsRestarted;
     public bool HasTuto,TutoClear, TutoClear2;
 
     public bool detectCondition = false;
@@ -30,15 +34,35 @@ public class TextManager : MonoBehaviour
     private unsafe void Start()
     {
         TutoClear = false;
-       
-        DoPopUp(0, Text_Top, texts[0], ref TutoClear2);
-        DoPopUp(1, Text_Top, texts[3], ref GameManager.instance.isClear);
-        DoPopUp(2, Text_Top, texts[4], ref GameManager.instance.isClear);
-        DoPopUp(4, Text_Top, texts[5], ref GameManager.instance.isClear);
+
+        if (GameManager.stageLV == 0 && !IsRestarted)
+        {
+            UI_TutorialBG.SetActive(true);
+            DoPopUp(11, Text_Top, texts[9], ref TutoClear2);
+            ColorBookButton.interactable = false;
+            StartCoroutine(Do_Menu_Tuto());
+        }
+        else if(IsRestarted) DoPopUp(0, Text_Top, texts[0], ref TutoClear2);
+      
+        DoPopUp(1, Text_Top, texts[3], ref TutoClear);
+        DoPopUp(2, Text_Top, texts[4], ref TutoClear);
+        DoPopUp(4, Text_Top, texts[5], ref TutoClear);
         DoPopUp(5, Text_Top, texts[6], ref TutoClear);
         DoPopUp(6, Text_Top, texts[8], ref TutoClear);
+
         if (!HasTuto) TutoClear = true;
     }
+
+    IEnumerator Do_Menu_Tuto()
+    {
+        yield return new WaitUntil(() => { return UIManager.instance; });
+        UIManager.instance.OpenMenu();
+        
+        yield return new WaitUntil(() => UIManager.instance.Camera.GetComponent<CameraMove>().isLocked);
+        Text_Top.text = texts[10];
+    }
+
+
 
     unsafe void DoPopUp(int targetStageLV, TextMeshProUGUI textBox, string showingText, ref bool _colorCloseCondition)
     {
@@ -56,9 +80,9 @@ public class TextManager : MonoBehaviour
     IEnumerator DoPopUp_Cor(int targetStageLV, TextMeshProUGUI textBox, string showingText)
     {
         Debug.Log("DoPopUp" + GameManager.stageLV + textBox.name);
-        
+
+        textBox.transform.parent.localScale = Vector3.zero;
         textBox.transform.parent.gameObject.SetActive(true);
-        textBox.transform.parent.DOScale(Vector3.zero, 0f);
         textBox.transform.parent.DOScale(Vector3.one, 0.3f);
 
         textBox.text = showingText;
@@ -113,6 +137,11 @@ public class TextManager : MonoBehaviour
                 TutoClear = true;
                 for (int i = 0; i < 2; i++) colorBook.OnClick_Right();
             }
+        }
+        else if (GameManager.stageLV == 4)
+        {
+            if (!TutoClear) GameManager.instance.CanMoveBall = false;
+            if (GameManager.instance.clickMove2.isClicking) TutoClear = true;
         }
         else if (GameManager.stageLV == 5)
         {

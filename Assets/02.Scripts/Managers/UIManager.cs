@@ -348,10 +348,11 @@ public class UIManager : MonoBehaviour
     {
         if (!isClick)
         {
-            StartCoroutine(DelayStage("PlayScene"));
+            StartCoroutine(DelayStage("PlayScene_New"));
             //StartCoroutine(DelayStage("LoadingScene"));
             SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
             isClick = true;
+            TextManager.IsRestarted = true;
         }
 
     }
@@ -383,7 +384,7 @@ public class UIManager : MonoBehaviour
         { 
             DebugManager.IsDebugStart = true;
             GameManager.stageLV++;
-            StartCoroutine(DelayStage("PlayScene"));
+            StartCoroutine(DelayStage("PlayScene_New"));
             //StartCoroutine(DelayStage("LoadingScene"));
             SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
 
