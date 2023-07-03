@@ -13,7 +13,7 @@ public class LobbyManager : MonoBehaviour
     public GameObject UI;
     public SceneLoad Obj_SL;
 
-    public List<GameObject> levels = new List<GameObject>(); 
+    public List<GameObject> levels = new List<GameObject>();
     int Stage_DB;
 
     void Awake()
@@ -29,8 +29,8 @@ public class LobbyManager : MonoBehaviour
         fade.ChangeFade(Fade_InOut.Fade.Fade_In);
 
         Stage_DB = PlayerPrefs.GetInt("STAGE");
-        
-        for(int i=0; i < Stage_DB+1; i++) 
+
+        for (int i = 0; i < Stage_DB + 1; i++)
         {
             levels[i].GetComponent<Button>().interactable = true;
         }
@@ -81,13 +81,18 @@ public class LobbyManager : MonoBehaviour
         Circles[pageNum - 1].SetActive(true);
     }
 
-    
-   public void Initialize_Lobby()
+
+    public void Initialize_Lobby()
     {
         Camera.main.gameObject.SetActive(true);
         instance.Obj_SL.gameObject.SetActive(false);
         instance.UI.transform.localScale = Vector3.one;
     }
 
+    [ContextMenu("SetStageDB")]
+    public void SetStageDB()
+    {
+        PlayerPrefs.SetInt("STAGE", 41);
+    }
 
 }
