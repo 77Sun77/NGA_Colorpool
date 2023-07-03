@@ -14,9 +14,17 @@ public class TextManager : MonoBehaviour
     public Button ColorBookButton;
     public ColorBook colorBook;
     public GameObject FingerImg;
-    public GameObject UI_TutorialBG;
-
+    public CameraMove cameraMove;
     public string[] texts;
+    [Header("Mask")]
+    public GameObject UI_TutorialBG;
+    public GameObject MenuMask;
+    public GameObject RotLockMask;
+    public GameObject ReStartMask;
+
+    public Button Button_Lobby;
+    public Button Button_Replay;
+    public Button Button_RotLock;
 
     public static bool IsRestarted;
     public bool HasTuto,TutoClear, TutoClear2;
@@ -37,10 +45,9 @@ public class TextManager : MonoBehaviour
 
         if (GameManager.stageLV == 0 && !IsRestarted)
         {
-            UI_TutorialBG.SetActive(true);
-            DoPopUp(11, Text_Top, texts[9], ref TutoClear2);
+            HasTuto = true;
             ColorBookButton.interactable = false;
-            StartCoroutine(Do_Menu_Tuto());
+            StartCoroutine(Start_Cor());
         }
         else if(IsRestarted) DoPopUp(0, Text_Top, texts[0], ref TutoClear2);
       
@@ -62,7 +69,13 @@ public class TextManager : MonoBehaviour
         Text_Top.text = texts[10];
     }
 
-
+    IEnumerator Start_Cor()
+    {
+        yield return new WaitUntil(() => { return GameManager.instance.clickMove2.mapAnim; });
+        yield return new WaitUntil(() => { return GameManager.instance.clickMove2.mapAnim.isAnim == false; });
+        FingerImg.SetActive(true);
+        DoPopUp(0, Text_Top, texts[11], ref TutoClear2);
+    }
 
     unsafe void DoPopUp(int targetStageLV, TextMeshProUGUI textBox, string showingText, ref bool _colorCloseCondition)
     {
@@ -106,13 +119,43 @@ public class TextManager : MonoBehaviour
         {
             if (!TutoClear) GameManager.instance.CanMoveBall = false;
 
+            if(!IsRestarted)
+            {
+                if (cameraMove.IsRotated && GameManager.instance.clickMove2.isClicking == false)
+                {
+                    FingerImg.SetActive(false);
+                    UI_TutorialBG.SetActive(true);
+                    Text_Top.text = texts[9];
+                    MenuMask.SetActive(true);
+                }
+
+                if (UIManager.instance.isMenuOpen)
+                {
+                    MenuMask.SetActive(false);
+                    RotLockMask.SetActive(true);
+
+                    Button_Lobby.interactable = false;
+                    Button_Replay.interactable = false;
+                    Button_RotLock.interactable = true;
+                }
+
+                if (UIManager.instance.Camera.GetComponent<CameraMove>().isLocked)
+                {
+                    RotLockMask.SetActive(false);
+                    ReStartMask.SetActive(true);
+
+                    Text_Top.text = texts[10];
+                    Button_Replay.interactable = true;
+                }
+            }
+
             if (colorBook.gameObject.activeSelf)
             {
                 Text_Top.text = texts[1];
                 TutoClear = true;
             }
 
-            if (TutoClear && !colorBook.gameObject.activeSelf)
+            if (TutoClear && !colorBook.gameObject.activeSelf) 
             {
                 TutoClear2 = true;
                 if (coroutine==null) DoPopUp(0, Text_Bottom, texts[2], ref GameManager.instance.isClear);               

@@ -7,14 +7,15 @@ public class CameraMove : MonoBehaviour
     public static Quaternion parentRotation;
     public static float xRotate = 0;
     GameManager gm;
-    Camera camera;
+    new Camera camera;
     float size;
 
     Swipe swipe;
     Fade_InOut fade;
-
+    public bool IsRotated;
     public bool isLocked=>SoundManager.instance.isCamLocked;
     
+
     void Start()
     {
         transform.parent.rotation = parentRotation;
@@ -71,6 +72,7 @@ public class CameraMove : MonoBehaviour
         float y = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
         xRotate = xRotate + y;
         transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
+        IsRotated = true;
     }
 
 
