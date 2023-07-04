@@ -9,14 +9,12 @@ public class Wall_ColorChanged : MonoBehaviour
     public GameObject StartPos;
     public GameObject EndPos;
 
+    public GameObject[] Colors;
+    public Transform Square_Offset;
 
     private void Awake()
     {
-        foreach (Transform tr in transform.Find("Colors"))
-        {
-            tr.gameObject.SetActive(false);
-        }
-        transform.Find("Colors").Find(color.ToString()).gameObject.SetActive(true);
+        Colors[(int)color].gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

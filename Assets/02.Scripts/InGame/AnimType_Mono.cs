@@ -32,6 +32,8 @@ public class AnimType_Mono : MonoBehaviour
     public bool isUpCount;
 
     Vector3 startPos, endPos;
+    Animator brushAnimator;
+
 
     private void Awake()
     {
@@ -89,9 +91,10 @@ public class AnimType_Mono : MonoBehaviour
 
                 break;
             case AnimType.Paint:
-                CCW_TF = transform.Find("Square_Offset");
-                startPos = transform.GetComponent<Wall_ColorChanged>().StartPos.transform.position;
-                endPos = transform.GetComponent<Wall_ColorChanged>().EndPos.transform.position;
+                Wall_ColorChanged wall_ColorChanged = GetComponent<Wall_ColorChanged>();
+                CCW_TF = wall_ColorChanged.Square_Offset;
+                startPos = wall_ColorChanged.StartPos.transform.position;
+                endPos = wall_ColorChanged.EndPos.transform.position;
                 //Vector3 colorScale = CCW_TF.localScale;
                 //CCW_TF.localScale = new Vector3(0, colorScale.y, colorScale.z);
                 //Debug.Log("페인트 초기화");
@@ -165,7 +168,8 @@ public class AnimType_Mono : MonoBehaviour
             {
                 brushPrefab_Ins = Instantiate(GameManager.instance.paintBrush_Prefab, startPos, Quaternion.identity);
                 brushPrefab_Ins.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-                brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeIn", true);
+                brushAnimator = brushPrefab_Ins.GetComponent<Animator>();
+                brushAnimator.SetBool("isFadeIn", true);
                 isBrushSpawned = true;
 
                 StartCoroutine(nameof(Set_IsBrushMoving_true));
@@ -182,10 +186,10 @@ public class AnimType_Mono : MonoBehaviour
 
             if (brushPrefab_Ins.transform.position == endPos)
             {
-                if (brushPrefab_Ins.GetComponent<Animator>().GetBool("isFadeOut") == false)
+                if (brushAnimator.GetBool("isFadeOut") == false)
                 {
                     //Debug.Log("페이드아웃");
-                    brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeOut", true);                    
+                    brushAnimator.SetBool("isFadeOut", true);                    
                 }
 
                 curTime1 += Time.deltaTime;

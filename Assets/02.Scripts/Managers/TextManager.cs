@@ -22,6 +22,7 @@ public class TextManager : MonoBehaviour
     public GameObject RotLockMask;
     public GameObject ReStartMask;
 
+    public Button Button_Menu;
     public Button Button_Lobby;
     public Button Button_Replay;
     public Button Button_RotLock;
@@ -46,6 +47,7 @@ public class TextManager : MonoBehaviour
         if (GameManager.stageLV == 0 && !IsRestarted)
         {
             HasTuto = true;
+            Button_Menu.interactable = false;
             ColorBookButton.interactable = false;
             StartCoroutine(Start_Cor());
         }
@@ -123,6 +125,7 @@ public class TextManager : MonoBehaviour
             {
                 if (cameraMove.IsRotated && GameManager.instance.clickMove2.isClicking == false)
                 {
+                    Button_Menu.interactable = true;
                     FingerImg.SetActive(false);
                     UI_TutorialBG.SetActive(true);
                     Text_Top.text = texts[9];

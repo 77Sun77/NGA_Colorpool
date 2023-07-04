@@ -3,17 +3,28 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class DebugManager : MonoBehaviour
 {
     public static DebugManager instance;
     public static bool IsDebugStart;
     public int stageIndex_ForDebugging;
 
-    public TextMeshProUGUI debugMessage; 
+    public TextMeshProUGUI debugMessage;
+    public TMP_InputField StageSkipper;
+    public Button Button_SkipEnter;
+    public Button Button_SkipNext;
+    public Button Button_SkipPast;
 
     private void Awake()
     {
         instance = this;
+
+        Button_SkipEnter.onClick.AddListener(SkipEnter);
+        Button_SkipNext.onClick.AddListener(SkipNext);
+        Button_SkipPast.onClick.AddListener(SkipPast);
+
         StartCoroutine(Initialize_DebugMan());
     }
 
@@ -57,8 +68,22 @@ public class DebugManager : MonoBehaviour
         }
     }
 
+    public void SkipEnter()
+    {
+         if(int.TryParse(StageSkipper.text,out stageIndex_ForDebugging)) StartStage();
+    }
 
+    public void SkipNext()
+    {
+        stageIndex_ForDebugging++;
+        StartStage();
+    }
 
+    public void SkipPast()
+    {
+        stageIndex_ForDebugging--;
+        StartStage();
+    }
 }
 
 

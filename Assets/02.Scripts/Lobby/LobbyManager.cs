@@ -41,6 +41,13 @@ public class LobbyManager : MonoBehaviour
             SoundManager.instance.isEnable_BallHitSound = false;
             SoundManager.instance.ManagerState = SoundManager.State.Lobby;
         }
+
+        foreach (GameObject stage in Pages) stage.SetActive(false);
+        foreach (GameObject circle in Circles) circle.SetActive(false);
+        Debug.Log(GameManager.stageLV / 14);
+        pageNum = GameManager.stageLV / 14 + 1;
+        Pages[pageNum - 1].SetActive(true);
+        Circles[pageNum - 1].SetActive(true);
     }
 
     void Update()
@@ -73,7 +80,7 @@ public class LobbyManager : MonoBehaviour
     {
         if (SoundManager.instance) SoundManager.instance.PlayTargetSound(SoundManager.instance.ButtonClickSFX);
 
-        if (pageNum == 5) return;
+        if (pageNum == 3) return;
         pageNum++;
         foreach (GameObject stage in Pages) stage.SetActive(false);
         foreach (GameObject circle in Circles) circle.SetActive(false);
