@@ -5,6 +5,11 @@ using UnityEngine;
 public class Wall_ColorChanged : MonoBehaviour
 {
     public Ball.Ball_Color color;
+
+    public GameObject StartPos;
+    public GameObject EndPos;
+
+
     private void Awake()
     {
         foreach (Transform tr in transform.Find("Colors"))

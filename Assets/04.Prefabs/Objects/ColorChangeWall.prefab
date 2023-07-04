@@ -216,6 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 0
+  StartPos: {fileID: 7653760022335847527}
+  EndPos: {fileID: 8253828702368834071}
 --- !u!114 &1850003847920970433
 MonoBehaviour:
   m_ObjectHideFlags: 0

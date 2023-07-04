@@ -18,18 +18,20 @@ public class AnimType_Mono : MonoBehaviour
     public bool isAnimCage;
     public bool isAnimPaint;
 
-  
+
 
     GameObject brushPrefab_Ins;
     public bool isBrushSpawned;
     public bool isBrushMoving;
-   public float curTime;
+    public float curTime, curTime1;
 
     Transform CCW_TF;
 
     Vector3 keyPos;
     public bool isDownCount;
     public bool isUpCount;
+
+    Vector3 startPos, endPos;
 
     private void Awake()
     {
@@ -82,12 +84,14 @@ public class AnimType_Mono : MonoBehaviour
                         break;
                 }
 
-                
+
 
 
                 break;
             case AnimType.Paint:
                 CCW_TF = transform.Find("Square_Offset");
+                startPos = transform.GetComponent<Wall_ColorChanged>().StartPos.transform.position;
+                endPos = transform.GetComponent<Wall_ColorChanged>().EndPos.transform.position;
                 //Vector3 colorScale = CCW_TF.localScale;
                 //CCW_TF.localScale = new Vector3(0, colorScale.y, colorScale.z);
                 //Debug.Log("페인트 초기화");
@@ -114,7 +118,7 @@ public class AnimType_Mono : MonoBehaviour
 
     public void DoAnim()
     {
- 
+
         if (isAnimBall)
         {
             //transform.localScale = Vector3.Lerp(Vector3.one * 0.1f, Vector3.one, curTime/3);
@@ -139,38 +143,64 @@ public class AnimType_Mono : MonoBehaviour
             {
                 MoveDown();
             }
-          
-                if (isDownCount)
-                {
-                    curTime -= Time.deltaTime;
-                }
-                else if (isUpCount)
-                {
-                    curTime += Time.deltaTime;
-                }
-            
-            transform.position = Vector3.Lerp(keyPos, keyPos + Vector3.up/3, curTime);
-            transform.Rotate(Vector3.up*20 * Time.deltaTime);
+
+            if (isDownCount)
+            {
+                curTime -= Time.deltaTime;
+            }
+            else if (isUpCount)
+            {
+                curTime += Time.deltaTime;
+            }
+
+            transform.position = Vector3.Lerp(keyPos, keyPos + Vector3.up / 3, curTime);
+            transform.Rotate(Vector3.up * 20 * Time.deltaTime);
         }
 
         if (isAnimPaint)
         {
-            StartCoroutine(nameof(DoAnim_Paint));
+            //StartCoroutine(nameof(DoAnim_Paint));
+
+            if (!isBrushSpawned)
+            {
+                brushPrefab_Ins = Instantiate(GameManager.instance.paintBrush_Prefab, startPos, Quaternion.identity);
+                brushPrefab_Ins.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+                brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeIn", true);
+                isBrushSpawned = true;
+
+                StartCoroutine(nameof(Set_IsBrushMoving_true));
+            }
 
             if (isBrushMoving)
             {
-                brushPrefab_Ins.transform.position = Vector3.Lerp(transform.Find("StartPoint").position, transform.Find("EndPoint").position, curTime*1.5f);
+                brushPrefab_Ins.transform.position = Vector3.Lerp(startPos, endPos, curTime * 1.5f);
                 Vector3 colorScale = CCW_TF.localScale;
-                CCW_TF.localScale = Vector3.Lerp(Vector3.one, new Vector3(0, colorScale.y, colorScale.z), curTime * 1.5f); 
+                CCW_TF.localScale = Vector3.Lerp(Vector3.one, new Vector3(0, colorScale.y, colorScale.z), curTime * 1.5f);
 
                 curTime += Time.deltaTime;
             }
 
+            if (brushPrefab_Ins.transform.position == endPos)
+            {
+                if (brushPrefab_Ins.GetComponent<Animator>().GetBool("isFadeOut") == false)
+                {
+                    //Debug.Log("페이드아웃");
+                    brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeOut", true);                    
+                }
+
+                curTime1 += Time.deltaTime;
+
+                if (curTime1 > 0.2f)
+                {
+                    isAnimPaint = false;
+                    Destroy(brushPrefab_Ins);
+                }
+            }
         }
 
     }
 
- void MoveDown()
+    void MoveDown()
     {
         isUpCount = false;
         isDownCount = true;
@@ -182,29 +212,24 @@ public class AnimType_Mono : MonoBehaviour
         isDownCount = false;
     }
 
+    IEnumerator Set_IsBrushMoving_true()
+    {
+        yield return new WaitForSeconds(0.1f);
+        isBrushMoving = true;
+    }
+
+
 
     IEnumerator DoAnim_Paint()
     {
-        if (!isBrushSpawned)
+        if (brushPrefab_Ins.transform.position == endPos)
         {
-            brushPrefab_Ins = Instantiate(GameManager.instance.paintBrush_Prefab, transform.Find("StartPoint").position, Quaternion.identity);
-            brushPrefab_Ins.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-            brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeIn", true);
-            //Debug.Log("페이드인");
-            isBrushSpawned = true;
-            yield return new WaitForSeconds(0.1f);
-            isBrushMoving = true;
-        }
-
-
-        if (brushPrefab_Ins.transform.position == transform.Find("EndPoint").position)
-        {
-            if (brushPrefab_Ins.GetComponent<Animator>().GetBool("isFadeOut")==false)
+            if (brushPrefab_Ins.GetComponent<Animator>().GetBool("isFadeOut") == false)
             {
                 //Debug.Log("페이드아웃");
                 brushPrefab_Ins.GetComponent<Animator>().SetBool("isFadeOut", true);
                 yield return new WaitForSeconds(0.2f);
-                isAnimPaint =false;
+                isAnimPaint = false;
                 Destroy(brushPrefab_Ins);
             }
         }
@@ -230,7 +255,7 @@ public class AnimType_Mono : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            for(int i=0; i<9; i++)
+            for (int i = 0; i < 9; i++)
             {
                 child.GetChild(i).GetComponent<MeshRenderer>().material = materials[num];
             }
@@ -238,5 +263,5 @@ public class AnimType_Mono : MonoBehaviour
     }
 
 
-   
+
 }

@@ -122,7 +122,7 @@ public class TutorialManager : MonoBehaviour
         if (!uiOpen) yield return new WaitForSeconds(3f);
         vp.Stop();
         VideoWindow.SetActive(true);
-        if (isFirst) yield return new WaitForSeconds(0.5f);
+        //if (isFirst) yield return new WaitForSeconds(0.5f);
 
         if (two == null)
         {
