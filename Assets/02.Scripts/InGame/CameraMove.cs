@@ -69,10 +69,11 @@ public class CameraMove : MonoBehaviour
         if (isLocked)
             return;
 
-        float y = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
+        float y = Input.GetAxis("Mouse X") * Time.deltaTime * 150;
         xRotate = xRotate + y;
         transform.parent.eulerAngles = new Vector3(0, xRotate, 0);
-        if(y>1f) IsRotated = true;
+
+        if(y>0.05f) IsRotated = true;
 
     }
 

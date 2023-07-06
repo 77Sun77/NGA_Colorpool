@@ -62,7 +62,7 @@ public class LobbyManager : MonoBehaviour
             else OnClick_Right();
         }
         */
-        if (Input.GetKeyDown(KeyCode.Space)) PlayerPrefs.DeleteAll();
+        //if (Input.GetKeyDown(KeyCode.Space)) PlayerPrefs.DeleteAll();
     }
 
     public void OnClick_Left()

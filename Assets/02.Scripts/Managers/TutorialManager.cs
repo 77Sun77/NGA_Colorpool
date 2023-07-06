@@ -66,22 +66,22 @@ public class TutorialManager : MonoBehaviour
             tutorialCount = 4;
             delayTime = StartCoroutine(DelayTime(videos[2], videos[3], true, index: 2));
         }
-        else if (GameManager.stageLV + 1 == 18 && tutorialCount == 4)
+        else if (GameManager.stageLV + 1 == 19 && tutorialCount == 4)
         {
             tutorialCount = 6;
             delayTime = StartCoroutine(DelayTime(videos[4], videos[5], true, index: 4));
         }
-        else if (GameManager.stageLV + 1 == 23 && tutorialCount == 6)
+        else if (GameManager.stageLV + 1 == 24 && tutorialCount == 6)
         {
             tutorialCount = 8;
             delayTime = StartCoroutine(DelayTime(videos[6], videos[7], true, index: 6));
         }
-        else if (GameManager.stageLV + 1 == 30 && tutorialCount == 8)
+        else if (GameManager.stageLV + 1 == 31 && tutorialCount == 8)
         {
             tutorialCount = 9;
             delayTime = StartCoroutine(DelayTime(videos[8], isFirst: true, index: 8));
         }
-        else if (GameManager.stageLV + 1 == 31 && tutorialCount == 9)
+        else if (GameManager.stageLV + 1 == 36 && tutorialCount == 9)
         {
             tutorialCount = 10;
             delayTime = StartCoroutine(DelayTime(videos[9], isFirst: true, index: 9));

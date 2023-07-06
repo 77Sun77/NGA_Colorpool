@@ -12,6 +12,8 @@ public class StartManager : MonoBehaviour
 
     public SoundManager SoundManager;
     bool isOpen;
+
+    public bool IsClick;
     void Start()
     {
         DontDestroyOnLoad(SoundManager);
@@ -21,6 +23,7 @@ public class StartManager : MonoBehaviour
         StartCoroutine(LoadScene_Cor());
         StartCoroutine(DelayImage());
     }
+
 
     IEnumerator Fade()
     {
@@ -60,17 +63,18 @@ public class StartManager : MonoBehaviour
                 guide.gameObject.SetActive(false);
                 startText.gameObject.SetActive(true);
 
-                while (true)
-                {
-                    yield return new WaitForFixedUpdate();
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        StartCoroutine(Fade());
-                        break;
-                    }
-                }
+                //while (true)
+                //{
+                //    yield return new WaitForFixedUpdate();
+                //    if (Input.GetMouseButtonDown(0))
+                //    {
+                //        StartCoroutine(Fade());
+                //        break;
+                //    }
+                //}
                 
-                while (!isOpen) yield return new WaitForFixedUpdate();
+                //while (!isOpen) yield return new WaitForFixedUpdate();
+                yield return new WaitUntil(() => { return isOpen; });
                 oper.allowSceneActivation = true;
                 break;
             }
@@ -81,5 +85,15 @@ public class StartManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         image.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0)&&!IsClick)
+        {
+            IsClick = true;
+            StartCoroutine(Fade());
+        }
+       
     }
 }
